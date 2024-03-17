@@ -320,85 +320,82 @@ function generateRandomCode() {
     }
     return code;
 }
-function ProductJS() {
-    $('.border__dashed').click(function () {
-        console.log($(this));
-        $(this).next('.dropdown__menu').toggle(); // Ẩn hiện dropdown__menu khi click vào thẻ a
+$('.border__dashed').click(function () {
+    console.log($(this));
+    $(this).next('.dropdown__menu').toggle(); // Ẩn hiện dropdown__menu khi click vào thẻ a
+});
+
+$("#priceRange").ionRangeSlider({
+    type: "double",
+    min: 0,
+    max: 100000000,
+    from: 0,
+    to: 100000000,
+});
+$('.item-product').fancybox({
+    type: 'ajax',
+    layout: 'ProductDetails'
+});
+
+$("#priceRange").change(function () {
+    var array = $(this).val().split(';');
+
+    $.ajax({
+        url: "/Home/ListProductView",
+        type: 'GET',
+        data: {
+            min: array[0],
+            max: array[1]
+        },
+        success: function (result) {
+            $(".product__list").empty();
+            $(".product__list").html(result);
+
+            console.log(result)
+        }
     });
-
-    $("#priceRange").ionRangeSlider({
-        type: "double",
-        min: 0,
-        max: 100000000,
-        from: 0,
-        to: 100000000,
+})
+$('.checkbox-btn').change(function () {
+    var cutlineValues = $('.checkbox-cutline:checked').map(function () {
+        return this.value;
+    }).get().join(',');
+    console.log(cutlineValues)
+    var laminationValues = $('.checkbox-lamination:checked').map(function () {
+        return this.value;
+    }).get().join(',');
+    var printsizeValues = $('.checkbox-printsize:checked').map(function () {
+        return this.value;
+    }).get().join(',');
+    var printedformValues = $('.checkbox-printedform:checked').map(function () {
+        return this.value;
+    }).get().join(',');
+    var papertypeValues = $('.checkbox-papertype:checked').map(function () {
+        return this.value;
+    }).get().join(',');
+    var glueValues = $('.checkbox-glue:checked').map(function () {
+        return this.value;
+    }).get().join(',');
+    $.ajax({
+        type: 'POST',
+        url: "/Home/ListProductView",
+        data: {
+            cutline: cutlineValues,
+            lamination: laminationValues,
+            printsize: printsizeValues,
+            printedform: printedformValues,
+            papertype: papertypeValues,
+            glue: glueValues
+        },
+        success: function (result) {
+            $(".product__list").empty();
+            $(".product__list").html(result);
+        },
+        error: function (error) {
+            console.log('Error:', error);
+        }
     });
-    $('.item-product').fancybox({
-        type: 'ajax',
-        layout: 'ProductDetails'
-    });
+});
 
-    $("#priceRange").change(function () {
-        var array = $(this).val().split(';');
-
-        $.ajax({
-            url: "/Home/ListProductView",
-            type: 'GET',
-            data: {
-                min: array[0],
-                max: array[1]
-            },
-            success: function (result) {
-                $(".product__list").empty();
-                $(".product__list").html(result);
-
-                console.log(result)
-            }
-        });
-    })
-    $('.checkbox-btn').change(function () {
-        var cutlineValues = $('.checkbox-cutline:checked').map(function () {
-            return this.value;
-        }).get().join(',');
-        console.log(cutlineValues)
-        var laminationValues = $('.checkbox-lamination:checked').map(function () {
-            return this.value;
-        }).get().join(',');
-        var printsizeValues = $('.checkbox-printsize:checked').map(function () {
-            return this.value;
-        }).get().join(',');
-        var printedformValues = $('.checkbox-printedform:checked').map(function () {
-            return this.value;
-        }).get().join(',');
-        var papertypeValues = $('.checkbox-papertype:checked').map(function () {
-            return this.value;
-        }).get().join(',');
-        var glueValues = $('.checkbox-glue:checked').map(function () {
-            return this.value;
-        }).get().join(',');
-        $.ajax({
-            type: 'POST',
-            url: "/Home/ListProductView",
-            data: {
-                cutline: cutlineValues,
-                lamination: laminationValues,
-                printsize: printsizeValues,
-                printedform: printedformValues,
-                papertype: papertypeValues,
-                glue: glueValues
-            },
-            success: function (result) {
-                $(".product__list").empty();
-                $(".product__list").html(result);
-            },
-            error: function (error) {
-                console.log('Error:', error);
-            }
-        });
-    });
-
-
-}
 function AddToCollation(id) {
     $.ajax({
         url: '/Home/AddToCollation',

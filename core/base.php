@@ -1,22 +1,25 @@
 <?php
 
-defined('APPPATH') OR exit('Không được quyền truy cập phần này');
+defined('APPPATH') or exit('Không được quyền truy cập phần này');
 
 // get Controller name
-function get_controller() {
+function get_controller()
+{
     global $config;
     $controller = isset($_GET['controller']) ? $_GET['controller'] : $config['default_controller'];
     return $controller;
 }
 
 //get Action name
-function get_action() {
+function get_action()
+{
     global $config;
     $action = isset($_GET['action']) ? $_GET['action'] : $config['default_action'];
     return $action;
 }
 
-function load_helpers($name) {
+function load_helpers($name)
+{
     $path = HELPERPATH . DIRECTORY_SEPARATOR . "{$name}.php";
 
     if (file_exists($path)) {
@@ -33,7 +36,8 @@ function load_helpers($name) {
  * Gọi đến hàm theo tham số biến
  */
 
-function call_function($list_function = array()) {
+function call_function($list_function = array())
+{
     if (is_array($list_function)) {
         foreach ($list_function as $f) {
             if (is_string($f) && function_exists($f)) {
@@ -43,12 +47,11 @@ function call_function($list_function = array()) {
     }
 }
 
-function load_view($name, $layout = "", $data_send = array()) {
-    global $data;
-    global $route_controllers;
+function load_view($name, $layout = "", $data_send = array())
+{
     global $config;
 
-    $body = VIEWPATH . DIRECTORY_SEPARATOR . $route_controllers . DIRECTORY_SEPARATOR . $name . '.php';
+    $body = VIEWPATH . DIRECTORY_SEPARATOR . $name . '.php';
     if (file_exists($body)) {
         if (is_array($data_send)) {
             foreach ($data_send as $key_data => $v_data) {
@@ -68,9 +71,10 @@ function load_view($name, $layout = "", $data_send = array()) {
     }
 }
 
-function partial_view($name = '') {
+function partial_view($name = '')
+{
     global $data;
-    
+
     $path = VIEWPATH . DIRECTORY_SEPARATOR . 'shared' . DIRECTORY_SEPARATOR . $name . '.php';
     if (file_exists($path)) {
         if (is_array($data)) {
@@ -83,5 +87,3 @@ function partial_view($name = '') {
         echo "Không tìm thấy {$path}";
     }
 }
-
-?>
