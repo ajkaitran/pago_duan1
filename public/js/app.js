@@ -61,6 +61,19 @@ $(document).ready(function () {
         // Sử dụng slideToggle để thêm hiệu ứng slide
         dropChildrenElement.slideToggle();
     });
+
+    // Ẩn .dropdown__menu ban đầu
+    $(".dropdown__menu").hide();
+
+    // Hiển thị .dropdown__menu khi .dropdown được nhấp
+    $(".dropdown").click(function () {
+        $(".dropdown__menu").show();
+    });
+
+    // Ẩn .dropdown__menu khi .dropdown được nhấp
+    $(".dropdown").click(function () {
+        $(".dropdown__menu").hide();
+    });
 });
 
 // slideshow

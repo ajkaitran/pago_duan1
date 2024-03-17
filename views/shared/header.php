@@ -125,13 +125,13 @@
                 <div class="container">
                     <ul class="nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">TRANG CHỦ</a>
+                            <a class="nav-link" href="/pago">TRANG CHỦ</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">GIỚI THIỆU</a>
+                            <a class="nav-link" href="?controller=Home&action=introduce">GIỚI THIỆU</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">SẢN PHẨM <i class="fa-solid fa-angle-down"></i></a>
+                            <a class="nav-link" href="?controller=Home&action=product">SẢN PHẨM <i class="fa-solid fa-angle-down"></i></a>
                             <div class="nav__drop">
                                 <ul class="nav">
                                     <li class="nav-item">
@@ -170,14 +170,14 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-action="Service" asp-controller="Home">DỊCH VỤ <i class="fa-solid fa-angle-down"></i></a>
+                            <a class="nav-link" href="?controller=Home&action=service">DỊCH VỤ <i class="fa-solid fa-angle-down"></i></a>
                             <div class="nav__drop">
                                 <ul class="nav">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">Dijhc vụ in ấn</a>
+                                        <a class="nav-link" href="#">Dịch vụ in ấn</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">Dijhc vụ thiết kế</a>
+                                        <a class="nav-link" href="#">Dịch vụ thiết kế</a>
                                     </li>
                                 </ul>
                             </div>

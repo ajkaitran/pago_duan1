@@ -1,16 +1,27 @@
-<?php 
+<?php
 
 function construct()
 {
-
 }
 
-function Index()
+function index()
 {
-    load_view('Index');
+    load_view('index');
 }
 
-function Test()
+function product()
 {
-    load_view('Test');
+    load_view('product');
+}
+function introduce()
+{
+    load_view('introduce');
+}
+function article()
+{
+    load_view('article');
+}
+function service()
+{
+    load_view('service');
 }

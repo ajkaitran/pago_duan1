@@ -65,7 +65,7 @@
     <section class="new__service">
         <div class="container">
             <div class="title__orange">
-                <img src="./public/images//get-image-v3 (4).png" alt="">
+                <img src="./public/images/get-image-v3 (4).png" alt="">
                 <h3>CÁC DỊCH VỤ MỚI</h3>
             </div>
             <div class="slide__new__service">
@@ -85,82 +85,87 @@
     <section class="favorite__product">
         <div class="container">
             <div class="title__orange">
-                <img src="./public/images//get-image-v3 (4).png" alt="">
+                <img src="./public/images/get-image-v3 (4).png" alt="">
                 <h3>SẢN PHẨM ĐƯỢC QUAN TÂM NHIỀU</h3>
             </div>
             <div class="slide__favorite__product py-3">
-                @foreach (var item in Model.ShowFavoriteProducts)
-                {
-                <div class="box__favorite__product">
-                    <a asp-action="ProductDetails" asp-controller="Home" asp-route-id="@item.Id">
-                        <img src="@Url.Content($" /contents/AnhSanPham/{item.GetAvatar()}")" />
-                        <p class="p__hover">@item.Name</p>
-                        <div class="price">
-                            <h5 class="new__price">@Html.DisplayFor(a => item.NewPrice)</h5>
-                            <del class="old__price p__hover">@Html.DisplayFor(a => item.OldPrice)</del>
-                        </div>
-                    </a>
-                    <div class="add__to__cart" onclick="QuickCart(id)"><i class="fa-regular fa-bag-shopping fs-5"></i>Thêm vào giỏ hàng</div>
-                    <div class="floating__box__product">
-                        <div class="box__product">
-                            <a asp-action="ProductView" asp-controller="Home" asp-route-id="@item.Id" data-fancybox="" data-type="ajax" class="item-product">
-                                <i class="fa-regular fa-eye"></i>
-                            </a>
-                        </div>
-                        <div class="box__product">
-                            <a href="javascript:;" onclick="AddToWishlist('@item.Id')"><i class="fa-regular fa-heart"></i></a>
-                        </div>
-                        <div class="box__product">
-                            <a href="javascript:;" onclick="AddToCollation('@item.Id')"><i class="fa-solid fa-code-compare fa-rotate-90"></i></a>
+                <?php
+                for ($i = 1; $i < 8; $i++) {
+                ?>
+                    <div class="box__favorite__product">
+                        <a href="#">
+                            <img src="./public/images/Poster-<?= $i ?>.jpg" alt="">
+                            <p class="p__hover">Poster</p>
+                            <div class="price">
+                                <h5 class="new__price">69.000VND</h5>
+                                <del class="old__price p__hover">100.000VND</del>
+                            </div>
+                        </a>
+                        <div class="add__to__cart" onclick="QuickCart(id)"><i class="fa-regular fa-bag-shopping fs-5"></i>Thêm vào giỏ hàng</div>
+                        <div class="floating__box__product">
+                            <div class="box__product">
+                                <a asp-action="ProductView" asp-controller="Home" asp-route-id="@item.Id" data-fancybox="" data-type="ajax" class="item-product">
+                                    <i class="fa-regular fa-eye"></i>
+                                </a>
+                            </div>
+                            <div class="box__product">
+                                <a href="javascript:;" onclick="AddToWishlist('@item.Id')"><i class="fa-regular fa-heart"></i></a>
+                            </div>
+                            <div class="box__product">
+                                <a href="javascript:;" onclick="AddToCollation('@item.Id')"><i class="fa-solid fa-code-compare fa-rotate-90"></i></a>
+                            </div>
                         </div>
                     </div>
-                </div>
+                <?php
                 }
+                ?>
             </div>
         </div>
     </section>
     <section class="hot__buy">
         <div class="container">
             <div class="title__orange">
-                <img src="./public/images//get-image-v3 (3).png" alt="">
+                <img src="./public/images/get-image-v3 (3).png" alt="">
                 <h3>COMBO ĐƯỢC MUA NHIỀU</h3>
             </div>
             <div class="combo__product">
                 <div class="row">
-                    @foreach (var item in Model.ShowBuyProducts)
-                    {
-                    <div class="col-lg-4 col-md-3 col-sm-6 my-3 ">
-                        <div class="product">
-                            <a asp-action="ProductDetails" asp-controller="Home" asp-route-id="@item.Id">
-                                <img src="@Url.Content($" /contents/AnhSanPham/{item.GetAvatar()}")" />
-                                <div class="texts">
-                                    <p class="p__hover">@item.Name</p>
-                                    <div class="price">
-                                        <h5 class="new__price">@Html.DisplayFor(a => item.NewPrice)</h5>
-                                        <del class="old__price p__hover">@Html.DisplayFor(a => item.OldPrice)</del>
+                    <?php
+                    for ($i = 1; $i < 10; $i++) {
+                    ?>
+                        <div class="col-lg-4 col-md-3 col-sm-6 my-3 ">
+                            <div class="product">
+                                <a href="#">
+                                    <img src="./public/images/Nhan-gian-<?= $i ?>.jpeg" alt="">
+                                    <div class="texts">
+                                        <p class="p__hover">Combo</p>
+                                        <div class="price">
+                                            <h5 class="new__price">159.000VND</h5>
+                                            <del class="old__price p__hover">200.000VND</del>
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
-                            <div class="floating__box__product">
-                                <div class="box__product">
-                                    <a onclick="QuickCart(id)"><i class="fa-regular fa-bag-shopping"></i></a>
-                                </div>
-                                <div class="box__product">
-                                    <a asp-action="ProductView" asp-controller="Home" asp-route-id="@item.Id" data-fancybox="" data-type="ajax" class="item-product">
-                                        <i class="fa-regular fa-eye"></i>
-                                    </a>
-                                </div>
-                                <div class="box__product">
-                                    <a href="javascript:;" onclick="AddToWishlist('@item.Id')"><i class="fa-regular fa-heart"></i></a>
-                                </div>
-                                <div class="box__product">
-                                    <a href="javascript:;" onclick="AddToCollation('@item.Id')"><i class="fa-solid fa-code-compare fa-rotate-90"></i></a>
+                                </a>
+                                <div class="floating__box__product">
+                                    <div class="box__product">
+                                        <a onclick="QuickCart(id)"><i class="fa-regular fa-bag-shopping"></i></a>
+                                    </div>
+                                    <div class="box__product">
+                                        <a asp-action="ProductView" asp-controller="Home" asp-route-id="@item.Id" data-fancybox="" data-type="ajax" class="item-product">
+                                            <i class="fa-regular fa-eye"></i>
+                                        </a>
+                                    </div>
+                                    <div class="box__product">
+                                        <a href="javascript:;" onclick="AddToWishlist('@item.Id')"><i class="fa-regular fa-heart"></i></a>
+                                    </div>
+                                    <div class="box__product">
+                                        <a href="javascript:;" onclick="AddToCollation('@item.Id')"><i class="fa-solid fa-code-compare fa-rotate-90"></i></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    <?php
                     }
-
+                    ?>
                 </div>
             </div>
         </div>
@@ -168,14 +173,14 @@
     <section class="service__pago">
         <div class="container">
             <div class="img__service">
-                <img src="./public/images//bg-service.jpg" alt="">
+                <img src="./public/images/bg-service.jpg" alt="">
                 <div class="title__orange">
-                    <img src="./public/images//get-image-v3 (3).png" alt="">
+                    <img src="./public/images/get-image-v3 (3).png" alt="">
                     <h3>DỊCH VỤ TẠI PAGO</h3>
                 </div>
             </div>
-            <button type="button" class="btn btn-dark"><img src="./public/images//icon-btn-dv.png" alt="">Dịch vụ in ấn</button>
-            <button type="button" class="btn btn-dark"><img src="./public/images//icon-btn-dv.png" alt="">Dịch vụ thiết kế</button>
+            <button type="button" class="btn btn-dark"><img src="./public/images/icon-btn-dv.png" alt="">Dịch vụ in ấn</button>
+            <button type="button" class="btn btn-dark"><img src="./public/images/icon-btn-dv.png" alt="">Dịch vụ thiết kế</button>
         </div>
     </section>
     <section class="product__accessory">
@@ -194,12 +199,12 @@
                 <div class="tab" id="tabs-1">
                     <div class="row row-cols-lg-5 row-cols-md-3 row-cols-sm-2 g-3 py-3">
                         <?php
-                        for ($i = 0; $i < 10; $i++) {
+                        for ($i = 1; $i < 10; $i++) {
                         ?>
                             <div class="col">
                                 <div class="box__favorite__product">
                                     <a asp-action="ProductDetails" href="#">
-                                        <img src="./public/images/Tui-giay-01.jpg" alt="">
+                                        <img src="./public/images/Tui-giay-0<?= $i ?>.jpg" alt="">
                                         <p class="p__hover">Túi giấy</p>
                                         <div class="price">
                                             <h5 class="new__price">200.000VND</h5>
