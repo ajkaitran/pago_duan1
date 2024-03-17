@@ -6,30 +6,30 @@ function construct()
 
 function index()
 {
-    load_view('index');
+    load_view('home/index');
 }
 
 function product()
 {
-    load_view('product');
+    load_view('home/product');
 }
 function introduce()
 {
-    load_view('introduce');
+    load_view('home/introduce');
 }
 function service()
 {
-    load_view('service');
+    load_view('home/service');
 }
 function article()
 {
-    load_view('article');
+    load_view('home/article');
 }
 function album()
 {
-    load_view('album');
+    load_view('home/album');
 }
 function video()
 {
-    load_view('video');
+    load_view('home/video');
 }

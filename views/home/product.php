@@ -417,7 +417,3 @@
         </div>
     </section>
 </div>
-
-<script>
-    ProductJS()
-</script>
