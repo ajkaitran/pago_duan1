@@ -183,7 +183,7 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-action="NewsAll" asp-controller="Home">TIN TỨC <i class="fa-solid fa-angle-down"></i></a>
+                            <a class="nav-link" href="?controller=Home&action=article">TIN TỨC <i class="fa-solid fa-angle-down"></i></a>
                             <div class="nav__drop">
                                 <ul class="nav">
                                     <li class="nav-item">
@@ -196,7 +196,7 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-action="Album" asp-controller="Home"> THƯ VIỆN <i class="fa-solid fa-angle-down"></i></a>
+                            <a class="nav-link" href="?controller=Home&action=album"> THƯ VIỆN <i class="fa-solid fa-angle-down"></i></a>
                             <div class="nav__drop">
                                 <ul class="nav">
                                     <li class="nav-item">

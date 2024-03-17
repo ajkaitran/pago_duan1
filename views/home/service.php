@@ -72,21 +72,20 @@
                 </div>
                 <div class="col-lg-9 order-0 order-lg-1">
                     <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2">
-                    @foreach(var item in Model.ListServices)
-                    {
+                    <?php
+                    for ($i = 1; $i < 7; $i++) {
+                    ?>
                     <div class="col">
                         <div class="box__new__service">
                             <a asp-action="ServiceDetails" asp-controller="Home" asp-route-id="@item.Id">
-                                <img src="@Url.Content($" /contents/AnhDichVu/{item.ServiceImage}")" />
-                                <p class="p__hover">@item.ServiceName</p>
+                                <img src="./public/images/dich-vu-<?= $i ?>.jpg" alt="">
+                                <p class="p__hover">Dịch vụ</p>
                             </a>
                         </div>
                     </div>
+                    <?php
                     }
-                    @if (Model.ListServices.Count() > 1)
-                    {
-                    @Html.PagedListPager(Model.ListServices, page => Url.Action("ServiceChildren", new { page }))
-                    }
+                    ?>
                 </div>
             </div>
         </div>

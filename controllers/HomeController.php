@@ -17,11 +17,19 @@ function introduce()
 {
     load_view('introduce');
 }
+function service()
+{
+    load_view('service');
+}
 function article()
 {
     load_view('article');
 }
-function service()
+function album()
 {
-    load_view('service');
+    load_view('album');
+}
+function video()
+{
+    load_view('video');
 }
