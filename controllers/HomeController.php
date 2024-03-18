@@ -25,11 +25,8 @@ function article()
 {
     load_view('home/article');
 }
-function album()
+function library()
 {
-    load_view('home/album');
+    load_view('home/library');
 }
-function video()
-{
-    load_view('home/video');
-}
+

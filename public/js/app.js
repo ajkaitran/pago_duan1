@@ -304,6 +304,7 @@ $('.list-collation-page').slick({
 //tabs
 $(function () {
     $("#tabs").tabs();
+    $("#memberTabs").tabs()
 });
 $(function () {
     var randomCode = generateRandomCode();
