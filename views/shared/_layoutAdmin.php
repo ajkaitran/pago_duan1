@@ -32,7 +32,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="http://localhost/pago_duan1/?controller=Admin">
+        <a class="nav-link" href="?controller=Admin">
           <i class="fa-light fa-house"></i>
           <span>TỔNG QUAN</span></a>
       </li>
@@ -85,10 +85,10 @@
         </a>
         <div id="collapsePages1" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="http://localhost/pago_duan1/?controller=Admin&action=listdm">Danh mục sản phẩm</a>
-            <a class="collapse-item" href="http://localhost/pago_duan1/?controller=Admin&action=adddm">Thêm mới danh mục</a>
-            <a class="collapse-item" href="http://localhost/pago_duan1/?controller=Admin&action=listsp">Danh sách sản phẩm</a>
-            <a class="collapse-item" href="http://localhost/pago_duan1/?controller=Admin&action=addsp">Thêm mới sản phẩm</a>
+            <a class="collapse-item" href="?controller=Admin&action=listdm">Danh mục sản phẩm</a>
+            <a class="collapse-item" href="?controller=Admin&action=adddm">Thêm mới danh mục</a>
+            <a class="collapse-item" href="?controller=Admin&action=listsp">Danh sách sản phẩm</a>
+            <a class="collapse-item" href="?controller=Admin&action=addsp">Thêm mới sản phẩm</a>
           </div>
         </div>
       </li>

@@ -6,10 +6,10 @@
         <div class="formcontent">
             <div class="listname">
                 <div class="icons">
-                <a href="http://localhost/pago_duan1/?controller=Admin&action=listdm">
-                    <i class="fa-duotone fa-list"></i>
-                    <span>Danh sách danh mục sản phẩm</span>
-                </a>
+                    <a href="?controller=Admin&action=listdm">
+                        <i class="fa-duotone fa-list"></i>
+                        <span>Danh sách danh mục sản phẩm</span>
+                    </a>
                 </div>
             </div>
 

@@ -10,23 +10,19 @@ function Index()
 }
 function Adddm()
 {
-    load_view('/admin/category/Adddm', '_layoutAdmin');
+    load_view('/category/Adddm', '_layoutAdmin');
 }
 function Listdm()
 {
-    load_view('/admin/category/Listdm', '_layoutAdmin');
+    load_view('/category/Listdm', '_layoutAdmin');
 }
 function Addsp()
 {
-    load_view('/admin/product/Addsp', '_layoutAdmin');
+    load_view('/product/Addsp', '_layoutAdmin');
 }
 function Listsp()
 {
-    load_view('/admin/product/Listsp', '_layoutAdmin');
-}
-function product()
-{
-    load_view('product/product', '_layoutAdmin');
+    load_view('/product/Listsp', '_layoutAdmin');
 }
 function article()
 {
