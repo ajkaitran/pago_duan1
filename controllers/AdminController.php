@@ -8,23 +8,37 @@ function Index()
 {
     load_view('/admin/Index', '_layoutAdmin');
 }
-function Adddm()
+function CategoryProduct()
 {
-    load_view('/category/Adddm', '_layoutAdmin');
+    load_view('/product/CategoryProduct', '_layoutAdmin');
 }
-function Listdm()
+function ListCategoryProduct()
 {
-    load_view('/category/Listdm', '_layoutAdmin');
+    load_view('/product/ListCategoryProduct', '_layoutAdmin');
 }
-function Addsp()
+function UpdateCategoryProduct()
 {
-    load_view('/product/Addsp', '_layoutAdmin');
+    load_view('/product/UpdateCategoryProduct', '_layoutAdmin');
 }
-function Listsp()
+function ListProduct()
 {
-    load_view('/product/Listsp', '_layoutAdmin');
+    load_view('/product/ListProduct', '_layoutAdmin');
+}
+function Product()
+{
+    load_view('/product/Product', '_layoutAdmin');
+}
+function UpdateProduct()
+{
+    load_view('/product/UpdateProduct', '_layoutAdmin');
 }
 function article()
 {
     load_view('article/article', '_layoutAdmin');
+}function ListArticle()
+{
+    load_view('article/ListArticle', '_layoutAdmin');
+}function UpdateArticle()
+{
+    load_view('article/UpdateArticle', '_layoutAdmin');
 }
