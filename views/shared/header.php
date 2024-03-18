@@ -109,8 +109,10 @@
                                     </a>
                                     <div class="user__drop">
                                         <ul class="nav">
-                                            <li class="nav-item"><a class="nav-link" href="#">Đăng nhập</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="#">Đăng ký</a></li>
+                                            <li class="nav-item"><a class="nav-link" href="?controller=member&action=index">Quản lý tài khoản</a></li>
+                                            <li class="nav-item"><a class="nav-link" href="#">Đăng xuất</a></li>
+                                            <li class="nav-item"><a class="nav-link" href="?controller=member&action=login">Đăng nhập</a></li>
+                                            <li class="nav-item"><a class="nav-link" href="?controller=member&action=register">Đăng ký</a></li>
                                             <li class="nav-item"><a class="nav-link" href="#">So sánh</a></li>
                                             <li class="nav-item"><a class="nav-link" href="#">Yêu thích</a></li>
                                         </ul>
@@ -196,7 +198,7 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="?controller=Home&action=album"> THƯ VIỆN <i class="fa-solid fa-angle-down"></i></a>
+                            <a class="nav-link" href="?controller=Home&action=library"> THƯ VIỆN <i class="fa-solid fa-angle-down"></i></a>
                             <div class="nav__drop">
                                 <ul class="nav">
                                     <li class="nav-item">
