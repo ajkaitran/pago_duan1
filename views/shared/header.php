@@ -109,12 +109,21 @@
                                     </a>
                                     <div class="user__drop">
                                         <ul class="nav">
-                                            <li class="nav-item"><a class="nav-link" href="?controller=member&action=index">Quản lý tài khoản</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="#">Đăng xuất</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="?controller=member&action=login">Đăng nhập</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="?controller=member&action=register">Đăng ký</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="#">So sánh</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="#">Yêu thích</a></li>
+                                            <?php
+                                                if (isset($_SESSION['user'])):
+                                            ?>
+                                                <li class="nav-item"><a class="nav-link" href="?controller=member&action=index">Quản lý tài khoản</a></li>
+                                                <li class="nav-item"><a class="nav-link" href="#">So sánh</a></li>
+                                                <li class="nav-item"><a class="nav-link" href="#">Yêu thích</a></li>
+                                                <li class="nav-item"><a class="nav-link" href="?controller=member&action=logout">Đăng xuất</a></li>
+                                            <?php
+                                                else:
+                                            ?>
+                                                <li class="nav-item"><a class="nav-link" href="?controller=member&action=login">Đăng nhập</a></li>
+                                                <li class="nav-item"><a class="nav-link" href="?controller=member&action=register">Đăng ký</a></li>
+                                            <?php
+                                                endif;
+                                            ?>
                                         </ul>
                                     </div>
                                 </li>

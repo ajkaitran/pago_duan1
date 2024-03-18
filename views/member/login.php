@@ -17,11 +17,11 @@
             <form action="?controller=member&action=login" method="post">
                 <div class="input">
                     <p class="p__red">*</p>
-                    <input type="text" name="user_name" placeholder="Tên truy cập">
+                    <input type="text" name="Username" placeholder="Tên truy cập">
                 </div>
                 <div class="input">
                     <p class="p__red">*</p>
-                    <input type="password" name="password" placeholder="Mật khẩu">
+                    <input type="password" name="Password" placeholder="Mật khẩu">
                 </div>
                 <div class="button">
                     <button type="submit" name="login" class="btn"><i class="fa-solid fa-user"></i> Đăng nhập</button>

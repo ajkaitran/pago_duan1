@@ -16,55 +16,35 @@
         <div class="container">
             <div class="form">
                 <h4 class="p__orange"><span class="border__bot__orange">ĐĂNG KÝ</span></h4>
-                <form method="post" asp-action="Register2" asp-controller="Member">
+                <form method="post" action="?controller=member&action=register_store">
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="input">
                                 <p class="p__red">*</p>
-                                <input asp-for="FullName" type="text" placeholder="Họ và tên">
+                                <input name="FullName" type="text" placeholder="Họ và tên">
                             </div>
-                            <span asp-validation-for="FullName" class="p__red"></span>
                             <div class="input">
                                 <p class="p__red">*</p>
-                                <input asp-for="Phone" placeholder="Điện Thoại">
+                                <input name="PhoneNumber" placeholder="Điện Thoại">
                             </div>
-                            <span asp-validation-for="Phone" class="p__red"></span>
                             <div class="input">
                                 <p class="p__red">*</p>
-                                <input asp-for="Address" placeholder="Địa chỉ">
+                                <input name="Email" placeholder="Email">
                             </div>
-                            <span asp-validation-for="Address" class="p__red"></span>
-                            <div class="input">
-                                <p class="p__red">*</p>
-                                <input asp-for="Email" placeholder="Email">
-                            </div>
-                            <span asp-validation-for="Email" class="p__red"></span>
                         </div>
                         <div class="col-lg-6">
                             <div class="input">
                                 <p class="p__red">*</p>
-                                <input asp-for="User" placeholder="Tên truy cập">
+                                <input name="Username" placeholder="Tên truy cập">
                             </div>
-                            <span asp-validation-for="User" class="p__red"></span>
                             <div class="input">
                                 <p class="p__red">*</p>
-                                <input asp-for="Password" placeholder="Mật khẩu">
+                                <input name="Password" placeholder="Mật khẩu">
                             </div>
-                            <span asp-validation-for="Password" class="p__red"></span>
                             <div class="input">
                                 <p class="p__red">*</p>
-                                <input asp-for="ConfirmPassword" placeholder="Xác nhận mật khẩu">
+                                <input name="ConfirmPassword" placeholder="Xác nhận mật khẩu">
                             </div>
-                            <span asp-validation-for="ConfirmPassword" class="p__red"></span>
-                            <div class="input">
-                                <p class="p__red">*</p>
-                                <input class="code-retype" asp-for="Code" type="text" placeholder="Mã bảo mật">
-                                <input class="code-input" id="code" readonly>
-                                <button class="code-change" type="button" id="generate-code">
-                                    <i class="fa-solid fa-arrows-rotate"></i>
-                                </button>
-                            </div>
-                            <span asp-validation-for="Code" class="p__red"></span>
                         </div>
                         <div class="col-lg-12">
                             <div class="button">
