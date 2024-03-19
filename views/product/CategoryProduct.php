@@ -6,14 +6,14 @@
         <div class="formcontent">
             <div class="listname">
                 <div class="icons">
-                    <a href="?controller=Admin&action=listdm">
+                    <a href="?controller=Admin&action=ListCategoryProduct">
                         <i class="fa-duotone fa-list"></i>
                         <span>Danh sách danh mục sản phẩm</span>
                     </a>
                 </div>
             </div>
 
-            <form class="form" action="#" method="post">
+            <form class="form" action="?controller=admin&action=AddCategoryProduct" method="post">
                 <div class="danhmuc danhmuc2">
                     Mã danh mục:
                     <input type="text" name="ma">
