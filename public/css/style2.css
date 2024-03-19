@@ -150,25 +150,21 @@
 .formcontent {
     margin-top: 18px;
     width: 100%;
-    height: 600px;
     background-color: #fff;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .icons {
-    height: 35px;
-    width: 270px;
     background-color: #01a9ac;
-    display: flex;
     margin-top: -18px;
     margin-left: 7px;
     border-radius: 3px;
+    padding: 10px 15px;
+    display: inline;
 }
 
 .icons a {
     color: #fff;
-    margin-top: 5px;
-    margin-left: 15px;
 }
 
 .form {
@@ -375,3 +371,9 @@
     width: 150px;
     text-align: left;
 }
+/* .scroll-table{
+    width: 100%;
+    display: block;
+    height: 400px;
+    overflow-y: auto;
+} */

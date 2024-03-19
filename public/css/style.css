@@ -268,10 +268,11 @@ p {
 
 /* nav__header */
 .nav__header {
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  /* box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px; */
   position: relative;
   z-index: 5;
-  padding: 10;
+  padding: 10px;
+  border-top: 1px solid #ccc;
 }
 
 .fixed {
@@ -298,8 +299,9 @@ p {
 
 .nav__header a {
   color: black;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 600;
+  text-transform: capitalize;
 }
 
 .nav__header li a:hover {
@@ -311,6 +313,7 @@ p {
   background-color: #F7941E;
   border-radius: 25px;
   padding: 6px 35px;
+  font-size: 16px;
 }
 
 .nav__header .btn:hover {
@@ -764,6 +767,7 @@ a {
 
 .new__price {
   color: #F7941E;
+  font-size: 18px;
 }
 
 .old__price {
@@ -1238,7 +1242,9 @@ span.p__red {
   background-color: #F0F0F0;
   padding: 50px 0;
 }
-
+.breadcrumb{
+  margin-bottom: 0;
+}
 .sidebar {
   border: 1px solid rgb(214, 214, 214);
   border-radius: 10px;
@@ -1253,6 +1259,7 @@ span.p__red {
 
 .h4__white {
   color: white;
+  margin-bottom: 0;
   font-size: 20px;
 }
 
@@ -1893,7 +1900,7 @@ span.p__red {
 .title__library {
   background-color: #F7941E;
   padding: 5px 15px;
-  height: 80px;
+  /* height: 80px; */
 }
 
 .title__library a {

@@ -100,10 +100,10 @@
             </div>
         </div>
     </div>
-    <div class="end__footer">
+    <!-- <div class="end__footer">
         <p class="nav-link m-0" href="#">Thiết kế website bởi VICO Group</p>
         <img src="./public/images/logo_VICO group.webp" alt="">
-    </div>
+    </div> -->
     <div class="floating__box">
         <div class="box"><a asp-action="Index" asp-controller="Member" asp-fragment="member-tabs-3"><i class="fa-regular fa-heart"></i></a></div>
         <div class="box box__badges">

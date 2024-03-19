@@ -1,7 +1,7 @@
 <header>
     <div class="header_web d-lg-block">
         <div class="row">
-            <div class="top__header col-lg-12">
+            <!-- <div class="top__header col-lg-12">
                 <div class="container">
                     <div class="row">
                         <div class="left col-lg-6">
@@ -26,12 +26,12 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="bot__header col-lg-12">
                 <div class="container">
                     <div class="row">
                         <div class="logo_header col-lg-2">
-                            <a href="/pago/">
+                            <a href="/pago_duan1/">
                                 <img src="./public/images/logo_pago.png" alt="logo_papo">
                             </a>
                         </div>
@@ -136,7 +136,7 @@
                 <div class="container">
                     <ul class="nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="/pago">TRANG CHỦ</a>
+                            <a class="nav-link" href="/pago_duan1/">TRANG CHỦ</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="?controller=Home&action=introduce">GIỚI THIỆU</a>

@@ -1,37 +1,85 @@
-<div class="row right-column">
-        <div class="row headertitle">
-            <h1>THÊM SẢN PHẨM</h1>
-        </div>
-
-        <div class="formcontent">
-            <div class="listname">
-                <div class="icons">
-                <a href="http://localhost/pago_duan1/?controller=Admin&action=listsp">
-                    <i class="fa-duotone fa-list"></i>
-                    <span>Danh sách sản phẩm</span>
-                </a>
+<h2 class="title_page">
+    Thêm mới sản phẩm
+</h2>
+<div class="box_content">
+    <div class="row">
+        <div class="col-8">
+            <div class="form-group d-flex">
+                <div class="col-2">
+                    <label for="" class="label_form">Tên danh mục</label>
+                </div>
+                <div class="col-10">
+                    <input type="text" class="input-text form-control">
                 </div>
             </div>
-
-            <form class="form" action="#" method="post">
-                <div class="danhmuc">
-                    Tên sản phẩm:
-                    <input type="text" name="ma">
+            <div class="form-group d-flex">
+                <div class="col-2">
+                    <label for="" class="label_form">Mô tả</label>
                 </div>
-                <div class="danhmuc">
-                    Giá sản phẩm:
-                    <input type="text" name="price">
+                <div class="col-10">
+                    <textarea class="input-text form-control" name="" id="" cols="30" rows="10"></textarea>
                 </div>
-                <div class="danhmuc danhmuc5">
-                    Ảnh sản phẩm:
-                    <input type="file" name="img" id="upload">
+            </div>
+            <div class="form-group d-flex">
+                <div class="col-2">
+                    <label for="" class="label_form">Hình ảnh</label>
                 </div>
-                <div class="danhmuc danhmuc6">
-                    Mô tả:
-                    <textarea name="mota" cols="50" rows="4"></textarea>
+                <div class="col-10">
+                    <div class="w-100">
+                        <label class="form__container" id="upload-container">Choose or Drag & Drop Files
+                            <input class="form__file" id="upload-files" type="file" accept="image/*"
+                                multiple="multiple" />
+                        </label>
+                        <div class="form__files-container" id="files-list-container"></div>
+                    </div>
                 </div>
-                <div class="danhmuc">
-                    <input type="submit" name="them" value="THÊM MỚI">
+            </div>
+            <div class="form-group d-flex">
+                <div class="col-2">
+                    <label for="" class="label_form">Tên</label>
                 </div>
-            </form>
+                <div class="col-10">
+                    <input type="text" class="input-text form-control">
+                </div>
+            </div>
+            <div class="form-group d-flex">
+                <div class="col-2">
+                    <label for="" class="label_form">Nội dung</label>
+                </div>
+                <div class="col-10">
+                    <textarea class="input-text form-control" name="" id="editor" cols="30" rows="10"></textarea>
+                </div>
+            </div>
+            <div class="form-group d-flex">
+                <div class="col-2">
+                </div>
+                <div class="col-10">
+                    <button class="btn btn-success" >Cập nhật</button>
+                </div>
+            </div>
         </div>
+        <div class="col-4">
+            <div class="form-group d-flex">
+                <div class="col-4">
+                    <label for="" class="label_form">Danh mục cha</label>
+                </div>
+                <div class="col-8">
+                    <select name="" id="" class="form-control">
+                        <option>Chọn danh mục</option>
+                        <option>Chọn danh mục1</option>
+                        <option>Chọn danh mục2</option>
+                        <option>Chọn danh mục3</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group d-flex">
+                <div class="col-4">
+                    <label for="" class="label_form" style="margin-right: 45px;">Trạng thái</label>
+                </div>
+                <div class="col-8">
+                    <input type="checkbox">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -14,12 +14,13 @@ function CategoryProduct()
 }
 function ListCategoryProduct()
 {
-    $sql = "SELECT * FROM `danhmuc` WHERE 1";
-    $listDm = db_fetch_array($sql);
-    $data =  array(
-        'listDm' => $listDm
-    );
-    load_view('/product/ListCategoryProduct', '_layoutAdmin', $data);
+    // $sql = "SELECT * FROM `danhmuc` WHERE 1";
+    // $listDm = db_fetch_array($sql);
+    // $data =  array(
+    //     'listDm' => $listDm
+    // );
+    // load_view('/product/ListCategoryProduct', '_layoutAdmin', $data);
+    load_view('/product/ListCategoryProduct', '_layoutAdmin');
 }
 function AddCategoryProduct() {
     if(isset($_POST['them'])) {
