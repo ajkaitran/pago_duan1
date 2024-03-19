@@ -1,7 +1,7 @@
 <header>
     <div class="header_web d-lg-block">
         <div class="row">
-            <!-- <div class="top__header col-lg-12">
+            <div class="top__header col-lg-12">
                 <div class="container">
                     <div class="row">
                         <div class="left col-lg-6">
@@ -26,7 +26,7 @@
                         </div>
                     </div>
                 </div>
-            </div> -->
+            </div>
             <div class="bot__header col-lg-12">
                 <div class="container">
                     <div class="row">
@@ -91,8 +91,8 @@
                                             </div>
                                         </div>
                                         <div class="drop__button">
-                                            <button type="button" class="btn btn-dark"><a class="text-white" href="#">GIỎ HÀNG </a></button>
-                                            <button type="button" class="btn btn-dark"><a class="text-white" href="#">THANH TOÁN</a></button>
+                                            <button type="button" class="btn btn-dark"><a class="text-white" href="?controller=shoppingcard&action=index">GIỎ HÀNG </a></button>
+                                            <button type="button" class="btn btn-dark"><a class="text-white" href="?controller=shoppingcard&action=checkout">THANH TOÁN</a></button>
                                         </div>
                                     </div>
                                 </li>
