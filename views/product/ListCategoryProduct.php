@@ -23,21 +23,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php 
-                foreach($listDm as $value) {
-              ?>
-                    <tr>
-                        <th scope="row"><?= $value['id_dm'] ?></th>
-                        <td><?= $value['ten_dm'] ?></td>
-                        <td><?= $value['img'] ?></td>
-                        <td><a href="?controller=Admin&action=UpdateCategoryProduct&id=<?= $value['id_dm'] ?>"
-                                class="btn btn-warning">Sua</a> | <a
-                                href="?controller=Admin&action=DeleteCategoryProduct&id=<?= $value['id_dm'] ?>"
-                                class="btn btn-danger">Xoa</a></td>
-                    </tr>
-                    <?php 
-                }
-              ?>
+                    <?php
+                    foreach ($listDm as $value) {
+                    ?>
+                        <tr>
+                            <th scope="row"><?= $value['id_dm'] ?></th>
+                            <td><?= $value['ten_dm'] ?></td>
+                            <td><?= $value['img'] ?></td>
+                            <td><a href="?controller=Admin&action=UpdateCategoryProduct&id=<?= $value['id_dm'] ?>" class="btn btn-warning">Sua</a> | <a href="?controller=Admin&action=DeleteCategoryProduct&id=<?= $value['id_dm'] ?>" class="btn btn-danger">Xoa</a></td>
+                        </tr>
+                    <?php
+                    }
+                    ?>
                     <!-- <tr>
                         <th scope="row">1</th>
                         <td>Danh mục 1</td>
