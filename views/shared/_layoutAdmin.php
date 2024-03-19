@@ -85,10 +85,10 @@
         </a>
         <div id="collapsePages1" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="?controller=Admin&action=listdm">Danh mục sản phẩm</a>
-            <a class="collapse-item" href="?controller=Admin&action=adddm">Thêm mới danh mục</a>
-            <a class="collapse-item" href="?controller=Admin&action=listsp">Danh sách sản phẩm</a>
-            <a class="collapse-item" href="?controller=Admin&action=addsp">Thêm mới sản phẩm</a>
+            <a class="collapse-item" href="?controller=Admin&action=CategoryProduct">Thêm mới danh mục sản phẩm</a>
+            <a class="collapse-item" href="?controller=Admin&action=ListCategoryProduct">Danh sách danh mục sản phẩm</a>
+            <a class="collapse-item" href="?controller=Admin&action=Product">Thêm mới sản phẩm</a>
+            <a class="collapse-item" href="?controller=Admin&action=ListProduct">Danh sách sản phẩm</a>
           </div>
         </div>
       </li>
