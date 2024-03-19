@@ -21,11 +21,12 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <div class="logo_header col-lg-2">
-        <a href="/pago_duan1/">
-         <img src="./public/images/logo_pago.png" alt="logo_papo">
-        </a>
-      </div>
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <div class="sidebar-brand-icon rotate-n-15">
+          <img src="./public/images/favicon-logo.png" alt="">
+        </div>
+        <div class="sidebar-brand-text mx-3"><img src="./public/images/logo_pago.png" style="width: 100px;" alt="ảnh logo"></div>
+      </a>
 
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
@@ -116,9 +117,10 @@
         </a>
         <div id="collapsePages3" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="login.html">Thêm danh mục sản phẩm</a>
-            <a class="collapse-item" href="login.html">Thêm sản phẩm</a>
-            <a class="collapse-item" href="login.html">Danh sách sản phẩm</a>
+            <a class="collapse-item" href="?controller=Admin&action=CategoryArticle">Thêm danh mục bài viết</a>
+            <a class="collapse-item" href="?controller=Admin&action=ListCategoryArticle">Danh sách danh mục bài viết</a>
+            <a class="collapse-item" href="?controller=Admin&action=Article">Thêm bài viết</a>
+            <a class="collapse-item" href="?controller=Admin&action=ListArticle">Danh sách bài viết</a>
           </div>
         </div>
       </li>

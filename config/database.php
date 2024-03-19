@@ -4,5 +4,5 @@ $db = [
     'hostname' => 'localhost',
     'username' => 'root',
     'password' => '',
-    'database' => 'duan1new',
+    'database' => 'pago_db',
 ];

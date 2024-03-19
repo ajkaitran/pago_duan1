@@ -12242,14 +12242,3 @@ footer.sticky-footer .copyright {
 body.sidebar-toggled footer.sticky-footer {
     width: 100%
 }
-
-  
-.logo_header img {
-    width: 200px;
-    height: 53px;
-    margin-top: 50px;
-    margin-left: 20px;
-}
-.input-group-append button{
-    background-color: #209fa4;
-}

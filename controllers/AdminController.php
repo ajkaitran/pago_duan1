@@ -34,7 +34,7 @@ function UpdateProduct()
 }
 function article()
 {
-    load_view('article/article', '_layoutAdmin');
+    load_view('article/Article', '_layoutAdmin');
 }function ListArticle()
 {
     load_view('article/ListArticle', '_layoutAdmin');
