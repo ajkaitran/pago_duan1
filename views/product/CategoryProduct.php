@@ -4,7 +4,7 @@
 <div class="box_content">
     <div class="row">
         <div class="col-8">
-            <div class="form-group d-flex">
+            <!-- <div class="form-group d-flex">
                 <div class="col-2">
                     <label for="" class="label_form">Danh mục cha</label>
                 </div>
@@ -16,38 +16,46 @@
                         <option>Chọn danh mục3</option>
                     </select>
                 </div>
-            </div>
-            <div class="form-group d-flex">
-                <div class="col-2">
-                    <label for="" class="label_form">Tên danh mục</label>
+            </div> -->
+            <form action="?controller=admin&action=AddCategoryProduct" method="POST">
+                <div class="form-group d-flex">
+                    <div class="col-2">
+                        <label for="" class="label_form">Tên danh mục</label>
+                    </div>
+                    <div class="col-10">
+                        <input type="text" class="input-text form-control" name="tendm">
+                    </div>
                 </div>
-                <div class="col-10">
-                    <input type="text" class="input-text form-control">
-                </div>
-            </div>
-            <div class="form-group d-flex">
+                <!-- <div class="form-group d-flex">
                 <div class="col-2">
                     <label for="" class="label_form">Mô tả</label>
                 </div>
                 <div class="col-10">
                     <textarea class="input-text form-control" name="" id="" cols="30" rows="10"></textarea>
                 </div>
-            </div>
-            <div class="form-group d-flex">
-                <div class="col-2">
-                    <label for="" class="label_form">Hình ảnh</label>
-                </div>
-                <div class="col-10">
-                    <div class="w-100">
-                        <label class="form__container" id="upload-container">Choose or Drag & Drop Files
-                            <input class="form__file" id="upload-files" type="file" accept="image/*"
-                                multiple="multiple" />
-                        </label>
-                        <div class="form__files-container" id="files-list-container"></div>
+            </div> -->
+                <div class="form-group d-flex">
+                    <div class="col-2">
+                        <label for="" class="label_form">Hình ảnh</label>
+                    </div>
+                    <div class="col-10">
+                        <div class="w-100">
+                            <label class="form__container" id="upload-container">Choose or Drag & Drop Files
+                                <input class="form__file" id="upload-files" type="file" accept="image/*" multiple="multiple" name="img" />
+                            </label>
+                            <div class="form__files-container" id="files-list-container"></div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="form-group d-flex">
+                <div class="form-group d-flex">
+                    <div class="col-2">
+                    </div>
+                    <div class="col-10">
+                        <button class="btn btn-success" name="them">Them</button>
+                    </div>
+                </div>
+            </form>
+            <!-- <div class="form-group d-flex">
                 <div class="col-2">
                     <label for="" class="label_form">Tên</label>
                 </div>
@@ -92,7 +100,7 @@
                 <div class="col-8">
                     <input type="checkbox">
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>
