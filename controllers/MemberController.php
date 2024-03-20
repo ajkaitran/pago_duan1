@@ -62,7 +62,7 @@ function login()
 
         if ($user) {
             $_SESSION['user'] = $user;
-            header("Location: ?controller=home&action=index");
+            header("Location: ?controller=member&action=index");
             exit;
         } else {
             echo "Lỗi: Tên người dùng hoặc mật khẩu không đúng.";

@@ -1649,7 +1649,7 @@ span.p__red {
 .form .input {
   border-bottom: 1px dashed rgb(220, 220, 220);
   display: flex;
-  margin: 0 10px;
+  margin: 30px 10px;
 }
 
 .form p {

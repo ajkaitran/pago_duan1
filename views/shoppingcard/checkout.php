@@ -227,21 +227,24 @@
                 </div>
                 <div class="page_checkout__wrapper page_checkout__order">
                     <ul class="page_checkout__list-order">
-                        @foreach (var item in Model.CartItems)
-                        {
+                        <?php
+                        for ($i = 1; $i < 5; $i++) {
+                        ?>
                         <li class="page_checkout__order-detail order-detail">
                             <a asp-action="ProductDetails" asp-controller="Home" asp-route-slug="@item.Product.Slug" class="order-detail__img">
-                                <img src="@Url.Content($" ~/contents/AnhSanPham/{item.Product.GetAvatar()}")" />
+                                <img src="./public/images/Nhan-gian-<?= $i ?>.jpeg" alt="">
                             </a>
                             <a asp-action="ProductDetails" asp-controller="Home" asp-route-slug="@item.Product.Slug" class="order-detail__name">
-                                @item.Product.Name
+                                Nhãn dán
                             </a>
                             <p class="order-detail__info">
-                                <span class="quantity">@item.Quantity x</span>
-                                <span class="money"><strong>@item.TotalMoney?.ToString("N0")</strong> đ</span>
+                                <span class="quantity">1x</span>
+                                <span class="money"><strong>59.000</strong>VND</span>
                             </p>
                         </li>
+                        <?php
                         }
+                        ?>
                     </ul>
 
                     <ul class="page_checkout__payment list-group">
@@ -250,7 +253,7 @@
                                 Tạm tính
                             </p>
                             <span class="payment-number">
-                                <strong>@Model.Total.ToString("N0")</strong> đ
+                                <strong>500.000</strong>VND
                             </span>
                         </li>
                         <li class="payment-item list-group-item">
@@ -258,7 +261,7 @@
                                 Phí vận chuyển
                             </p>
                             <span class="payment-number">
-                                @Model.ShipFee.ToString("N0") đ
+                                30.000VND
                             </span>
                         </li>
                         <li class="payment-item list-group-item fw-bold">
@@ -266,7 +269,7 @@
                                 Thành tiền
                             </p>
                             <span class="payment-number">
-                                @Model.TotalFee.ToString("N0") đ
+                                530.000VND
                             </span>
                         </li>
                     </ul>
