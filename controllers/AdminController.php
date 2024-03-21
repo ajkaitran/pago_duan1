@@ -3,7 +3,40 @@
 function construct()
 {
 }
+function login()
+{
+    $username = isset($_POST['Username']) ? $_POST['Username'] : null;
+    $password = isset($_POST['Password']) ? $_POST['Password'] : null;
 
+    if ($username && $password) {
+        $hashed_password = md5($password);
+
+        $user = db_fetch_row("SELECT * FROM `Admins` WHERE `Username` = '$username' AND `Password` = '$hashed_password'");
+
+        if ($user) {
+            $_SESSION['user'] = $user;
+            header("Location: ?controller=admin&action=index");
+            exit;
+        } else {
+            echo "Lỗi: Tên người dùng hoặc mật khẩu không đúng.";
+            load_view('admin/login','_layoutNone');
+        }
+    } else {
+        echo "Lỗi: Vui lòng điền đầy đủ thông tin.";
+        load_view('admin/login','_layoutNone');
+    }
+}
+
+
+function logout()
+{
+    if(isset($_SESSION['user']))
+    {
+        unset($_SESSION['user']);
+        header("Location: ?controller=home&action=index");
+        exit;
+    }
+}
 function Index()
 {
     load_view('/admin/Index', '_layoutAdmin');
