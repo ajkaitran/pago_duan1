@@ -33,16 +33,16 @@
             <div class="form-group d-flex">
                 <label for="" class="w-45">Danh mục cha</label>
                 <select name="" id="" class="form-control">
-                            <option>Chọn danh mục</option>
-                            <option>Chọn danh mục1</option>
-                            <option>Chọn danh mục2</option>
-                            <option>Chọn danh mục3</option>
-                        </select>
+                    <option>Chọn danh mục</option>
+                    <option>Chọn danh mục1</option>
+                    <option>Chọn danh mục2</option>
+                    <option>Chọn danh mục3</option>
+                </select>
             </div>
             <div class="form-group d-flex">
-            <label for="" style="margin-right: 45px;">Danh mục cha</label>
-            <input type="checkbox">
+                <label for="" style="margin-right: 45px;">Danh mục cha</label>
+                <input type="checkbox">
+            </div>
         </div>
-</div>
     </div>
 </div>

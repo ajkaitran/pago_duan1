@@ -186,13 +186,23 @@ function DeleteProduct() {
 
 }
 
-function article()
+function CategoryArticle()
+{
+    load_view('article/CategoryArticle', '_layoutAdmin');
+}
+function ListCategoryArticle()
+{
+    load_view('article/ListCategoryArticle', '_layoutAdmin');
+}
+function Article()
 {
     load_view('article/Article', '_layoutAdmin');
-}function ListArticle()
+}
+function ListArticle()
 {
     load_view('article/ListArticle', '_layoutAdmin');
-}function UpdateArticle()
+}
+function UpdateArticle()
 {
     load_view('article/UpdateArticle', '_layoutAdmin');
 }
