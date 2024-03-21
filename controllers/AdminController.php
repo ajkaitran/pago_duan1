@@ -14,7 +14,7 @@ function CategoryProduct()
 }
 function ListCategoryProduct()
 {
-    $sql = "SELECT * FROM `danhmuc` WHERE 1";
+    $sql = "SELECT * FROM `productcategory` WHERE 1";
     $listDm = db_fetch_array($sql);
     $data =  array(
         'listDm' => $listDm
@@ -24,13 +24,15 @@ function ListCategoryProduct()
 function AddCategoryProduct() {
     if(isset($_POST['them'])) {
         $name = isset($_POST['tendm']) ? $_POST['tendm'] : null;
-        $img = isset($_POST['img']) ? $_POST['img'] : null;
+        $slug = isset($_POST['slug']) ? $_POST['slug'] : null;
+        $desc = isset($_POST['desc']) ? $_POST['desc'] : null;
         $arr = array(
-            'ten_dm' => $name,
-            'img' => $img,
+            'Name' => $name,
+            'Slug' => $slug,
+            'Des' => $desc,
         );
 
-        db_insert('danhmuc', $arr);
+        db_insert('productcategory', $arr);
         header("Location: ?controller=admin&action=ListCategoryProduct");
     }
 }
@@ -38,7 +40,7 @@ function AddCategoryProduct() {
 function UpdateCategoryProduct()
 {   
     $id = isset($_GET['id']) ? $_GET['id'] : null;
-    $sql = "SELECT * FROM `danhmuc` WHERE id_dm = $id";
+    $sql = "SELECT * FROM `productcategory` WHERE Id = $id";
     $danhmuc = db_fetch_row($sql);
     $data =  array(
         'danhmuc' => $danhmuc
@@ -47,10 +49,11 @@ function UpdateCategoryProduct()
 }
 function EditCategoryProduct() {
     if(isset($_POST['sua'])) {
-        $id = isset($_POST['ma']) ? $_POST['ma'] : null;
+        $id = isset($_POST['id']) ? $_POST['id'] : null;
         $name = isset($_POST['tendm']) ? $_POST['tendm'] : null;
-        $img = isset($_POST['img']) && ($_POST['img'] != '') ? $_POST['img'] : $_POST['imgOld'];
-        $sql = "UPDATE `danhmuc` SET`ten_dm`='$name',`img`='$img' WHERE id_dm = $id";
+        $slug = isset($_POST['slug']) ? $_POST['slug'] : null;
+        $desc = isset($_POST['desc']) ? $_POST['desc'] : null;
+        $sql = "UPDATE `productcategory` SET `Name`='$name',`Slug`='$slug',`Des`='$desc' WHERE Id = $id";
         db_query($sql);
         header("Location: ?controller=admin&action=ListCategoryProduct");
     }
@@ -58,16 +61,19 @@ function EditCategoryProduct() {
 
 function DeleteCategoryProduct() {
     $id = isset($_GET['id']) ? $_GET['id'] : null;
-    db_delete('danhmuc', "id_dm = $id");
+    db_delete('productcategory', "Id = $id");
     header("Location: ?controller=admin&action=ListCategoryProduct");
 
 }
 
+
+// PRODUCT 
+
 function ListProduct()
 {   
-    $sql = "SELECT sp.*, dm.ten_dm  AS ten_danhmuc 
-    FROM `sanpham` sp 
-    JOIN `danhmuc` dm ON sp.id_dm = dm.id_dm
+    $sql = "SELECT sp.*, dm.Name  AS ten_danhmuc 
+    FROM `product` sp 
+    JOIN `productcategory` dm ON sp.ProductCategoryId  = dm.Id
     ";
     $listSp = db_query($sql);
     $data =  array(
@@ -77,12 +83,12 @@ function ListProduct()
 }
 function Product()
 {   
-    $sql = "SELECT sp.*, dm.ten_dm  AS ten_danhmuc 
-    FROM `sanpham` sp 
-    JOIN `danhmuc` dm ON sp.id_dm = dm.id_dm
+    $sql = "SELECT sp.*, dm.Name  AS ten_danhmuc 
+    FROM `product` sp 
+    JOIN `productcategory` dm ON sp.ProductCategoryId = dm.Id
     ";
 
-    $sql2 = "SELECT * FROM `danhmuc` WHERE 1";
+    $sql2 = "SELECT * FROM `productcategory` WHERE 1";
     $listDm = db_query($sql2);
     $listSp = db_query($sql);
     $data =  array(
@@ -94,11 +100,15 @@ function Product()
 function AddProduct() {
     if(isset($_POST['them'])) {
         $name = isset($_POST['ten']) ? $_POST['ten'] : null;
-        $img = isset($_POST['img']) ? $_POST['img'] : null;
+        $img = isset($_FILES['img']) ? $_FILES['img']['name'] : null;
         $gia = isset($_POST['gia']) ? $_POST['gia'] : null;
         $desc = isset($_POST['desc']) ? $_POST['desc'] : null;
+        $giasale = isset($_POST['giasale']) ? $_POST['giasale'] : null;
+        $date = isset($_POST['date']) ? $_POST['date'] : null;
+        $active = isset($_POST['active']) ? $_POST['active'] : null;
+        $slug = isset($_POST['slug']) ? $_POST['slug'] : null;
         $dm = isset($_POST['dm']) ? $_POST['dm'] : null;
-        $sql = "INSERT INTO `sanpham`(`name_sp`, `img`, `gia_sp`, `mota_sp`, `id_dm`) VALUES ('$name','$img',$gia,'$desc',$dm)";
+        $sql = "INSERT INTO `product`(`Name`, `Des`, `Image`, `Slug`, `Price`, `PriceSale`, `Active`, `CreatedAt`, `ProductCategoryId`) VALUES ('$name','$desc','$img','$slug',$gia,$giasale,$active,'$date',$dm)";
         db_query( $sql);
         header("Location: ?controller=admin&action=ListProduct");
     }
@@ -108,8 +118,8 @@ function UpdateProduct()
 {   
     if(isset($_GET['id'])) {
         $id = $_GET['id'];
-        $sql = "SELECT * FROM `sanpham` WHERE id_sp = $id";
-        $sql2 = "SELECT * FROM `danhmuc` WHERE 1";
+        $sql = "SELECT * FROM `product` WHERE Id = $id";
+        $sql2 = "SELECT * FROM `productcategory` WHERE 1";
         $product = db_fetch_row($sql);
         $listDm = db_query($sql2);
         $data =  array(
@@ -121,13 +131,17 @@ function UpdateProduct()
 }
 function EditProduct() {
     if(isset($_POST['sua'])) {
-        $id = isset($_POST['id']) ? $_POST['id'] : null;
-        $ten = isset($_POST['ten']) ? $_POST['ten'] : null;
-        $dm = isset($_POST['dm']) ? $_POST['dm'] : null;
+        $name = isset($_POST['ten']) ? $_POST['ten'] : null;
         $gia = isset($_POST['gia']) ? $_POST['gia'] : null;
         $desc = isset($_POST['desc']) ? $_POST['desc'] : null;
+        $giasale = isset($_POST['giasale']) ? $_POST['giasale'] : null;
+        $date = isset($_POST['date']) ? $_POST['date'] : null;
+        $active = isset($_POST['active']) ? $_POST['active'] : null;
+        $slug = isset($_POST['slug']) ? $_POST['slug'] : null;
+        $dm = isset($_POST['dm']) ? $_POST['dm'] : null;
+        $id = isset($_POST['id']) ? $_POST['id'] : null;
         $img = isset($_POST['img']) && ($_POST['img'] != '') ? $_POST['img'] : $_POST['imgOld'];
-        $sql = "UPDATE `sanpham` SET `name_sp`='$ten',`img`='$img',`gia_sp`= $gia ,`mota_sp`='$desc',`id_dm`=$dm WHERE id_sp = $id";
+        $sql = "UPDATE `product` SET `Name`='$name',`Des`='$desc',`Image`='$img',`Slug`='$slug',`Price`='$gia',`PriceSale`='$giasale',`Active`='$active',`CreatedAt`='$date',`ProductCategoryId`='$dm' WHERE Id = $id";
         db_query($sql);
         header("Location: ?controller=admin&action=ListProduct");
     }
@@ -135,7 +149,7 @@ function EditProduct() {
 
 function DeleteProduct() {
     $id = isset($_GET['id']) ? $_GET['id'] : null;
-    db_delete('sanpham', "id_sp = $id");
+    db_delete('product', "Id = $id");
     header("Location: ?controller=admin&action=ListProduct");
 
 }

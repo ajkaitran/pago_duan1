@@ -4,7 +4,7 @@
 <div class="box_content">
     <div class="row">
         <div class="col-8">
-            <form action="?controller=admin&action=AddProduct" method="post">
+            <form action="?controller=admin&action=AddProduct" method="post" enctype="multipart/form-data">
                 <div class="form-group d-flex">
                     <div class="col-2">
                         <label for="" class="label_form">Danh mục cha</label>
@@ -13,20 +13,12 @@
                         <select name="dm" id="" class="form-control">
                             <option>Chọn danh mục</option>
                             <?php foreach ($listDm as $key => $value) { ?>
-                                <option value="<?= $value['id_dm'] ?>"><?= $value['ten_dm'] ?></option>
+                                <option value="<?= $value['Id'] ?>"><?= $value['Name'] ?></option>
 
                             <?php }?>
                         </select>
                     </div>
                 </div>
-                <!-- <div class="form-group d-flex">
-                    <div class="col-2">
-                        <label for="" class="label_form">Tên danh mục</label>
-                    </div>
-                    <div class="col-10">
-                        <input type="text" class="input-text form-control">
-                    </div>
-                </div> -->
                 <div class="form-group d-flex">
                     <div class="col-2">
                         <label for="" class="label_form">Tên</label>
@@ -43,14 +35,38 @@
                         <input type="number" name="gia" class="input-text form-control">
                     </div>
                 </div>
-                <!-- <div class="form-group d-flex">
+                <div class="form-group d-flex">
                     <div class="col-2">
-                        <label for="" class="label_form">Mô tả</label>
+                        <label for="" class="label_form">Gia Sale</label>
                     </div>
                     <div class="col-10">
-                        <textarea class="input-text form-control" name="" id="" cols="30" rows="10"></textarea>
+                        <input type="number" name="giasale" class="input-text form-control">
                     </div>
-                </div> -->
+                </div>
+                <div class="form-group d-flex">
+                    <div class="col-2">
+                        <label for="" class="label_form">Slug</label>
+                    </div>
+                    <div class="col-10">
+                        <input type="text" name="slug" class="input-text form-control">
+                    </div>
+                </div>
+                <div class="form-group d-flex">
+                    <div class="col-2">
+                        <label for="" class="label_form">Active</label>
+                    </div>
+                    <div class="col-10">
+                        <input type="text" name="active" class="input-text form-control">
+                    </div>
+                </div>
+                <div class="form-group d-flex">
+                    <div class="col-2">
+                        <label for="" class="label_form">CreatedAt</label>
+                    </div>
+                    <div class="col-10">
+                        <input type="datetime-local" name="date" class="input-text form-control">
+                    </div>
+                </div>
                 <div class="form-group d-flex">
                     <div class="col-2">
                         <label for="" class="label_form">Hình ảnh</label>

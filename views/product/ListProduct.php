@@ -28,20 +28,15 @@
                     <div>
                         <?php 
                             foreach ($listSp as $key => $value) {
-                                
-                            
                         ?>
                         <tr>
-                            <th scope="row"><?= $key ?></th>
-                            <td><?= $value['id_sp'] ?></td>
+                            <th scope="row"><?= $key + 1 ?></th>
+                            <td><?= $value['Id'] ?></td>
                             <td><?= $value['ten_danhmuc'] ?></td>
-                            <td><?= $value['img'] ?></td>
-                            <td><?= $value['name_sp'] ?></td>
-                            <td><?= $value['gia_sp'] ?></td>
-                            <td><a href="?controller=Admin&action=UpdateProduct&id=<?= $value['id_sp'] ?>"
-                                class="btn btn-warning">Sua</a> | <a
-                                href="?controller=Admin&action=DeleteProduct&id=<?= $value['id_sp'] ?>"
-                                class="btn btn-danger">Xoa</a></td>
+                            <td><?= $value['Image'] ?></td>
+                            <td><?= $value['Name'] ?></td>
+                            <td><?= $value['Price'] ?></td>                            
+                            <td><a href="?controller=Admin&action=UpdateProduct&id=<?= $value['Id'] ?>" class="btn btn-primary">Sua</a>  <a href="?controller=Admin&action=DeleteProduct&id=<?= $value['Id'] ?>" class="btn btn-danger">Xoa</a></td>
                         </tr>
                         <?php 
                         }
