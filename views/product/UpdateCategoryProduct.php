@@ -14,7 +14,7 @@
                 </div>
             </div>
 
-            <form class="form" action="?controller=admin&action=EditCategoryProduct" method="post">
+            <form class="form" action="?controller=admin&action=EditCategoryProduct" method="post" enctype="multipart/form-data">
                 <div class="danhmuc danhmuc2">
                     Mã danh mục:
                     <input type="hidden" name="id" value="<?= $danhmuc['Id'] ?>">
@@ -23,20 +23,24 @@
                     Tên danh mục:
                     <input type="text" name="tendm" value="<?= $danhmuc['Name'] ?>">
                 </div>
+                <div class="form-group d-flex">
+                    <div class="col-2">
+                        <label for="" class="label_form">Hình ảnh</label>
+                    </div>
+                    <div class="col-10">
+                        <div class="w-100">
+                            <label class="form__container" id="upload-container">Choose or Drag & Drop Files
+                                <input class="form__file" id="upload-files" type="file" accept="image/*" multiple="multiple" name="img" />
+                            </label>
+                            <div class="form__files-container" id="files-list-container"></div>
+                        </div>
+                    </div>
+                </div>
                 <div class="danhmuc danhmuc2">
                     Slug:
                     <input type="text" name="slug" value="<?= $danhmuc['Slug'] ?>">
                 </div>
-                <div class="form-group d-flex">
-                    <div class="col-2">
-                        <label for="" class="label_form">Nội dung</label>
-                    </div>
-                    <div class="col-10">
-                        <textarea class="input-text form-control" name="desc" id="editor" cols="30" rows="10">
-                        <?= $danhmuc['Des'] ?>
-                        </textarea>
-                    </div>
-                </div>
+                <input type="hidden" name="imgOld" value="<?= $danhmuc['Image'] ?>">
                 <div class="danh mucdanhmuc4">
                     <input type="submit" name="sua" value="SUA">
                 </div>

@@ -18,8 +18,8 @@
                     <tr>
                         <th scope="col">Stt</th>
                         <th scope="col">Tên danh mục</th>
+                        <th scope="col">Image</th>
                         <th scope="col">Slug</th>
-                        <th scope="col">Desc</th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
@@ -30,8 +30,8 @@
                         <tr>
                             <th scope="row"><?= $value['Id'] ?></th>
                             <td><?= $value['Name'] ?></td>
+                            <td><?= $value['Image'] ?></td>
                             <td><?= $value['Slug'] ?></td>
-                            <td><?= $value['Des'] ?></td>
                             <td><a href="?controller=Admin&action=UpdateCategoryProduct&id=<?= $value['Id'] ?>" class="btn btn-primary">Sua</a>  <a href="?controller=Admin&action=DeleteCategoryProduct&id=<?= $value['Id'] ?>" class="btn btn-danger">Xoa</a></td>
                         </tr>
                     <?php
