@@ -377,3 +377,7 @@
     height: 400px;
     overflow-y: auto;
 } */
+.form_ext{
+    width: 200px;
+    font-weight: 600;
+}

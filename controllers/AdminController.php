@@ -186,6 +186,9 @@ function DeleteProduct() {
 
 }
 
+
+// Article
+
 function CategoryArticle()
 {
     load_view('article/CategoryArticle', '_layoutAdmin');
@@ -205,4 +208,60 @@ function ListArticle()
 function UpdateArticle()
 {
     load_view('article/UpdateArticle', '_layoutAdmin');
+}
+function UpdateCategoryArticle()
+{
+    load_view('article/UpdateCategoryArticle', '_layoutAdmin');
+}
+
+
+
+// admin
+function UpdatePassword()
+{
+    load_view('admin/UpdatePassword', '_layoutAdmin');
+}
+function ListAdmin()
+{
+    load_view('admin/ListAdmin', '_layoutAdmin');
+}
+
+
+
+//service
+function CategoryService()
+{
+    load_view('service/CategoryService', '_layoutAdmin');
+}
+function ListCategoryService()
+{
+    load_view('service/ListCategoryService', '_layoutAdmin');
+}
+function UpdateCategoryService()
+{
+    load_view('service/UpdateCategoryService', '_layoutAdmin');
+}
+function Service()
+{
+    load_view('service/Service', '_layoutAdmin');
+}
+function ListService()
+{
+    load_view('service/ListService', '_layoutAdmin');
+}
+function UpdateService()
+{
+    load_view('service/UpdateService', '_layoutAdmin');
+}
+
+
+//comment
+function Comment()
+{
+    load_view('comment/Comment', '_layoutAdmin');
+}
+//stalistical
+function Statistical()
+{
+    load_view('statistical/Statistical', '_layoutAdmin');
 }

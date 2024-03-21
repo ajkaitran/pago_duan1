@@ -27,7 +27,7 @@
         </div>
         <div class="sidebar-brand-text mx-3"><img src="./public/images/logo_pago.png" style="width: 100px;" alt="ảnh logo"></div>
       </a>
-
+Fqua
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
 
@@ -55,8 +55,8 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Custom Components:</h6>
-            <a class="collapse-item" href="#">Đổi mật khẩu</a>
-            <a class="collapse-item" href="#">Quản lý admin</a>
+            <a class="collapse-item" href="?controller=Admin&action=UpdatePassword">Đổi mật khẩu</a>
+            <a class="collapse-item" href="?controller=Admin&action=ListAdmin">Quản lý admin</a>
             <a class="collapse-item" href="#">Thông tin chung</a>
             <a class="collapse-item" href="#">Đăng xuất</a>
           </div>
@@ -102,9 +102,10 @@
         </a>
         <div id="collapsePages2" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="login.html">Thêm danh mục sản phẩm</a>
-            <a class="collapse-item" href="login.html">Thêm sản phẩm</a>
-            <a class="collapse-item" href="login.html">Danh sách sản phẩm</a>
+            <a class="collapse-item" href="?controller=Admin&action=CategoryService">Thêm danh mục dịch vụ</a>
+            <a class="collapse-item" href="?controller=Admin&action=ListCategoryService">Danh sách danh mục</a>
+            <a class="collapse-item" href="?controller=Admin&action=Service">Thêm dịch vụ</a>
+            <a class="collapse-item" href="?controller=Admin&action=ListService">Danh sách dịch vụ</a>
           </div>
         </div>
       </li>
@@ -125,34 +126,21 @@
         </div>
       </li>
 
-      <!-- Nav Item - Pages Collapse Menu -->
+
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages4" aria-expanded="true" aria-controls="collapsePages">
-          <i class="fas fa-fw fa-folder"></i>
-          <span>Quản lý thư viện</span>
+        <a class="nav-link collapsed" href="?controller=Admin&action=Comment">
+        <i class="fas fa-fw fa-cog"></i>
+          <span>Quản lý bình luận</span>
         </a>
-        <div id="collapsePages4" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="login.html">Thêm danh mục sản phẩm</a>
-            <a class="collapse-item" href="login.html">Thêm sản phẩm</a>
-            <a class="collapse-item" href="login.html">Danh sách sản phẩm</a>
-          </div>
-        </div>
-      </li>
-      <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages5" aria-expanded="true" aria-controls="collapsePages">
-          <i class="fas fa-fw fa-folder"></i>
-          <span>Quản lý quảng cáo</span>
+
+        <li class="nav-item">
+        <a class="nav-link collapsed" href="?controller=Admin&action=Statistical">
+        <i class="fas fa-fw fa-cog"></i>
+          <span>Quản lý thống kê</span>
         </a>
-        <div id="collapsePages5" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="login.html">Thêm danh mục sản phẩm</a>
-            <a class="collapse-item" href="login.html">Thêm sản phẩm</a>
-            <a class="collapse-item" href="login.html">Danh sách sản phẩm</a>
-          </div>
-        </div>
-      </li>
+
+      
+     
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages6" aria-expanded="true" aria-controls="collapsePages">

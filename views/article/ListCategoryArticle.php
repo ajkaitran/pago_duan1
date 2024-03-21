@@ -1,13 +1,13 @@
 <h2 class="title_page">
-    Danh sách danh mục
+    Danh sách danh mục bài viết
 </h2>
 <div class="right-column">
     <div class="formcontent">
         <div class="listname">
             <div class="icons">
-                <a href="http://localhost/pago_duan1/?controller=Admin&action=CategoryProduct">
+                <a href="?controller=Admin&action=CategoryArticle">
                     <i class="fa-light fa-circle-plus"></i>
-                    <span>Thêm danh mục</span>
+                    <span>Thêm danh mục bài viết</span>
                 </a>
             </div>
         </div>
@@ -23,19 +23,6 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php
-                    foreach ($listDm as $value) {
-                    ?>
-                        <tr>
-                            <th scope="row"><?= $value['Id'] ?></th>
-                            <td><?= $value['Name'] ?></td>
-                            <td><?= $value['Image'] ?></td>
-                            <td><?= $value['Slug'] ?></td>
-                            <td><a href="?controller=Admin&action=UpdateCategoryProduct&id=<?= $value['Id'] ?>" class="btn btn-primary">Sua</a>  <a href="?controller=Admin&action=DeleteCategoryProduct&id=<?= $value['Id'] ?>" class="btn btn-danger">Xoa</a></td>
-                        </tr>
-                    <?php
-                    }
-                    ?>
                     <!-- <tr>
                         <th scope="row">1</th>
                         <td>Danh mục 1</td>

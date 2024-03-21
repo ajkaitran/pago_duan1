@@ -1,5 +1,5 @@
 <h2 class="title_page">
-    Thêm danh mục sản phẩm
+    Sửa danh mục bài viết
 </h2>
 <div class="box_content">
     <div class="row">
@@ -23,7 +23,7 @@
                 <input type="text" class="input-text form-control" name="slug">
             </div>
                 <div class="form-group">
-                    <button class="btn btn-success" style="margin-left: 175px;">Thêm mới</button>
+                    <button class="btn btn-success" style="margin-left: 175px;">Cập nhật</button>
                 </div>
             </div>
             <!-- <div class="col-4">

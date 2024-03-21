@@ -1,7 +1,7 @@
 <h2 class="title_page">
     Danh sách sản phẩm
 </h2>
-<div class="row right-column">
+<div class="right-column">
     <div class="formcontent">
         <div class="listname">
             <div class="icons">

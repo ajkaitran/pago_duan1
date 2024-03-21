@@ -22,15 +22,11 @@
                 </div>
             </div>
             <div class="form-group d-flex">
-                <label for="" class="label_form">Tên</label>
-                <input type="text" class="input-text form-control">
-            </div>
-            <div class="form-group d-flex">
                 <label for="" class="label_form">Nội dung</label>
                 <textarea class="input-text form-control" name="" id="editor" cols="30" rows="10"></textarea>
             </div>
             <div class="form-group d-flex">
-                <button class="btn btn-success offset-2" style="margin-left: 200px;">Cập nhật</button>
+                <button class="btn btn-success offset-2" style="margin-left: 128px;">Thêm mới</button>
 
             </div>
         </div>

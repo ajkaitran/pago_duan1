@@ -65,7 +65,7 @@
                     <div class="col-2">
                     </div>
                     <div class="col-10">
-                        <button class="btn btn-success" name="them">Thêm</button>
+                        <button class="btn btn-success" name="them">Thêm mới</button>
                     </div>
                 </div>
             </form>
