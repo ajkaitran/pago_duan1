@@ -24,14 +24,13 @@ function ListCategoryProduct()
 function AddCategoryProduct() {
     if(isset($_POST['them'])) {
         $name = isset($_POST['tendm']) ? $_POST['tendm'] : null;
+        $img = isset($_FILES['img']) ? $_FILES['img']['name'] : null;
         $slug = isset($_POST['slug']) ? $_POST['slug'] : null;
-        $desc = isset($_POST['desc']) ? $_POST['desc'] : null;
         $arr = array(
             'Name' => $name,
+            'Image' => $img,
             'Slug' => $slug,
-            'Des' => $desc,
         );
-
         db_insert('productcategory', $arr);
         header("Location: ?controller=admin&action=ListCategoryProduct");
     }
@@ -51,9 +50,9 @@ function EditCategoryProduct() {
     if(isset($_POST['sua'])) {
         $id = isset($_POST['id']) ? $_POST['id'] : null;
         $name = isset($_POST['tendm']) ? $_POST['tendm'] : null;
+        $img = (isset($_FILES['img']) && $_FILES['img']['name'] != '') ? $_FILES['img']['name'] : $_POST['imgOld'];
         $slug = isset($_POST['slug']) ? $_POST['slug'] : null;
-        $desc = isset($_POST['desc']) ? $_POST['desc'] : null;
-        $sql = "UPDATE `productcategory` SET `Name`='$name',`Slug`='$slug',`Des`='$desc' WHERE Id = $id";
+        $sql = "UPDATE `productcategory` SET `Name`='$name',`Image`='$img',`Slug`='$slug' WHERE Id = $id";
         db_query($sql);
         header("Location: ?controller=admin&action=ListCategoryProduct");
     }

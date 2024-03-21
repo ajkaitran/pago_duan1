@@ -4,7 +4,7 @@
 <div class="box_content">
     <div class="row">
         <div class="col-8">
-            <form action="?controller=admin&action=AddCategoryProduct" method="POST">
+            <form action="?controller=admin&action=AddCategoryProduct" method="POST" enctype="multipart/form-data">
                 <div class="form-group d-flex">
                     <div class="col-2">
                         <label for="" class="label_form">Tên danh mục</label>
@@ -34,16 +34,7 @@
                         <input type="text" class="input-text form-control" name="slug">
                     </div>
                 </div>
-                <div class="form-group d-flex">
-                    <div class="col-2">
-                        <label for="" class="label_form">Nội dung</label>
-                    </div>
-                    <div class="col-10">
-                        <textarea class="input-text form-control" name="desc" id="editor" cols="30" rows="10">
-                            
-                        </textarea>
-                    </div>
-                </div>
+                
                 <div class="form-group d-flex">
                     <div class="col-2">
                     </div>
