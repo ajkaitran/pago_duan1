@@ -7,29 +7,15 @@
             <form action="?controller=admin&action=AddProduct" method="post" enctype="multipart/form-data">
                 <div class="form-group d-flex">
                     <div class="col-2">
-                        <label for="" class="label_form">Danh mục cha</label>
+                        <label for="" class="label_form">Tên sản phẩm</label>
                     </div>
                     <div class="col-10">
-                        <select name="dm" id="" class="form-control">
-                            <option>Chọn danh mục</option>
-                            <?php foreach ($listDm as $key => $value) { ?>
-                                <option value="<?= $value['Id'] ?>"><?= $value['Name'] ?></option>
-
-                            <?php }?>
-                        </select>
+                        <input type="text" name="ten" class="input-text form-control">
                     </div>
                 </div>
                 <div class="form-group d-flex">
                     <div class="col-2">
-                        <label for="" class="label_form">Tên</label>
-                    </div>
-                    <div class="col-10">
-                        <input type="text" name="ten" class="input-text form-control" >
-                    </div>
-                </div>
-                <div class="form-group d-flex">
-                    <div class="col-2">
-                        <label for="" class="label_form">Gia</label>
+                        <label for="" class="label_form">Giá gốc</label>
                     </div>
                     <div class="col-10">
                         <input type="number" name="gia" class="input-text form-control">
@@ -37,7 +23,7 @@
                 </div>
                 <div class="form-group d-flex">
                     <div class="col-2">
-                        <label for="" class="label_form">Gia Sale</label>
+                        <label for="" class="label_form">Giá giảm giá</label>
                     </div>
                     <div class="col-10">
                         <input type="number" name="giasale" class="input-text form-control">
@@ -45,26 +31,10 @@
                 </div>
                 <div class="form-group d-flex">
                     <div class="col-2">
-                        <label for="" class="label_form">Slug</label>
+                        <label for="" class="label_form">Đường dẫn</label>
                     </div>
                     <div class="col-10">
                         <input type="text" name="slug" class="input-text form-control">
-                    </div>
-                </div>
-                <div class="form-group d-flex">
-                    <div class="col-2">
-                        <label for="" class="label_form">Active</label>
-                    </div>
-                    <div class="col-10">
-                        <input type="text" name="active" class="input-text form-control">
-                    </div>
-                </div>
-                <div class="form-group d-flex">
-                    <div class="col-2">
-                        <label for="" class="label_form">CreatedAt</label>
-                    </div>
-                    <div class="col-10">
-                        <input type="datetime-local" name="date" class="input-text form-control">
                     </div>
                 </div>
                 <div class="form-group d-flex">
@@ -80,14 +50,14 @@
                         </div>
                     </div>
                 </div>
-               
+
                 <div class="form-group d-flex">
                     <div class="col-2">
                         <label for="" class="label_form">Nội dung</label>
                     </div>
                     <div class="col-10">
                         <textarea class="input-text form-control" name="desc" id="editor" cols="30" rows="10">
-                            
+
                         </textarea>
                     </div>
                 </div>
@@ -95,22 +65,22 @@
                     <div class="col-2">
                     </div>
                     <div class="col-10">
-                        <button class="btn btn-success" name="them">Them</button>
+                        <button class="btn btn-success" name="them">Thêm</button>
                     </div>
                 </div>
             </form>
         </div>
-        <!-- <div class="col-4">
+        <div class="col-4">
             <div class="form-group d-flex">
                 <div class="col-4">
                     <label for="" class="label_form">Danh mục cha</label>
                 </div>
                 <div class="col-8">
-                    <select name="" id="" class="form-control">
+                    <select name="dm" id="" class="form-control">
                         <option>Chọn danh mục</option>
-                        <option>Chọn danh mục1</option>
-                        <option>Chọn danh mục2</option>
-                        <option>Chọn danh mục3</option>
+                        <?php foreach ($listDm as $key => $value) { ?>
+                            <option value="<?= $value['Id'] ?>"><?= $value['Name'] ?></option>
+                        <?php } ?>
                     </select>
                 </div>
             </div>
@@ -122,6 +92,6 @@
                     <input type="checkbox">
                 </div>
             </div>
-        </div> -->
+        </div>
     </div>
 </div>

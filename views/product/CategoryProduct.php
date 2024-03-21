@@ -15,6 +15,19 @@
                 </div>
                 <div class="form-group d-flex">
                     <div class="col-2">
+                        <label for="" class="label_form">Hình ảnh</label>
+                    </div>
+                    <div class="col-10">
+                        <div class="w-100">
+                            <label class="form__container" id="upload-container">Choose or Drag & Drop Files
+                                <input class="form__file" id="upload-files" type="file" accept="image/*" multiple="multiple" name="img" />
+                            </label>
+                            <div class="form__files-container" id="files-list-container"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group d-flex">
+                    <div class="col-2">
                         <label for="" class="label_form">Slug</label>
                     </div>
                     <div class="col-10">
