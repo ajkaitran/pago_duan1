@@ -2,11 +2,12 @@
     Sửa danh mục sản phẩm
 </h2>
 <div class="box_content">
+    <form action="?controller=Admin&action=EditCategoryProduct" method="post" enctype="multipart/form-data">
     <div class="row">
         <div class="col-12">
             <div class="form-group d-flex">
                 <label for="" class="form_ext">Tên danh mục</label>
-                <input type="text" class="input-text form-control" value="<?= $danhmuc['Name'] ?>">
+                <input type="text" class="input-text form-control" value="<?= $danhmuc['Name'] ?>" name="tendm">
             </div>
             <div class="form-group d-flex">
                 <label for="" class="form_ext">Hình ảnh</label>
@@ -18,16 +19,18 @@
                     <div class="form__files-container" id="files-list-container"></div>
                 </div>
             </div>
+            <input type="hidden" name="id" value="<?= $danhmuc['Id'] ?>">
             <div class="form-group d-flex">
                 <label for="" class="form_ext">Slug</label>
                 <input type="text" class="input-text form-control" name="slug" value="<?= $danhmuc['Slug'] ?>">
             </div>
                 <div class="form-group">
-                    <button class="btn btn-success" value="SUA" style="margin-left: 175px;">Cập nhật</button>
+                    <button class="btn btn-success" value="SUA" style="margin-left: 175px;" name="sua">Cập nhật</button>
                 </div>
             </div>
         </div>
     </div>
+    </form>
 
 
 

@@ -1,16 +1,32 @@
-<!-- <h2 class="title_page">
+<h2 class="title_page">
     Sửa sản phẩm
 </h2>
 <div class="box_content">
     <div class="row">
         <div class="col-8">
-            <form action="?controller=admin&action=AddProduct" method="post" enctype="multipart/form-data">
+            <form action="?controller=admin&action=EditProduct" method="post" enctype="multipart/form-data">
+
+                <div class="form-group d-flex">
+                    <div class="col-2">
+                        <label for="" class="label_form">Chon danh muc</label>
+                    </div>
+                    <div class="col-10">
+                        <select name="dm" id="" class="form-control">
+                            <option>Chọn danh mục</option>
+                            <?php foreach ($listDm as $key => $value) { ?>
+                                <option <?= ($value['Id'] == $product['ProductCategoryId'] ? 'selected' : "") ?> value="<?= $value['Id'] ?>"><?= $value['Name'] ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+
+
+                </div>
                 <div class="form-group d-flex">
                     <div class="col-2">
                         <label for="" class="label_form">Tên sản phẩm</label>
                     </div>
                     <div class="col-10">
-                        <input type="text" name="ten" class="input-text form-control">
+                        <input type="text" name="ten" class="input-text form-control"  value="<?= $product['Name'] ?>">
                     </div>
                 </div>
                 <div class="form-group d-flex">
@@ -18,7 +34,7 @@
                         <label for="" class="label_form">Giá gốc</label>
                     </div>
                     <div class="col-10">
-                        <input type="number" name="gia" class="input-text form-control">
+                        <input type="number" name="gia" class="input-text form-control" value="<?= $product['Price'] ?>">
                     </div>
                 </div>
                 <div class="form-group d-flex">
@@ -26,7 +42,7 @@
                         <label for="" class="label_form">Giá giảm giá</label>
                     </div>
                     <div class="col-10">
-                        <input type="number" name="giasale" class="input-text form-control">
+                        <input type="number" name="giasale" class="input-text form-control" value="<?= $product['PriceSale'] ?>">
                     </div>
                 </div>
                 <div class="form-group d-flex">
@@ -34,7 +50,7 @@
                         <label for="" class="label_form">Đường dẫn</label>
                     </div>
                     <div class="col-10">
-                        <input type="text" name="slug" class="input-text form-control">
+                        <input type="text" name="slug" class="input-text form-control" value="<?= $product['Slug'] ?>">
                     </div>
                 </div>
                 <div class="form-group d-flex">
@@ -50,14 +66,15 @@
                         </div>
                     </div>
                 </div>
-
+                <input type="hidden" name="imgOld" value="<?= $product['Image'] ?>">
+                <input type="hidden" name="id" value="<?= $product['Id'] ?>">
                 <div class="form-group d-flex">
                     <div class="col-2">
                         <label for="" class="label_form">Nội dung</label>
                     </div>
                     <div class="col-10">
-                        <textarea class="input-text form-control" name="desc" id="editor" cols="30" rows="10">
-
+                        <textarea class="input-text form-control"  name="desc" id="editor" cols="30" rows="10">
+                       <?= $product['Des'] ?>
                         </textarea>
                     </div>
                 </div>
@@ -65,7 +82,7 @@
                     <div class="col-2">
                     </div>
                     <div class="col-10">
-                        <button class="btn btn-success" name="them">Cập nhật</button>
+                        <button class="btn btn-success" name="sua">Sửa</button>
                     </div>
                 </div>
             </form>
@@ -94,4 +111,4 @@
             </div>
         </div>
     </div>
-</div> -->
+</div>
