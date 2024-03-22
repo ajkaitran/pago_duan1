@@ -29,7 +29,7 @@
                         <tr>
                             <th scope="row"><?= $value['Id'] ?></th>
                             <td><?= $value['Name'] ?></td>
-                            <td><?= $value['Image'] ?></td>
+                            <td><img src="./public/uploads/AnhDanhMuc/<?= $value['Image'] ?>" alt="" style="width: 100px; height: 100px" ></td>
                             <td><?= $value['Slug'] ?></td>
                             <td><a href="?controller=Admin&action=UpdateCategoryProduct&id=<?= $value['Id'] ?>" class="btn btn-primary">Sua</a>  <a href="?controller=Admin&action=DeleteCategoryProduct&id=<?= $value['Id'] ?>" class="btn btn-danger">Xoa</a></td>
                         </tr>

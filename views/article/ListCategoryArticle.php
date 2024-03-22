@@ -23,13 +23,20 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- <tr>
-                        <th scope="row">1</th>
-                        <td>Danh mục 1</td>
-                        <td><img src="./public/images/logo_pago.png" style="width: 100px;" alt="ảnh logo"></td>
-                        <td><a href="" class="btn btn-warning">Sua</a> | <a href="" class="btn btn-danger">Xoa</a>
+                    <?php foreach ($listDm as $key => $value) {
+                        
+                     ?>
+                    <tr>
+                        <th scope="row"><?= $value['Id'] ?></th>
+                        <td><?= $value['Title'] ?></td>
+                        <td><?= $value['Des'] ?></td>
+                        <td><img src="./public/uploads/AnhDMBaiViet/<?= $value['Image'] ?>" style="width: 100px; height: 100px;" alt="ảnh logo"></td>
+                        <td><a href="?controller=admin&action=UpdateCategoryArticle&id=<?= $value['Id'] ?>" class="btn btn-warning">Sua</a> | <a href="?controller=admin&action=DeleteCategoryArticle&id=<?= $value['Id'] ?>" class="btn btn-danger">Xoa</a>
                         </td>
-                    </tr> -->
+                    </tr>
+                    <?php 
+                    }
+                    ?>
                 </tbody>
             </table>
         </div>

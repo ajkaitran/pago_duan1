@@ -2,11 +2,16 @@
     Sửa danh mục bài viết
 </h2>
 <div class="box_content">
+    <form action="?controller=Admin&action=EditCategoryArticle" method="post" enctype="multipart/form-data">
     <div class="row">
         <div class="col-12">
             <div class="form-group d-flex">
-                <label for="" class="form_ext">Tên danh mục</label>
-                <input type="text" class="input-text form-control">
+                <label for="" class="form_ext">Title</label>
+                <input type="text" class="input-text form-control" name="title" value="<?= $cate['Title'] ?>">
+            </div>
+            <div class="form-group d-flex">
+                <label for="" class="form_ext">Des</label>
+                <input type="text" class="input-text form-control" name="desc" value="<?= $cate['Des'] ?>">
             </div>
             <div class="form-group d-flex">
                 <label for="" class="form_ext">Hình ảnh</label>
@@ -20,26 +25,14 @@
             </div>
             <div class="form-group d-flex">
                 <label for="" class="form_ext">Slug</label>
-                <input type="text" class="input-text form-control" name="slug">
+                <input type="text" class="input-text form-control" name="slug" value="<?= $cate['Slug'] ?>">
             </div>
+            <input type="hidden" name="imgOld" value="<?= $cate['Image'] ?>">
+            <input type="hidden" name="id" value="<?= $cate['Id'] ?>">
                 <div class="form-group">
-                    <button class="btn btn-success" style="margin-left: 175px;">Cập nhật</button>
+                    <button class="btn btn-success" style="margin-left: 175px;" name="sua">Sửa</button>
                 </div>
             </div>
-            <!-- <div class="col-4">
-            <div class="form-group d-flex">
-                <label for="" class="w-45">Danh mục cha</label>
-                <select name="" id="" class="form-control">
-                    <option>Chọn danh mục</option>
-                    <option>Chọn danh mục1</option>
-                    <option>Chọn danh mục2</option>
-                    <option>Chọn danh mục3</option>
-                </select>
-            </div>
-            <div class="form-group d-flex">
-                <label for="" style="margin-right: 45px;">Danh mục cha</label>
-                <input type="checkbox">
-            </div>
-        </div> -->
         </div>
     </div>
+    </form>

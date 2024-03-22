@@ -33,7 +33,7 @@
                             <th scope="row"><?= $key + 1 ?></th>
                             <td><?= $value['Id'] ?></td>
                             <td><?= $value['ten_danhmuc'] ?></td>
-                            <td><?= $value['Image'] ?></td>
+                            <td><img src="./public/uploads/AnhSanPham/<?=  $value['Image'] ?>" alt="" style="width: 100px; height: 100px"></td>
                             <td><?= $value['Name'] ?></td>
                             <td><?= $value['Price'] ?></td>                            
                             <td><a href="?controller=Admin&action=UpdateProduct&id=<?= $value['Id'] ?>" class="btn btn-primary">Sua</a>  <a href="?controller=Admin&action=DeleteProduct&id=<?= $value['Id'] ?>" class="btn btn-danger">Xoa</a></td>
