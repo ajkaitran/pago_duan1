@@ -41,26 +41,21 @@
             </div>
             <input type="hidden" name="id" value="<?= $articles['Id'] ?>">
             <input type="hidden" name="imgOld" value="<?= $articles['Image'] ?>">
-            <div class="form-group d-flex">
+            <!-- <div class="form-group d-flex">
                 <button class="btn btn-success offset-2" style="margin-left: 128px;" name="sua">Sửa</button>
 
-            </div>
+            </div> -->
         </div>
         <div class="col-4">
             <div class="form-group d-flex">
-                <label for="" class="label_form">Danh mục cha</label>
-                <select name="" id="" class="form-control">
-                    <option>Chọn danh mục</option>
-                    <option>Chọn danh mục1</option>
-                    <option>Chọn danh mục2</option>
-                    <option>Chọn danh mục3</option>
-                </select>
-            </div>
-            <div class="form-group d-flex">
                 <label for="" class="label_form" style="margin-right: 45px;">Trạng thái</label>
-                <input type="checkbox">
+                <input type="checkbox"  name="active" value="1" checked>
             </div>
         </div>
+        <div class="form-group d-flex">
+                <button class="btn btn-success offset-2" style="margin-left: 128px;" name="sua">Sửa</button>
+
+            </div>
     </div>
     </form>
 </div>

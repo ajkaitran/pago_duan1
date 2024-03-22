@@ -87,25 +87,13 @@
             </form>
         </div>
         <div class="col-4">
-            <div class="form-group d-flex">
-                <div class="col-4">
-                    <label for="" class="label_form">Danh mục cha</label>
-                </div>
-                <div class="col-8">
-                    <select name="dm" id="" class="form-control">
-                        <option>Chọn danh mục</option>
-                        <?php foreach ($listDm as $key => $value) { ?>
-                            <option value="<?= $value['Id'] ?>"><?= $value['Name'] ?></option>
-                        <?php } ?>
-                    </select>
-                </div>
-            </div>
+
             <div class="form-group d-flex">
                 <div class="col-4">
                     <label for="" class="label_form" style="margin-right: 45px;">Trạng thái</label>
                 </div>
                 <div class="col-8">
-                    <input type="checkbox">
+                    <input type="checkbox" name="active" value="1" checked>
                 </div>
             </div>
         </div>

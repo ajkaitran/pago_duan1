@@ -24,10 +24,10 @@
                 </thead>
                 <tbody>
                     <?php
-                    foreach ($listDm as $value) {
+                    foreach ($listDm as $key => $value) {
                     ?>
                         <tr>
-                            <th scope="row"><?= $value['Id'] ?></th>
+                            <th scope="row"><?= $key + 1 ?></th>
                             <td><?= $value['Name'] ?></td>
                             <td><img src="./public/uploads/AnhDanhMuc/<?= $value['Image'] ?>" alt="" style="width: 100px; height: 100px" ></td>
                             <td><?= $value['Slug'] ?></td>
