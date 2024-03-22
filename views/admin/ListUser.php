@@ -31,7 +31,7 @@
                             <td>Dương Văn Định</td>
                             <td>0877586111</td>
                             <td>dinhdv@vico.vn</td>
-                            <td><a href="/views/admin/EditUser.php" class="btn btn-primary">Sửa</a><a href="" class="btn btn-danger">Xóa</a></td>
+                            <td><a href="?controller=Admin&action=EditUser" class="btn btn-primary">Sửa</a><a href="" class="btn btn-danger">Xóa</a></td>
                         </tr>
                         <tr>
                             <th scope="row">1</th>
@@ -39,7 +39,7 @@
                             <td>Dương Văn Định</td>
                             <td>0877586111</td>
                             <td>dinhdv@vico.vn</td>
-                            <td><a href="/views/admin/EditUser.php" class="btn btn-primary">Sửa</a><a href="" class="btn btn-danger">Xóa</a></td>
+                            <td><a href="?controller=Admin&action=EditUser" class="btn btn-primary">Sửa</a><a href="" class="btn btn-danger">Xóa</a></td>
                         </tr>
                         <tr>
                             <th scope="row">1</th>
@@ -47,7 +47,7 @@
                             <td>Dương Văn Định</td>
                             <td>0877586111</td>
                             <td>dinhdv@vico.vn</td>
-                            <td><a href="/views/admin/EditUser.php" class="btn btn-primary">Sửa</a><a href="" class="btn btn-danger">Xóa</a></td>
+                            <td><a href="?controller=Admin&action=EditUser" class="btn btn-primary">Sửa</a><a href="" class="btn btn-danger">Xóa</a></td>
                         </tr>
                         <tr>
                             <th scope="row">1</th>
@@ -55,7 +55,7 @@
                             <td>Dương Văn Định</td>
                             <td>0877586111</td>
                             <td>dinhdv@vico.vn</td>
-                            <td><a href="/views/admin/EditUser.php" class="btn btn-primary">Sửa</a><a href="" class="btn btn-danger">Xóa</a></td>
+                            <td><a href="?controller=Admin&action=EditUser" class="btn btn-primary">Sửa</a><a href="" class="btn btn-danger">Xóa</a></td>
                         </tr>
                     </div>
                 </tbody>

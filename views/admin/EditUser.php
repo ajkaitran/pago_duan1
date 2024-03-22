@@ -13,8 +13,13 @@
                 <input type="text" class="input-text form-control">
             </div>
             <div class="form-group d-flex">
-                <label for="" class="form_ext">Ảnh đại diện</label>
-                <input type="file" class="input-text form-control">
+                <label for="" class="form_ext">Ảnh</label>
+                <div class="w-100">
+                <label class="form__container" id="upload-container">Choose or Drag & Drop Files
+                    <input class="form__file" id="upload-files" type="file" accept="image/*" multiple="multiple"/>
+                </label>
+                <div class="form__files-container" id="files-list-container"></div>
+                </div>
             </div>
             <div class="form-group d-flex">
                 <label for="" class="form_ext">Số điện thoại</label>
@@ -26,7 +31,7 @@
             </div>
             <div class="form-group d-flex">
                 <label for="" class="form_ext">Hoạt động</label>
-                <input type="checkbox" class="input-text form-control">
+                <input type="checkbox">
             </div>
             <div class="form-group">
                 <button class="btn btn-success" style="margin-left: 175px;">Cập nhật</button>
