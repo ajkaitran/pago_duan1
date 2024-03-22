@@ -227,11 +227,14 @@ function ListAdmin()
 }
 
  // User
-function ListAdmin()
+function ListUser()
 {
     load_view('admin/ListUser', '_layoutAdmin');
 }
-
+function EditUser()
+{
+    load_view('admin/EditUser', '_layoutAdmin');
+}
 
 //service
 function CategoryService()
