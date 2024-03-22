@@ -53,15 +53,25 @@
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Components:</h6>
+            <!-- <h6 class="collapse-header">Custom Components:</h6> -->
             <a class="collapse-item" href="?controller=Admin&action=UpdatePassword">Đổi mật khẩu</a>
             <a class="collapse-item" href="?controller=Admin&action=ListAdmin">Quản lý admin</a>
-            <a class="collapse-item" href="#">Thông tin chung</a>
+            <!-- <a class="collapse-item" href="#">Thông tin chung</a> -->
             <a class="collapse-item" href="#">Đăng xuất</a>
           </div>
         </div>
       </li>
-
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-fw fa-cog"></i>
+          <span>Quản lý tài khoản</span>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="?controller=Admin&action=ListUser">Danh sách tài khoản</a>
+          </div>
+        </div>
+      </li>
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
