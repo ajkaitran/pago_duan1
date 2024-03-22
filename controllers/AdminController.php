@@ -226,6 +226,11 @@ function ListAdmin()
     load_view('admin/ListAdmin', '_layoutAdmin');
 }
 
+ // User
+function ListAdmin()
+{
+    load_view('admin/ListUser', '_layoutAdmin');
+}
 
 
 //service
