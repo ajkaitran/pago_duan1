@@ -27,7 +27,6 @@
         </div>
         <div class="sidebar-brand-text mx-3"><img src="./public/images/logo_pago.png" style="width: 100px;" alt="ảnh logo"></div>
       </a>
-Fqua
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
 
