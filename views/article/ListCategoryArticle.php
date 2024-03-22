@@ -29,7 +29,11 @@
                     <tr>
                         <th scope="row"><?= $key + 1 ?></th>
                         <td><?= $value['Title'] ?></td>
-                        <td><img src="./public/uploads/AnhDMBaiViet/<?= $value['Image'] ?>" style="width: 100px; height: 100px;" alt="ảnh logo"></td>
+                        <td>
+                        <?php if (!empty($value['Image'])): ?>
+                            <img src="./public/uploads/AnhDMBaiViet/<?= $value['Image'] ?>" style="width: 100px; height: 100px;" alt="ảnh logo">
+                        <?php endif; ?>
+                        </td>
                         <td><?= $value['Des'] ?></td>
                         <td><a href="?controller=admin&action=UpdateCategoryArticle&id=<?= $value['Id'] ?>" class="btn btn-warning">Sua</a> | <a href="?controller=admin&action=DeleteCategoryArticle&id=<?= $value['Id'] ?>" class="btn btn-danger">Xoa</a>
                         </td>

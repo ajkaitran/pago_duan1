@@ -33,7 +33,11 @@
                             <th scope="row"><?= $key + 1 ?></th>
                             <td><?= $value['Id'] ?></td>
                             <td><?= $value['ten_danhmuc'] ?></td>
-                            <td><img src="./public/uploads/AnhSanPham/<?=  $value['Image'] ?>" alt="" style="width: 100px; height: 100px"></td>
+                            <td>
+                            <?php if (!empty($value['Image'])): ?>
+                                <img src="./public/uploads/AnhSanPham/<?=  $value['Image'] ?>" alt="" style="width: 100px; height: 100px">
+                                <?php endif; ?>
+                            </td>
                             <td><?= $value['Name'] ?></td>
                             <td><?= intval($value['Price']) ?></td>                            
                             <td><a href="?controller=Admin&action=UpdateProduct&id=<?= $value['Id'] ?>" class="btn btn-primary">Sua</a>  <a href="?controller=Admin&action=DeleteProduct&id=<?= $value['Id'] ?>" class="btn btn-danger">Xoa</a></td>
