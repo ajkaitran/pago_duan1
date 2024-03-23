@@ -27,6 +27,14 @@
                     <div>
                         <tr>
                             <th scope="row">1</th>
+                            <td>tranghrh5</td>
+                            <td>Bùi Thị Huyền Trang</td>
+                            <td>0384749388</td>
+                            <td>trangbht1201@gmail.com</td>
+                            <td><a href="?controller=Admin&action=EditUser" class="btn btn-primary">Sửa</a><a href="" class="btn btn-danger">Xóa</a></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
                             <td>dinh0107</td>
                             <td>Dương Văn Định</td>
                             <td>0877586111</td>
@@ -34,23 +42,15 @@
                             <td><a href="?controller=Admin&action=EditUser" class="btn btn-primary">Sửa</a><a href="" class="btn btn-danger">Xóa</a></td>
                         </tr>
                         <tr>
-                            <th scope="row">1</th>
-                            <td>dinh0107</td>
-                            <td>Dương Văn Định</td>
-                            <td>0877586111</td>
-                            <td>dinhdv@vico.vn</td>
+                            <th scope="row">3</th>
+                            <td>giappp38</td>
+                            <td>Phạm Phú Giáp</td>
+                            <td>0938377393  </td>
+                            <td>giaphfb3663@gmai.com</td>
                             <td><a href="?controller=Admin&action=EditUser" class="btn btn-primary">Sửa</a><a href="" class="btn btn-danger">Xóa</a></td>
                         </tr>
                         <tr>
-                            <th scope="row">1</th>
-                            <td>dinh0107</td>
-                            <td>Dương Văn Định</td>
-                            <td>0877586111</td>
-                            <td>dinhdv@vico.vn</td>
-                            <td><a href="?controller=Admin&action=EditUser" class="btn btn-primary">Sửa</a><a href="" class="btn btn-danger">Xóa</a></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">1</th>
+                            <th scope="row">4</th>
                             <td>dinh0107</td>
                             <td>Dương Văn Định</td>
                             <td>0877586111</td>

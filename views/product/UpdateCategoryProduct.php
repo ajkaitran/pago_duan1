@@ -4,6 +4,14 @@
 <div class="box_content">
     <form action="?controller=Admin&action=EditCategoryProduct" method="post" enctype="multipart/form-data">
     <div class="row">
+    <div class="listname" style="margin-top:-60px;">
+            <div class="icons" style="margin-left:-25px;">
+                <a href="http://localhost/pago_duan1/?controller=Admin&action=Article">
+                    <i class="fa-light fa-circle-plus mr-1"></i>
+                    <span>Thêm bài viết</span>
+                </a>
+            </div>
+        </div>
         <div class="col-12">
             <div class="form-group d-flex">
                 <label for="" class="form_ext">Tên danh mục</label>

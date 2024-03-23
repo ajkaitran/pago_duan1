@@ -4,6 +4,14 @@
 <div class="box_content">
     <form action="?controller=Admin&action=EditArticle" method="post" enctype="multipart/form-data">
     <div class="row">
+    <div class="listname" style="margin-top:-60px;">
+            <div class="icons" style="margin-left:-25px;">
+                <a href="?controller=Admin&action=ListArticle">
+                <i class="fa-thin fa-list"></i>
+                    <span>Danh sách bài viết</span>
+                </a>
+            </div>
+        </div>
         <div class="col-8">
             <div class="form-group d-flex">
                     <div class="col-2">

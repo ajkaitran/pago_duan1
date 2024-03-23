@@ -4,6 +4,14 @@
 <div class="box_content">
     <form action="?controller=Admin&action=AddCategoryProduct" method="POST" enctype="multipart/form-data">
         <div class="row">
+        <div class="listname" style="margin-top:-60px;">
+            <div class="icons" style="margin-left:-25px;">
+                <a href="?controller=Admin&action=ListCategoryProduct">
+                <i class="fa-thin fa-list"></i>
+                    <span>Danh sách danh mục</span>
+                </a>
+            </div>
+        </div>
             <div class="col-12">
                 <div class="form-group d-flex">
                     <label for="" class="form_ext">Tên danh mục</label>
