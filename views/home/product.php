@@ -319,7 +319,7 @@
                             for ($i = 1; $i < 8; $i++) {
                             ?>
                                 <div class="box__favorite__product">
-                                    <a href="#">
+                                    <a href="?controller=home&action=ProductDetail">
                                         <img src="./public/images/Poster-<?= $i ?>.jpg" alt="">
                                         <p class="p__hover">Poster</p>
                                         <div class="price">
@@ -383,7 +383,7 @@
                             ?>
                                 <div class="col">
                                     <div class="box__favorite__product">
-                                        <a href="#">
+                                        <a href="?controller=home&action=ProductDetail">
                                             <img src="./public/images/Poster-<?= $i ?>.jpg" alt="">
                                             <p class="p__hover">Poster</p>
                                             <div class="price">

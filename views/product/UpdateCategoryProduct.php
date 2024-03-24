@@ -6,7 +6,7 @@
     <div class="row">
     <div class="listname" style="margin-top:-60px;">
             <div class="icons" style="margin-left:-25px;">
-                <a href="http://localhost/pago_duan1/?controller=Admin&action=Article">
+                <a href="?controller=Admin&action=Article">
                     <i class="fa-light fa-circle-plus mr-1"></i>
                     <span>Thêm bài viết</span>
                 </a>

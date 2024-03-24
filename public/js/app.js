@@ -496,49 +496,48 @@ function QuantityJS() {
         autoSize: false
     });
 }
-function SlideProductJS() {
-    // Khởi tạo carousel cho phần "slide__images"
-    $('.slide__images').slick({
-        infinite: true,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        arrows: true,
-        prevArrow: "<button type='button' class='slick-prev pull-left'><i class='fa fa-angle-left' aria-hidden='true'></i></button>",
-        nextArrow: "<button type='button' class='slick-next pull-right'><i class='fa fa-angle-right' aria-hidden='true'></i></button>",
-        autoplay: true,
-        autoplaySpeed: 3000,
-    });
 
-    // Khởi tạo carousel cho phần "slide__images__nav"
-    $('.slide__images__nav').slick({
-        infinite: true,
-        slidesToShow: 4,
-        slidesToScroll: 1,
-        arrows: false,
-        autoplay: true,
-        autoplaySpeed: 3000,
-    });
+// Khởi tạo carousel cho phần "slide__images"
+$('.slide__images').slick({
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: true,
+    prevArrow: "<button type='button' class='slick-prev pull-left'><i class='fa fa-angle-left' aria-hidden='true'></i></button>",
+    nextArrow: "<button type='button' class='slick-next pull-right'><i class='fa fa-angle-right' aria-hidden='true'></i></button>",
+    autoplay: true,
+    autoplaySpeed: 3000,
+});
 
-    // Đặt sự kiện khi slide thay đổi trong phần "slide__images"
-    $('.slide__images').on('afterChange', function (event, slick, currentSlide) {
-        // Loại bỏ lớp CSS 'active' từ tất cả các ảnh trong phần "slide__images__nav"
-        $('.slide__images__nav .nav-image').removeClass('active');
-        // Thêm lớp CSS 'active' vào ảnh tương ứng trong phần "slide__images__nav"
-        $('.slide__images__nav .nav-image').eq(currentSlide).addClass('active');
-    });
+// Khởi tạo carousel cho phần "slide__images__nav"
+$('.slide__images__nav').slick({
+    infinite: true,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    arrows: false,
+    autoplay: true,
+    autoplaySpeed: 3000,
+});
 
-    // Xử lý sự kiện click trên các hình ảnh điều hướng
-    $('.slide__images__nav .nav-image').click(function () {
-        // Lấy chỉ mục của hình ảnh điều hướng được click
-        var selectedIndex = $(this).data('index');
+// Đặt sự kiện khi slide thay đổi trong phần "slide__images"
+$('.slide__images').on('afterChange', function (event, slick, currentSlide) {
+    // Loại bỏ lớp CSS 'active' từ tất cả các ảnh trong phần "slide__images__nav"
+    $('.slide__images__nav .nav-image').removeClass('active');
+    // Thêm lớp CSS 'active' vào ảnh tương ứng trong phần "slide__images__nav"
+    $('.slide__images__nav .nav-image').eq(currentSlide).addClass('active');
+});
 
-        // Sử dụng phương thức `slickGoTo` của Slick để điều hướng đến slide được chọn trong slideshow chính
-        $('.slide__images').slick('slickGoTo', selectedIndex);
-    });
+// Xử lý sự kiện click trên các hình ảnh điều hướng
+$('.slide__images__nav .nav-image').click(function () {
+    // Lấy chỉ mục của hình ảnh điều hướng được click
+    var selectedIndex = $(this).data('index');
 
-    // Thêm lớp 'active' cho hình ảnh điều hướng đầu tiên ban đầu
-    $('.slide__images__nav .nav-image[data-index="0"]').addClass('active');
-}
+    // Sử dụng phương thức `slickGoTo` của Slick để điều hướng đến slide được chọn trong slideshow chính
+    $('.slide__images').slick('slickGoTo', selectedIndex);
+});
+
+// Thêm lớp 'active' cho hình ảnh điều hướng đầu tiên ban đầu
+$('.slide__images__nav .nav-image[data-index="0"]').addClass('active');
 
 function QuickCart(id) {
     $.ajax({

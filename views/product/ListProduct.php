@@ -5,7 +5,7 @@
     <div class="formcontent">
         <div class="listname">
             <div class="icons">
-                <a href="http://localhost/pago_duan1/?controller=Admin&action=Product">
+                <a href="?controller=Admin&action=Product">
                     <i class="fa-light fa-circle-plus mr-1"></i>
                     <span>Thêm sản phẩm</span>
                 </a>

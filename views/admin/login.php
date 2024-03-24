@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng nhập Admin</title>
     <style>
         * {
-        padding: 0;
-        margin: 0;
-        box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
         }
 
         body {
             height: 100%;
-            background: linear-gradient(120deg, #4BB1B0, #1271AC);
-            overflow: hidden;
         }
 
         .login_form {
-            width: 600px;
+            width: 800px;
             background-color: white;
             border-radius: 5px;
             box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -70,10 +70,12 @@
             font-weight: 600;
             display: none;
         }
-        .form_group.error .warning{
+
+        .form_group.error .warning {
             display: block;
         }
-        .form_group.error .form_input{
+
+        .form_group.error .form_input {
             border-bottom: 2px solid rgb(255, 63, 20);
         }
 
@@ -87,10 +89,12 @@
             left: 0%;
             transition: 0.3s;
         }
+
         .form_input:focus~.focus {
             width: 100%;
         }
-        .btn_submit{
+
+        .btn_submit {
             padding: 15px;
             border: none;
             background-color: #079aa6;
@@ -104,11 +108,13 @@
             transition: 0.3s;
             cursor: pointer;
         }
+
         .btn_submit:hover {
             transform: scale(0.95);
             background-color: #057a85;
         }
-        .contact{
+
+        .contact {
             border-top: 2px solid #adadad;
             padding: 50px 0 30px 0;
             display: flex;
@@ -117,28 +123,33 @@
             align-items: center;
             gap: 20px;
         }
-        .contact_group{
+
+        .contact_group {
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 35px;
         }
+
         .contact_item {
             list-style-type: none;
             position: relative;
         }
-        .contact_link{
+
+        .contact_link {
             text-decoration: none;
             color: black;
             font-size: 18px;
             font-weight: 500;
         }
+
         .contact_link img {
             width: 65px;
             height: 65px;
             transition: 0.3s;
         }
-        .contact_dis{
+
+        .contact_dis {
             position: absolute;
             top: -130%;
             left: 50%;
@@ -154,19 +165,23 @@
             color: #515151;
             font-weight: 700;
         }
-        .contact_link:hover > .contact_dis{
+
+        .contact_link:hover>.contact_dis {
             opacity: 1;
             top: -65%;
         }
-        .contact_link:hover > img{
+
+        .contact_link:hover>img {
             transform: scale(1.1);
         }
-        .text_h6{
+
+        .text_h6 {
             font-size: 18px;
             color: #079aa6;
         }
     </style>
 </head>
+
 <body>
     <div class="login_form">
         <h1>ĐĂNG NHẬP QUẢN TRỊ</h1>
@@ -185,42 +200,42 @@
             </div>
             <button class="btn_submit" type="submit">Login</button>
         </form>
-        <div class="contact">
+        <!-- <div class="contact">
             <ul class="contact_group">
                 <li class="contact_item">
                     <a class="contact_link" href="#">
-                        <img src="facebook.svg" alt="facebook">
+                        <img src="./public/images/facebook.svg" alt="facebook">
                         <span class="contact_dis">Ajkai Trần</span>
                     </a>
                 </li>
                 <li class="contact_item">
                     <a class="contact_link" href="#">
-                        <img src="mail.svg" alt="mail">
+                        <img src="./public/images/mail.svg" alt="mail">
                         <span class="contact_dis">trannamhai7626@gmail.com</span>
                     </a>
                 </li>
                 <li class="contact_item">
                     <a class="contact_link" href="#">
-                        <img src="call-center-agent.svg" alt="call">
+                        <img src="./public/images/call-center-agent.svg" alt="call">
                         <span class="contact_dis">0383410797</span>
                     </a>
                 </li>
             </ul>
             <h6 class="text_h6">Liên hệ ngay với chúng tôi!!!</h6>
-        </div>
+        </div> -->
     </div>
     <script>
         var username = document.querySelector('#username')
         var password = document.querySelector('#password')
         var form = document.querySelector('form')
-        
+
         function showError(input, message) {
             let parent = input.parentElement;
             let warning = parent.querySelector('.warning')
             parent.classList.add('error')
             warning.innerText = message
         }
-        
+
         function showSuccess(input) {
             let parent = input.parentElement;
             let warning = parent.querySelector('.warning')
@@ -232,7 +247,7 @@
             let isEmptyError = false;
             listInput.forEach(input => {
                 input.value = input.value.trim()
-        
+
                 if (!input.value) {
                     isEmptyError = true;
                     showError(input, 'Không được để trống trường này!!!')
@@ -240,17 +255,18 @@
                     showSuccess(input)
                 }
             });
-        
+
             return isEmptyError
         }
-        
-        form.addEventListener('submit', function (e) {
+
+        form.addEventListener('submit', function(e) {
             e.preventDefault()
-        
-            let isEmptyError = checkEmptyError([username, email, password, conformPassword])
-        
-        
+
+            let isEmptyError = checkEmptyError([username, password])
+
+
         })
     </script>
 </body>
+
 </html>

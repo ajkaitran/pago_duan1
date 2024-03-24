@@ -13,6 +13,10 @@ function product()
 {
     load_view('home/product');
 }
+function ProductDetail()
+{
+    load_view('home/ProductDetail');
+}
 function introduce()
 {
     load_view('home/introduce');
@@ -24,6 +28,10 @@ function service()
 function article()
 {
     load_view('home/article');
+}
+function ArticleDetail()
+{
+    load_view('home/ArticleDetail');
 }
 function library()
 {
