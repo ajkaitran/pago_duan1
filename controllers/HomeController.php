@@ -19,10 +19,9 @@ function index()
 
 function product()
 {
-    $product = "SELECT * FROM `Product` JOIN `ProductCategory` ON product.ProductCategoryId  = productcategory.Id";
+    $product = "SELECT Product.* FROM `Product` JOIN `ProductCategory` ON product.ProductCategoryId  = productcategory.Id";
     $listProduct = db_query($product);
     $categoryProduct = db_query("SELECT * FROM `ProductCategory`");
-    
     $model =  array(
         'listProduct' => $listProduct,
         'categoryProduct' => $categoryProduct

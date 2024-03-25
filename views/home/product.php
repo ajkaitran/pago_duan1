@@ -379,7 +379,7 @@
                                 <select>
                                     <option>Mặc định</option>
                                     <option>Sấp xếp theo tên (A-Z)</option>
-                                    <option>Sấp xếp theo tên (Z-A</option>
+                                    <option>Sấp xếp theo tên (Z-A)</option>
                                     <option>Sấp xếp theo giá (Nhỏ-Lớn)</option>
                                     <option>Sấp xếp theo giá (Lớn-Nhỏ)</option>
                                     <option>Sấp xếp theo khuyến mãi (Có-Không)</option>
