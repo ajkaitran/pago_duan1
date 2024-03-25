@@ -6,9 +6,9 @@
         <div class="row">
             <div class="listname" style="margin-top:-60px;">
                 <div class="icons" style="margin-left:-25px;">
-                    <a href="?controller=Admin&action=Article">
+                    <a href="?controller=Admin&action=ListCategoryProduct">
                         <i class="fa-light fa-circle-plus mr-1"></i>
-                        <span>Thêm bài viết</span>
+                        <span>Danh sách danh mục</span>
                     </a>
                 </div>
             </div>
@@ -30,9 +30,13 @@
                     <label for="" class="form_ext">Hình ảnh</label>
                     <div class="w-100">
                         <label class="form__container" id="upload-container">Choose or Drag & Drop Files
-                            <input class="form__file" id="upload-files" value="<?= $danhmuc['Image'] ?>" type="file" accept="image/*" multiple="multiple" name="img" />
+                            <input class="form__file" id="upload-files" type="file" accept="image/*" multiple="multiple" name="img" />
                         </label>
-                        <div class="form__files-container" id="files-list-container"></div>
+                        <div class="form__files-container" id="files-list-container">
+                            <div class="form__image-container js-remove-image" data-index="0">
+                                <img class="form__image" src="./public/uploads/AnhDanhMuc/<?= $danhmuc['Image'] ?>" alt="">
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <input type="hidden" name="id" value="<?= $danhmuc['Id'] ?>">

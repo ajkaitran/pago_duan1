@@ -69,6 +69,8 @@ function db_insert($table, $data) {
 }
 
 function db_update($table, $data, $where) {
+    global $conn;
+
     $sql = "";
     foreach ($data as $field => $value) {
         if ($value === NULL)
@@ -77,6 +79,8 @@ function db_update($table, $data, $where) {
             $sql .= "$field='" . escape_string($value) . "', ";
     }
     $sql = substr($sql, 0, -2);
+
+    echo $sql;
     db_query("
             UPDATE $table
             SET $sql

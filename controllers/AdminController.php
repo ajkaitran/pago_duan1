@@ -51,7 +51,7 @@ function ListCategoryProduct()
 }
 function CategoryProduct()
 {
-    $parentCategory = db_fetch_array("SELECT * FROM `ProductCategory` WHERE ParentCategoryId IS NULL");
+    $parentCategory = db_fetch_array("SELECT * FROM `ProductCategory`");
 
     $model = array(
         'ProductCategory' => $parentCategory
@@ -100,14 +100,22 @@ function EditCategoryProduct()
         $id = isset($_POST['id']) ? $_POST['id'] : null;
         $prentCategoryId = isset($_POST['ParentCategoryId']) ? $_POST['ParentCategoryId'] : NULL;
         $name = isset($_POST['tendm']) ? $_POST['tendm'] : null;
-        $img = (isset($_FILES['img']) && $_FILES['img']['name'] != '') ? $_FILES['img']['name'] : $_POST['imgOld'];
+        $slug = isset($_POST['slug']) ? $_POST['slug'] : null;
+        $img = (isset($_FILES['img']) && $_FILES['img']['name'] != '') ? $_FILES['img']['name'] : NULL;
+
+        $data = array(
+            "ParentCategoryId" => empty($prentCategoryId) ? NULL : $prentCategoryId,
+            "Name" => $name,
+            "Slug" => $slug
+        );
+
         if ($img != null) {
+            $data["Image"] = $img;
             $uploadFile = './public/uploads/AnhDanhMuc/' . $img;
             move_uploaded_file($_FILES['img']['tmp_name'], $uploadFile);
         }
-        $slug = isset($_POST['slug']) ? $_POST['slug'] : null;
-        $sql = "UPDATE `productcategory` SET `ParentCategoryId` = '$prentCategoryId', `Name` = '$name', `Image` = '$img', `Slug` = '$slug' WHERE Id = $id";
-        db_query($sql);
+        
+        db_update("productcategory", $data, "Id = $id");
         header("Location: ?controller=admin&action=ListCategoryProduct");
     } else {
     }

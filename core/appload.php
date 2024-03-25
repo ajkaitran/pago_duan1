@@ -18,9 +18,7 @@ require COREPATH . DIRECTORY_SEPARATOR . 'base.php';
 
 if (is_array($helpers)) {
     foreach ($helpers as $name) {
-        if (!empty($item_auto)) {
-            load_helpers($name);
-        }
+        load_helpers($name);
     }
 }
 
