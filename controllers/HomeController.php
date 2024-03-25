@@ -53,3 +53,17 @@ function library()
     load_view('home/library');
 }
 
+function Search()
+{
+    $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : '';
+    echo($keyword);
+    $sql = "SELECT * FROM product WHERE Name LIKE '%" . $keyword . "%'";
+    $listProduct = db_query($sql);
+    $categoryProduct = db_query("SELECT * FROM `ProductCategory`");
+    
+    $model =  array(
+        'listProduct' => $listProduct,
+        'categoryProduct' => $categoryProduct
+    );
+    load_view('home/Search' , '_layout', $model);
+}

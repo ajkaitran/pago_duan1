@@ -36,12 +36,14 @@
                             </a>
                         </div>
                         <div class="search col-lg-5">
-                            <div class="search__form">
-                                <input type="text" placeholder="Nhập từ khóa...">
-                                <button type="button">
+                            <form class="search__form"  method="GET">
+                                <input name="controller" value="home" type="hidden">
+                                <input name="action" value="Search" type="hidden">
+                                <input type="text" name="keyword" placeholder="Nhập từ khóa...">
+                                <button type="submit">
                                     <i class="fa-solid fa-magnifying-glass px-4" style="color: #ffffff;"></i>
                                 </button>
-                            </div>
+                            </form>
                         </div>
                         <div class="select col-lg-5">
                             <ul class="nav nav__bot">
@@ -91,8 +93,11 @@
                                             </div>
                                         </div>
                                         <div class="drop__button">
-                                            <button type="button" class="btn btn-dark"><a class="text-white" href="?controller=shoppingcard&action=index">GIỎ HÀNG </a></button>
-                                            <button type="button" class="btn btn-dark"><a class="text-white" href="?controller=shoppingcard&action=checkout">THANH TOÁN</a></button>
+                                            <button type="button" class="btn btn-dark"><a class="text-white"
+                                                    href="?controller=shoppingcard&action=index">GIỎ HÀNG </a></button>
+                                            <button type="button" class="btn btn-dark"><a class="text-white"
+                                                    href="?controller=shoppingcard&action=checkout">THANH
+                                                    TOÁN</a></button>
                                         </div>
                                     </div>
                                 </li>
@@ -112,15 +117,19 @@
                                             <?php
                                                 if (isset($_SESSION['user'])):
                                             ?>
-                                                <li class="nav-item"><a class="nav-link" href="?controller=member&action=index">Quản lý tài khoản</a></li>
-                                                <li class="nav-item"><a class="nav-link" href="#">So sánh</a></li>
-                                                <li class="nav-item"><a class="nav-link" href="#">Yêu thích</a></li>
-                                                <li class="nav-item"><a class="nav-link" href="?controller=member&action=logout">Đăng xuất</a></li>
+                                            <li class="nav-item"><a class="nav-link"
+                                                    href="?controller=member&action=index">Quản lý tài khoản</a></li>
+                                            <li class="nav-item"><a class="nav-link" href="#">So sánh</a></li>
+                                            <li class="nav-item"><a class="nav-link" href="#">Yêu thích</a></li>
+                                            <li class="nav-item"><a class="nav-link"
+                                                    href="?controller=member&action=logout">Đăng xuất</a></li>
                                             <?php
                                                 else:
                                             ?>
-                                                <li class="nav-item"><a class="nav-link" href="?controller=member&action=login">Đăng nhập</a></li>
-                                                <li class="nav-item"><a class="nav-link" href="?controller=member&action=register">Đăng ký</a></li>
+                                            <li class="nav-item"><a class="nav-link"
+                                                    href="?controller=member&action=login">Đăng nhập</a></li>
+                                            <li class="nav-item"><a class="nav-link"
+                                                    href="?controller=member&action=register">Đăng ký</a></li>
                                             <?php
                                                 endif;
                                             ?>
@@ -142,11 +151,13 @@
                             <a class="nav-link" href="?controller=Home&action=introduce">GIỚI THIỆU</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="?controller=Home&action=product">SẢN PHẨM <i class="fa-solid fa-angle-down"></i></a>
+                            <a class="nav-link" href="?controller=Home&action=product">SẢN PHẨM <i
+                                    class="fa-solid fa-angle-down"></i></a>
                             <div class="nav__drop">
                                 <ul class="nav">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">Ấn phẩm bao bì <i class="fa-solid fa-caret-right"></i></a>
+                                        <a class="nav-link" href="#">Ấn phẩm bao bì <i
+                                                class="fa-solid fa-caret-right"></i></a>
                                         <div class="nav_drop__children">
                                             <ul class="nav">
                                                 <li class="nav-item">
@@ -162,7 +173,8 @@
                                         </div>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">Ấn phẩm tiếp thị <i class="fa-solid fa-caret-right"></i></a>
+                                        <a class="nav-link" href="#">Ấn phẩm tiếp thị <i
+                                                class="fa-solid fa-caret-right"></i></a>
                                         <div class="nav_drop__children">
                                             <ul class="nav">
                                                 <li class="nav-item">
@@ -181,7 +193,8 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="?controller=Home&action=service">DỊCH VỤ <i class="fa-solid fa-angle-down"></i></a>
+                            <a class="nav-link" href="?controller=Home&action=service">DỊCH VỤ <i
+                                    class="fa-solid fa-angle-down"></i></a>
                             <div class="nav__drop">
                                 <ul class="nav">
                                     <li class="nav-item">
@@ -194,7 +207,8 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="?controller=Home&action=article">TIN TỨC <i class="fa-solid fa-angle-down"></i></a>
+                            <a class="nav-link" href="?controller=Home&action=article">TIN TỨC <i
+                                    class="fa-solid fa-angle-down"></i></a>
                             <div class="nav__drop">
                                 <ul class="nav">
                                     <li class="nav-item">
@@ -207,7 +221,8 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="?controller=Home&action=library"> THƯ VIỆN <i class="fa-solid fa-angle-down"></i></a>
+                            <a class="nav-link" href="?controller=Home&action=library"> THƯ VIỆN <i
+                                    class="fa-solid fa-angle-down"></i></a>
                             <div class="nav__drop">
                                 <ul class="nav">
                                     <li class="nav-item">
