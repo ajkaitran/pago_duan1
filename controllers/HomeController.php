@@ -57,7 +57,6 @@ function library()
 function Search()
 {
     $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : '';
-    echo($keyword);
     $sql = "SELECT * FROM product WHERE Name LIKE '%" . $keyword . "%'";
     $listProduct = db_query($sql);
     $categoryProduct = db_query("SELECT * FROM `ProductCategory`");
