@@ -16,7 +16,6 @@
                 <thead>
                     <tr>
                         <th scope="col">Stt</th>
-                        <th scope="col">Mã sản phẩm</th>
                         <th scope="col">Tên danh mục</th>
                         <th scope="col">Ảnh sản phẩm</th>
                         <th scope="col">Tên sản phẩm</th>
@@ -26,19 +25,21 @@
                 </thead>
                 <tbody class="">
                     <div>
-                        <?php 
-                            foreach ($listSp as $key => $value) {
+                        <?php
+                        foreach ($listSp as $key => $value) {
                         ?>
-                        <tr>
-                            <th scope="row"><?= $key + 1 ?></th>
-                            <td><?= $value['Id'] ?></td>
-                            <td><?= $value['ten_danhmuc'] ?></td>
-                            <td><img src="./public/uploads/AnhSanPham/<?=  $value['Image'] ?>" alt="" style="width: 100px; height: 100px"></td>
-                            <td><?= $value['Name'] ?></td>
-                            <td><?= $value['Price'] ?></td>                            
-                            <td><a href="?controller=Admin&action=UpdateProduct&id=<?= $value['Id'] ?>" class="btn btn-primary">Sua</a>  <a href="?controller=Admin&action=DeleteProduct&id=<?= $value['Id'] ?>" class="btn btn-danger">Xoa</a></td>
-                        </tr>
-                        <?php 
+                            <tr>
+                                <th scope="row"><?= $key + 1 ?></th>
+                                <td><?= $value['ten_danhmuc'] ?></td>
+                                <td><img src="./public/uploads/AnhSanPham/<?= $value['Image'] ?>" alt="" style="width: 100px; height: 100px"></td>
+                                <td><?= $value['Name'] ?></td>
+                                <td>
+                                    <h5><?= number_format($value['PriceSale']) ?>VND</h5>
+                                    <del><?= number_format($value['Price']) ?>VND</del>
+                                </td>
+                                <td><a href="?controller=Admin&action=UpdateProduct&id=<?= $value['Id'] ?>" class="btn btn-primary">Sua</a> <a href="?controller=Admin&action=DeleteProduct&id=<?= $value['Id'] ?>" class="btn btn-danger">Xoa</a></td>
+                            </tr>
+                        <?php
                         }
                         ?>
                     </div>

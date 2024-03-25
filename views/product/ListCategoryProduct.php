@@ -24,25 +24,20 @@
                 </thead>
                 <tbody>
                     <?php
+                    $stt = 1;
                     foreach ($listDm as $value) {
                     ?>
                         <tr>
-                            <th scope="row"><?= $value['Id'] ?></th>
+                            <th scope="row"><?= $stt?></th>
                             <td><?= $value['Name'] ?></td>
-                            <td><img src="./public/uploads/AnhDanhMuc/<?= $value['Image'] ?>" alt="" style="width: 100px; height: 100px" ></td>
+                            <td><img src="./public/uploads/AnhDanhMuc/<?= $value['Image'] ?>" alt="" style="width: 80px; height: 80px" ></td>
                             <td><?= $value['Slug'] ?></td>
                             <td><a href="?controller=Admin&action=UpdateCategoryProduct&id=<?= $value['Id'] ?>" class="btn btn-primary">Sua</a>  <a href="?controller=Admin&action=DeleteCategoryProduct&id=<?= $value['Id'] ?>" class="btn btn-danger">Xoa</a></td>
                         </tr>
                     <?php
+                    $stt++;
                     }
                     ?>
-                    <!-- <tr>
-                        <th scope="row">1</th>
-                        <td>Danh mục 1</td>
-                        <td><img src="./public/images/logo_pago.png" style="width: 100px;" alt="ảnh logo"></td>
-                        <td><a href="" class="btn btn-warning">Sua</a> | <a href="" class="btn btn-danger">Xoa</a>
-                        </td>
-                    </tr> -->
                 </tbody>
             </table>
         </div>
