@@ -68,6 +68,3 @@ function Search()
     );
     load_view('home/Search' , '_layout', $model);
 }
-public ProductCategory(){
-    load_view('home/ProductCategory' , '_layout');
-}
