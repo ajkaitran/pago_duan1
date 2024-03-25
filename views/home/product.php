@@ -19,7 +19,19 @@
                         </div>
                         <div class="sidebar__menu">
                             <ul>
-                                <li>
+                                <?php
+                                foreach ($categoryProduct as $key => $cate) {
+                                ?>
+                                    <li>
+                                        <div class="border__dashed p__hover">
+                                            <a class="p__hover" href="#"><?= $cate['Name']?></a>
+                                            <i class="fa-regular fa-caret-down dropdown"></i>
+                                        </div>
+                                    </li>
+                                <?php
+                                }
+                                ?>
+                                <!-- <li>
                                     <div class="border__dashed p__hover">
                                         <a class="p__hover" href="#">Ấn phẩm bao bì</a>
                                         <i class="fa-regular fa-caret-down dropdown"></i>
@@ -75,7 +87,7 @@
                                             <a class="p__hover" href="#">Danh thiếp</a>
                                         </li>
                                     </ul>
-                                </li>
+                                </li> -->
                             </ul>
                         </div>
                     </div>
@@ -316,15 +328,15 @@
                         </div>
                         <div class="slide__favorite__product__sidebar py-3">
                             <?php
-                            for ($i = 1; $i < 8; $i++) {
+                            foreach ($listProduct as $key => $item) {
                             ?>
                                 <div class="box__favorite__product">
                                     <a href="?controller=home&action=ProductDetail">
-                                        <img src="./public/images/Poster-<?= $i ?>.jpg" alt="">
-                                        <p class="p__hover">Poster</p>
+                                        <img src="./public/uploads/AnhSanPham/<?= $item['Image'] ?>" alt="">
+                                        <p class="p__hover"><?= $item['Name'] ?></p>
                                         <div class="price">
-                                            <h5 class="new__price">69.000VND</h5>
-                                            <del class="old__price p__hover">100.000VND</del>
+                                            <h5 class="new__price"><?= number_format($item['PriceSale']) ?>VND</h5>
+                                            <del class="old__price p__hover"><?= number_format($item['Price']) ?>VND</del>
                                         </div>
                                     </a>
                                     <div class="add__to__cart" onclick="QuickCart(id)"><i class="fa-regular fa-bag-shopping fs-5"></i>Thêm vào giỏ hàng</div>

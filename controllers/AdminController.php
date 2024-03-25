@@ -19,19 +19,18 @@ function login()
             exit;
         } else {
             echo "Lỗi: Tên người dùng hoặc mật khẩu không đúng.";
-            load_view('admin/login','_layoutNone');
+            load_view('admin/login', '_layoutNone');
         }
     } else {
         echo "Lỗi: Vui lòng điền đầy đủ thông tin.";
-        load_view('admin/login','_layoutNone');
+        load_view('admin/login', '_layoutNone');
     }
 }
 
 
 function logout()
 {
-    if(isset($_SESSION['user']))
-    {
+    if (isset($_SESSION['user'])) {
         unset($_SESSION['user']);
         header("Location: ?controller=home&action=index");
         exit;
@@ -40,10 +39,6 @@ function logout()
 function Index()
 {
     load_view('/admin/Index', '_layoutAdmin');
-}
-function CategoryProduct()
-{
-    load_view('/product/CategoryProduct', '_layoutAdmin');
 }
 function ListCategoryProduct()
 {
@@ -54,16 +49,28 @@ function ListCategoryProduct()
     );
     load_view('/product/ListCategoryProduct', '_layoutAdmin', $data);
 }
-function AddCategoryProduct() {
-    if(isset($_POST['them'])) {
+function CategoryProduct()
+{
+    $parentCategory = db_fetch_array("SELECT * FROM `ProductCategory` WHERE ParentCategoryId IS NULL");
+
+    $model = array(
+        'ProductCategory' => $parentCategory
+    );
+    load_view('/product/CategoryProduct', '_layoutAdmin', $model);
+}
+function AddCategoryProduct()
+{
+    if (isset($_POST['them'])) {
+        $prentCategoryId = isset($_POST['ParentCategoryId']) ? $_POST['ParentCategoryId'] : null;
         $name = isset($_POST['tendm']) ? $_POST['tendm'] : null;
         $img = isset($_FILES['img']) ? $_FILES['img']['name'] : null;
-        if($img != null) {
-            $uploadFile = './public/uploads/AnhDanhMuc/'.$img;
+        if ($img != null) {
+            $uploadFile = './public/uploads/AnhDanhMuc/' . $img;
             move_uploaded_file($_FILES['img']['tmp_name'], $uploadFile);
         }
         $slug = isset($_POST['slug']) ? $_POST['slug'] : null;
         $arr = array(
+            'ParentCategoryId' => $prentCategoryId,
             'Name' => $name,
             'Image' => $img,
             'Slug' => $slug,
@@ -74,43 +81,51 @@ function AddCategoryProduct() {
 }
 
 function UpdateCategoryProduct()
-{   
+{
     $id = isset($_GET['id']) ? $_GET['id'] : null;
     $sql = "SELECT * FROM `productcategory` WHERE Id = $id";
+    $parentCategory = db_fetch_array("SELECT * FROM `ProductCategory` WHERE ParentCategoryId IS NULL");
     $danhmuc = db_fetch_row($sql);
     $data =  array(
-        'danhmuc' => $danhmuc
+        'danhmuc' => $danhmuc,
+        'ProductCategory' => $parentCategory
     );
     load_view('/product/UpdateCategoryProduct', '_layoutAdmin', $data);
 }
-function EditCategoryProduct() {
-    if(isset($_POST['sua'])) {
+
+
+function EditCategoryProduct()
+{
+    if (isset($_POST['sua'])) {
         $id = isset($_POST['id']) ? $_POST['id'] : null;
+        $prentCategoryId = isset($_POST['ParentCategoryId']) ? $_POST['ParentCategoryId'] : NULL;
         $name = isset($_POST['tendm']) ? $_POST['tendm'] : null;
         $img = (isset($_FILES['img']) && $_FILES['img']['name'] != '') ? $_FILES['img']['name'] : $_POST['imgOld'];
-        if($img != null) {
-            $uploadFile = './public/uploads/AnhDanhMuc/'.$img;
+        if ($img != null) {
+            $uploadFile = './public/uploads/AnhDanhMuc/' . $img;
             move_uploaded_file($_FILES['img']['tmp_name'], $uploadFile);
         }
         $slug = isset($_POST['slug']) ? $_POST['slug'] : null;
-        $sql = "UPDATE `productcategory` SET `Name`='$name',`Image`='$img',`Slug`='$slug' WHERE Id = $id";
+        $sql = "UPDATE `productcategory` SET `ParentCategoryId` = '$prentCategoryId', `Name` = '$name', `Image` = '$img', `Slug` = '$slug' WHERE Id = $id";
         db_query($sql);
         header("Location: ?controller=admin&action=ListCategoryProduct");
+    } else {
     }
 }
 
-function DeleteCategoryProduct() {
+
+function DeleteCategoryProduct()
+{
     $id = isset($_GET['id']) ? $_GET['id'] : null;
     db_delete('productcategory', "Id = $id");
     header("Location: ?controller=admin&action=ListCategoryProduct");
-
 }
 
 
 // PRODUCT 
 
 function ListProduct()
-{   
+{
     $sql = "SELECT sp.*, dm.Name  AS ten_danhmuc 
     FROM `product` sp 
     JOIN `productcategory` dm ON sp.ProductCategoryId  = dm.Id
@@ -122,7 +137,7 @@ function ListProduct()
     load_view('/product/ListProduct', '_layoutAdmin', $data);
 }
 function Product()
-{   
+{
     $sql = "SELECT sp.*, dm.Name  AS ten_danhmuc 
     FROM `product` sp 
     JOIN `productcategory` dm ON sp.ProductCategoryId = dm.Id
@@ -137,12 +152,13 @@ function Product()
     );
     load_view('/product/Product', '_layoutAdmin', $data);
 }
-function AddProduct() {
-    if(isset($_POST['them'])) {
+function AddProduct()
+{
+    if (isset($_POST['them'])) {
         $name = isset($_POST['ten']) ? $_POST['ten'] : null;
         $img = isset($_FILES['img']) ? $_FILES['img']['name'] : null;
-        if($img != null) {
-            $uploadFile = './public/uploads/AnhSanPham/'.$img;
+        if ($img != null) {
+            $uploadFile = './public/uploads/AnhSanPham/' . $img;
             move_uploaded_file($_FILES['img']['tmp_name'], $uploadFile);
         }
         $gia = isset($_POST['gia']) ? $_POST['gia'] : null;
@@ -152,14 +168,14 @@ function AddProduct() {
         $slug = isset($_POST['slug']) ? $_POST['slug'] : null;
         $dm = isset($_POST['dm']) ? $_POST['dm'] : null;
         $sql = "INSERT INTO `product`( `Name`, `Des`, `Image`, `Slug`, `Price`, `PriceSale`, `Active`, `CreatedAt`, `ProductCategoryId`) VALUES ('$name','$desc','$img','$slug',$gia,$giasale,1,'$date',$dm)";
-        db_query( $sql);
+        db_query($sql);
         header("Location: ?controller=admin&action=ListProduct");
     }
 }
 
 function UpdateProduct()
-{   
-    if(isset($_GET['id'])) {
+{
+    if (isset($_GET['id'])) {
         $id = $_GET['id'];
         $sql = "SELECT * FROM `product` WHERE Id = $id";
         $sql2 = "SELECT * FROM `productcategory` WHERE 1";
@@ -172,8 +188,9 @@ function UpdateProduct()
         load_view('/product/UpdateProduct', '_layoutAdmin', $data);
     }
 }
-function EditProduct() {
-    if(isset($_POST['sua'])) {
+function EditProduct()
+{
+    if (isset($_POST['sua'])) {
         $name = isset($_POST['ten']) ? $_POST['ten'] : null;
         $gia = isset($_POST['gia']) ? $_POST['gia'] : null;
         $desc = isset($_POST['desc']) ? $_POST['desc'] : null;
@@ -183,8 +200,8 @@ function EditProduct() {
         $dm = isset($_POST['dm']) ? $_POST['dm'] : null;
         $id = isset($_POST['id']) ? $_POST['id'] : null;
         $img = isset($_POST['img']) && ($_POST['img'] != '') ? $_POST['img'] : $_POST['imgOld'];
-        if($img != null) {
-            $uploadFile = './public/uploads/AnhSanPham/'.$img;
+        if ($img != null) {
+            $uploadFile = './public/uploads/AnhSanPham/' . $img;
             move_uploaded_file($_FILES['img']['tmp_name'], $uploadFile);
         }
         $sql = "UPDATE `product` SET `Name`='$name',`Des`='$desc',`Image`='$img',`Slug`='$slug',`Price`='$gia',`PriceSale`='$giasale',`Active`= 1,`CreatedAt`='$date',`ProductCategoryId`='$dm' WHERE Id = $id";
@@ -193,11 +210,11 @@ function EditProduct() {
     }
 }
 
-function DeleteProduct() {
+function DeleteProduct()
+{
     $id = isset($_GET['id']) ? $_GET['id'] : null;
     db_delete('product', "Id = $id");
     header("Location: ?controller=admin&action=ListProduct");
-
 }
 
 
@@ -205,16 +222,17 @@ function DeleteProduct() {
 
 function CategoryArticle()
 {
-    
+
     load_view('article/CategoryArticle', '_layoutAdmin');
 }
-function AddCategoryArticle() {
-    if(isset($_POST['them'])) {
+function AddCategoryArticle()
+{
+    if (isset($_POST['them'])) {
         $title = isset($_POST['title']) ? $_POST['title'] : null;
         $desc = isset($_POST['desc']) ? $_POST['desc'] : null;
         $img = isset($_FILES['img']) ? $_FILES['img']['name'] : null;
-        if($img != null) {
-            $uploadFile = './public/uploads/AnhDMBaiViet/'.$img;
+        if ($img != null) {
+            $uploadFile = './public/uploads/AnhDMBaiViet/' . $img;
             move_uploaded_file($_FILES['img']['tmp_name'], $uploadFile);
         }
         $slug = isset($_POST['slug']) ? $_POST['slug'] : null;
@@ -230,7 +248,7 @@ function AddCategoryArticle() {
 }
 
 function ListCategoryArticle()
-{   
+{
     $sql = "SELECT * FROM `articlecategories` WHERE 1";
     $listDm = db_query($sql);
     $data =  array(
@@ -239,8 +257,8 @@ function ListCategoryArticle()
     load_view('article/ListCategoryArticle', '_layoutAdmin', $data);
 }
 function UpdateCategoryArticle()
-{   
-    if(isset($_GET['id'])) {
+{
+    if (isset($_GET['id'])) {
         $id = $_GET['id'];
         $sql = "SELECT * FROM `articlecategories` WHERE Id = $id";
         $cate = db_fetch_row($sql);
@@ -251,15 +269,16 @@ function UpdateCategoryArticle()
     load_view('article/UpdateCategoryArticle', '_layoutAdmin', $data);
 }
 
-function EditCategoryArticle() {
-    if(isset($_POST['sua'])) {
+function EditCategoryArticle()
+{
+    if (isset($_POST['sua'])) {
         $title = isset($_POST['title']) ? $_POST['title'] : null;
         $desc = isset($_POST['des']) ? $_POST['des'] : null;
         $slug = isset($_POST['slug']) ? $_POST['slug'] : null;
         $id = isset($_POST['id']) ? $_POST['id'] : null;
         $img = (isset($_FILES['img']) && $_FILES['img']['name'] != '') ? $_FILES['img']['name'] : $_POST['imgOld'];
-        if($img != null) {
-            $uploadFile = './public/uploads/AnhDMBaiViet/'.$img;
+        if ($img != null) {
+            $uploadFile = './public/uploads/AnhDMBaiViet/' . $img;
             move_uploaded_file($_FILES['img']['tmp_name'], $uploadFile);
         }
         $sql = "UPDATE `articlecategories` SET `Title`='$title',`Des`='$desc',`Image`='$img',`Slug`='$slug' WHERE Id = $id";
@@ -268,18 +287,18 @@ function EditCategoryArticle() {
     }
 }
 
-function DeleteCategoryArticle() {
+function DeleteCategoryArticle()
+{
     $id = isset($_GET['id']) ? $_GET['id'] : null;
     db_delete('articlecategories', "Id = $id");
     header("Location: ?controller=admin&action=ListCategoryArticle");
-
 }
 
 
 //  Article
 
 function Article()
-{   
+{
     $sql = "SELECT * FROM `articlecategories` WHERE 1";
     $listDm = db_query($sql);
     $data =  array(
@@ -287,15 +306,16 @@ function Article()
     );
     load_view('article/Article', '_layoutAdmin', $data);
 }
-function AddArticle() {
-    if(isset($_POST['them'])) {
+function AddArticle()
+{
+    if (isset($_POST['them'])) {
         $title = isset($_POST['title']) ? $_POST['title'] : null;
         $content = isset($_POST['content']) ? $_POST['content'] : null;
         $img = isset($_FILES['img']) ? $_FILES['img']['name'] : null;
         $date = date("Y-m-d H:i:s");
         $dm = isset($_POST['dm']) ? $_POST['dm'] : null;
-        if($img != null) {
-            $uploadFile = './public/uploads/AnhBaiViet/'.$img;
+        if ($img != null) {
+            $uploadFile = './public/uploads/AnhBaiViet/' . $img;
             move_uploaded_file($_FILES['img']['tmp_name'], $uploadFile);
         }
         $arr = array(
@@ -311,7 +331,7 @@ function AddArticle() {
 }
 
 function ListArticle()
-{   
+{
     $sql = "SELECT * FROM `articles` WHERE 1";
     $listAr = db_query($sql);
     $data =  array(
@@ -320,8 +340,8 @@ function ListArticle()
     load_view('article/ListArticle', '_layoutAdmin', $data);
 }
 function UpdateArticle()
-{   
-    if(isset($_GET['id'])) {
+{
+    if (isset($_GET['id'])) {
         $id = $_GET['id'];
         $sql = "SELECT * FROM `articles` WHERE Id = $id";
         $sql2 = "SELECT * FROM `articlecategories` WHERE 1";
@@ -335,16 +355,17 @@ function UpdateArticle()
     load_view('article/UpdateArticle', '_layoutAdmin', $data);
 }
 
-function EditArticle() {
-    if(isset($_POST['sua'])) {
+function EditArticle()
+{
+    if (isset($_POST['sua'])) {
         $title = isset($_POST['title']) ? $_POST['title'] : null;
         $content = isset($_POST['content']) ? $_POST['content'] : null;
         $id = isset($_POST['id']) ? $_POST['id'] : null;
         $dm = isset($_POST['dm']) ? $_POST['dm'] : null;
         $date = date("Y-m-d H:i:s");
         $img = (isset($_FILES['img']) && $_FILES['img']['name'] != '') ? $_FILES['img']['name'] : $_POST['imgOld'];
-        if($img != null) {
-            $uploadFile = './public/uploads/AnhBaiViet/'.$img;
+        if ($img != null) {
+            $uploadFile = './public/uploads/AnhBaiViet/' . $img;
             move_uploaded_file($_FILES['img']['tmp_name'], $uploadFile);
         }
         $sql = "UPDATE `articles` SET `Title`='$title',`Content`='$content',`Image`='$img',`CreatedAt`='$date',`ArticleCategoryId`='$dm' WHERE Id = $id";
@@ -353,11 +374,11 @@ function EditArticle() {
     }
 }
 
-function DeleteArticle() {
+function DeleteArticle()
+{
     $id = isset($_GET['id']) ? $_GET['id'] : null;
     db_delete('articles', "Id = $id");
     header("Location: ?controller=admin&action=ListArticle");
-
 }
 
 
@@ -374,7 +395,7 @@ function ListAdmin()
     load_view('admin/ListAdmin', '_layoutAdmin');
 }
 
- // User
+// User
 function ListUser()
 {
     load_view('admin/ListUser', '_layoutAdmin');

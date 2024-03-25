@@ -90,15 +90,15 @@
             </div>
             <div class="slide__favorite__product py-3">
                 <?php
-                for ($i = 1; $i < 8; $i++) {
+                foreach ($listSp as $key => $item) {
                 ?>
                     <div class="box__favorite__product">
                         <a href="#">
-                            <img src="./public/images/Poster-<?= $i ?>.jpg" alt="">
-                            <p class="p__hover">Poster</p>
+                            <img src="./public/uploads/AnhSanPham/<?= $item['Image'] ?>" alt="">
+                            <p class="p__hover"><?= $item['Name']?></p>
                             <div class="price">
-                                <h5 class="new__price">69.000VND</h5>
-                                <del class="old__price p__hover">100.000VND</del>
+                                <h5 class="new__price"><?= number_format($item['PriceSale'])?>VND</h5>
+                                <del class="old__price p__hover"><?= number_format($item['Price'])?>VND</del>
                             </div>
                         </a>
                         <div class="add__to__cart" onclick="QuickCart(id)"><i class="fa-regular fa-bag-shopping fs-5"></i>Thêm vào giỏ hàng</div>

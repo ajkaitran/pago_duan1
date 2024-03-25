@@ -3,42 +3,50 @@
 </h2>
 <div class="box_content">
     <form action="?controller=Admin&action=EditCategoryProduct" method="post" enctype="multipart/form-data">
-    <div class="row">
-    <div class="listname" style="margin-top:-60px;">
-            <div class="icons" style="margin-left:-25px;">
-                <a href="?controller=Admin&action=Article">
-                    <i class="fa-light fa-circle-plus mr-1"></i>
-                    <span>Thêm bài viết</span>
-                </a>
-            </div>
-        </div>
-        <div class="col-12">
-            <div class="form-group d-flex">
-                <label for="" class="form_ext">Tên danh mục</label>
-                <input type="text" class="input-text form-control" value="<?= $danhmuc['Name'] ?>" name="tendm">
-            </div>
-            <div class="form-group d-flex">
-                <label for="" class="form_ext">Hình ảnh</label>
-                <div class="w-100">
-                    <label class="form__container" id="upload-container">Choose or Drag & Drop Files
-                        <input class="form__file" id="upload-files" value="<?= $danhmuc['Image'] ?>" type="file" accept="image/*" multiple="multiple"
-                            name="img" />
-                    </label>
-                    <div class="form__files-container" id="files-list-container"></div>
+        <div class="row">
+            <div class="listname" style="margin-top:-60px;">
+                <div class="icons" style="margin-left:-25px;">
+                    <a href="?controller=Admin&action=Article">
+                        <i class="fa-light fa-circle-plus mr-1"></i>
+                        <span>Thêm bài viết</span>
+                    </a>
                 </div>
             </div>
-            <input type="hidden" name="id" value="<?= $danhmuc['Id'] ?>">
-            <div class="form-group d-flex">
-                <label for="" class="form_ext">Slug</label>
-                <input type="text" class="input-text form-control" name="slug" value="<?= $danhmuc['Slug'] ?>">
-            </div>
+            <div class="col-12">
+                <div class="form-group d-flex">
+                    <label for="" class="form_ext">Danh mục cha</label>
+                    <select name="ParentCategoryId" id="" class="form-control">
+                        <option value="">Chọn danh mục</option>
+                        <?php foreach ($ProductCategory as $key => $value) { ?>
+                            <option value="<?= $value['Id'] ?>"><?= $value['Name'] ?></option>
+                        <?php } ?>
+                    </select>
+                </div>
+                <div class="form-group d-flex">
+                    <label for="" class="form_ext">Tên danh mục</label>
+                    <input type="text" class="input-text form-control" value="<?= $danhmuc['Name'] ?>" name="tendm">
+                </div>
+                <div class="form-group d-flex">
+                    <label for="" class="form_ext">Hình ảnh</label>
+                    <div class="w-100">
+                        <label class="form__container" id="upload-container">Choose or Drag & Drop Files
+                            <input class="form__file" id="upload-files" value="<?= $danhmuc['Image'] ?>" type="file" accept="image/*" multiple="multiple" name="img" />
+                        </label>
+                        <div class="form__files-container" id="files-list-container"></div>
+                    </div>
+                </div>
+                <input type="hidden" name="id" value="<?= $danhmuc['Id'] ?>">
+                <div class="form-group d-flex">
+                    <label for="" class="form_ext">Slug</label>
+                    <input type="text" class="input-text form-control" name="slug" value="<?= $danhmuc['Slug'] ?>">
+                </div>
                 <div class="form-group">
                     <button class="btn btn-success" value="SUA" style="margin-left: 175px;" name="sua">Cập nhật</button>
                 </div>
             </div>
         </div>
-    </div>
-    </form>
+</div>
+</form>
 
 
 
