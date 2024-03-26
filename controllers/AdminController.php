@@ -64,21 +64,27 @@ function AddCategoryProduct()
         $prentCategoryId = isset($_POST['ParentCategoryId']) ? $_POST['ParentCategoryId'] : null;
         $name = isset($_POST['tendm']) ? $_POST['tendm'] : null;
         $img = isset($_FILES['img']) ? $_FILES['img']['name'] : null;
+        $url = isset($_POST['slug']) ? $_POST['slug'] : null;
         if ($img != null) {
             $uploadFile = './public/uploads/AnhDanhMuc/' . $img;
             move_uploaded_file($_FILES['img']['tmp_name'], $uploadFile);
         }
-        $slug = isset($_POST['slug']) ? $_POST['slug'] : null;
+        if (!empty($name)) {
+            $url = convertToUnSign($name);
+        }else{
+            $url = convertToUnSign($url);
+        }
         $arr = array(
             'ParentCategoryId' => $prentCategoryId,
             'Name' => $name,
             'Image' => $img,
-            'Slug' => $slug,
+            'Slug' => $url,
         );
         db_insert('productcategory', $arr);
         header("Location: ?controller=admin&action=ListCategoryProduct");
     }
 }
+
 
 function UpdateCategoryProduct()
 {
@@ -102,7 +108,11 @@ function EditCategoryProduct()
         $name = isset($_POST['tendm']) ? $_POST['tendm'] : null;
         $slug = isset($_POST['slug']) ? $_POST['slug'] : null;
         $img = (isset($_FILES['img']) && $_FILES['img']['name'] != '') ? $_FILES['img']['name'] : NULL;
-
+        if (!empty($name)) {
+            $slug = convertToUnSign($name);
+        }else{
+            $slug = convertToUnSign($slug);
+        }
         $data = array(
             "ParentCategoryId" => empty($prentCategoryId) ? NULL : $prentCategoryId,
             "Name" => $name,
@@ -175,6 +185,11 @@ function AddProduct()
         $date = date("Y-m-d H:i:s");
         $slug = isset($_POST['slug']) ? $_POST['slug'] : null;
         $dm = isset($_POST['dm']) ? $_POST['dm'] : null;
+        if (!empty($name)) {
+            $slug = convertToUnSign($name);
+        }else{
+            $slug = convertToUnSign($slug);
+        }
         $sql = "INSERT INTO `product`( `Name`, `Des`, `Image`, `Slug`, `Price`, `PriceSale`, `Active`, `CreatedAt`, `ProductCategoryId`) VALUES ('$name','$desc','$img','$slug',$gia,$giasale,1,'$date',$dm)";
         db_query($sql);
         header("Location: ?controller=admin&action=ListProduct");
@@ -211,6 +226,11 @@ function EditProduct()
         if ($img != null) {
             $uploadFile = './public/uploads/AnhSanPham/' . $img;
             move_uploaded_file($_FILES['img']['tmp_name'], $uploadFile);
+        }
+        if (!empty($name)) {
+            $slug = convertToUnSign($name);
+        }else{
+            $slug = convertToUnSign($slug);
         }
         $sql = "UPDATE `product` SET `Name`='$name',`Des`='$desc',`Image`='$img',`Slug`='$slug',`Price`='$gia',`PriceSale`='$giasale',`Active`= 1,`CreatedAt`='$date',`ProductCategoryId`='$dm' WHERE Id = $id";
         db_query($sql);
@@ -449,4 +469,41 @@ function Comment()
 function Statistical()
 {
     load_view('statistical/Statistical', '_layoutAdmin');
+}
+
+
+// Chuyển thành ToUnSign
+function convertToUnSign($str) {
+    $unsignChars = array(
+        'á'=>'a','à'=>'a','ả'=>'a','ã'=>'a','ạ'=>'a',
+        'ă'=>'a','ắ'=>'a','ằ'=>'a','ẳ'=>'a','ẵ'=>'a','ặ'=>'a',
+        'â'=>'a','ấ'=>'a','ầ'=>'a','ẩ'=>'a','ẫ'=>'a','ậ'=>'a',
+        'đ'=>'d',
+        'é'=>'e','è'=>'e','ẻ'=>'e','ẽ'=>'e','ẹ'=>'e',
+        'ê'=>'e','ế'=>'e','ề'=>'e','ể'=>'e','ễ'=>'e','ệ'=>'e',
+        'í'=>'i','ì'=>'i','ỉ'=>'i','ĩ'=>'i','ị'=>'i',
+        'ó'=>'o','ò'=>'o','ỏ'=>'o','õ'=>'o','ọ'=>'o',
+        'ô'=>'o','ố'=>'o','ồ'=>'o','ổ'=>'o','ỗ'=>'o','ộ'=>'o',
+        'ơ'=>'o','ớ'=>'o','ờ'=>'o','ở'=>'o','ỡ'=>'o','ợ'=>'o',
+        'ú'=>'u','ù'=>'u','ủ'=>'u','ũ'=>'u','ụ'=>'u',
+        'ư'=>'u','ứ'=>'u','ừ'=>'u','ử'=>'u','ữ'=>'u','ự'=>'u',
+        'ý'=>'y','ỳ'=>'y','ỷ'=>'y','ỹ'=>'y','ỵ'=>'y',
+        'Á'=>'A','À'=>'A','Ả'=>'A','Ã'=>'A','Ạ'=>'A',
+        'Ă'=>'A','Ắ'=>'A','Ằ'=>'A','Ẳ'=>'A','Ẵ'=>'A','Ặ'=>'A',
+        'Â'=>'A','Ấ'=>'A','Ầ'=>'A','Ẩ'=>'A','Ẫ'=>'A','Ậ'=>'A',
+        'Đ'=>'D',
+        'É'=>'E','È'=>'E','Ẻ'=>'E','Ẽ'=>'E','Ẹ'=>'E',
+        'Ê'=>'E','Ế'=>'E','Ề'=>'E','Ể'=>'E','Ễ'=>'E','Ệ'=>'E',
+        'Í'=>'I','Ì'=>'I','Ỉ'=>'I','Ĩ'=>'I','Ị'=>'I',
+        'Ó'=>'O','Ò'=>'O','Ỏ'=>'O','Õ'=>'O','Ọ'=>'O',
+        'Ô'=>'O','Ố'=>'O','Ồ'=>'O','Ổ'=>'O','Ỗ'=>'O','Ộ'=>'O',
+        'Ơ'=>'O','Ớ'=>'O','Ờ'=>'O','Ở'=>'O','Ỡ'=>'O','Ợ'=>'O',
+        'Ú'=>'U','Ù'=>'U','Ủ'=>'U','Ũ'=>'U','Ụ'=>'U',
+        'Ư'=>'U','Ứ'=>'U','Ừ'=>'U','Ử'=>'U','Ữ'=>'U','Ự'=>'U',
+        'Ý'=>'Y','Ỳ'=>'Y','Ỷ'=>'Y','Ỹ'=>'Y','Ỵ'=>'Y'
+    );
+
+    $str = strtr($str, $unsignChars);
+    $str = str_replace(' ', '-', $str);
+    return $str;
 }

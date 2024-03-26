@@ -66,3 +66,23 @@ function Search()
     );
     load_view('home/Search' , '_layout', $model);
 }
+
+function ProductCategory() {
+    $url = isset($_GET['url']) ? $_GET['url'] : '';
+    
+    $catQuery = "SELECT * FROM `productcategory` WHERE slug = '$url'";
+    $catResult = db_fetch_assoc(db_query($catQuery)); 
+    $categoryId = $catResult['id'];
+    $productQuery = "SELECT * FROM `productcategory` WHERE ProductCategoryId = $categoryId";
+    $productResult = db_query($productQuery);
+    $categoryProductQuery = "SELECT * FROM `ProductCategory`";
+    $categoryProductResult = db_query($categoryProductQuery);
+    $model = array(
+        'listProduct' => $productResult,
+        'categoryProduct' => $categoryProductResult
+    );
+    load_view('home/ProductCategory', '_layout', $model);
+}
+
+
+    
