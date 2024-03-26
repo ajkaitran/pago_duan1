@@ -20,74 +20,31 @@
                         <div class="sidebar__menu">
                             <ul>
                                 <?php
-                                foreach ($categoryProduct as $key => $cate) {
+                                foreach ($categories as $cate) {
                                 ?>
                                     <li>
                                         <div class="border__dashed p__hover">
-                                            <a class="p__hover" href="#"><?= $cate['Name']?></a>
-                                            <i class="fa-regular fa-caret-down dropdown"></i>
+                                            <a class="p__hover" href="#"><?= $cate['parent']['Name'] ?></a>
+                                            <?php
+                                            if (!empty($cate['children'])) {
+                                                echo '<i class="fa-regular fa-caret-down dropdown"></i>';
+                                            }
+                                            ?>
                                         </div>
+                                        <ul class="dropdown__menu ps-2">
+                                            <?php
+
+                                            foreach ($cate['children'] as $key => $value) :
+                                            ?>
+                                                <li class="border__solid">
+                                                    <a class="p__hover" href="#"><?= $value['Name'] ?></a>
+                                                </li>
+                                            <?php endforeach; ?>
+                                        </ul>
                                     </li>
                                 <?php
                                 }
                                 ?>
-                                <!-- <li>
-                                    <div class="border__dashed p__hover">
-                                        <a class="p__hover" href="#">Ấn phẩm bao bì</a>
-                                        <i class="fa-regular fa-caret-down dropdown"></i>
-                                    </div>
-                                    <ul class="dropdown__menu ps-2">
-                                        <li class="border__solid">
-                                            <a class="p__hover" href="#">Nhãn dán</a>
-                                        </li>
-                                        <li class="border__solid">
-                                            <a class="p__hover" href="#">Túi giấy</a>
-                                        </li>
-                                        <li class="border__solid">
-                                            <a class="p__hover" href="#">Hộp giấy</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <div class="border__dashed p__hover">
-                                        <a class="p__hover" href="#">Ấn phẩm tiếp thị</a>
-                                        <i class="fa-regular fa-caret-down dropdown"></i>
-                                    </div>
-                                    <ul class="dropdown__menu ps-2">
-                                        <li class="border__solid">
-                                            <a class="p__hover" href="#">Catalogue</a>
-                                        </li>
-                                        <li class="border__solid">
-                                            <a class="p__hover" href="#">Tờ rơi</a>
-                                        </li>
-                                        <li class="border__solid">
-                                            <a class="p__hover" href="#">Poster</a>
-                                        </li>
-                                        <li class="border__solid">
-                                            <a class="p__hover" href="#">Tờ gấp</a>
-                                        </li>
-                                        <li class="border__solid">
-                                            <a class="p__hover" href="#">Vé</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <div class="border__dashed p__hover">
-                                        <a class="p__hover" href="#">Ấn phẩm văn phòng</a>
-                                        <i class="fa-regular fa-caret-down dropdown"></i>
-                                    </div>
-                                    <ul class="dropdown__menu ps-2">
-                                        <li class="border__solid">
-                                            <a class="p__hover" href="#">Bìa đựng hồ sơ</a>
-                                        </li>
-                                        <li class="border__solid">
-                                            <a class="p__hover" href="#">Bao thư</a>
-                                        </li>
-                                        <li class="border__solid">
-                                            <a class="p__hover" href="#">Danh thiếp</a>
-                                        </li>
-                                    </ul>
-                                </li> -->
                             </ul>
                         </div>
                     </div>
@@ -97,229 +54,6 @@
                         </div>
                         <div class="sidebar__range__slider">
                             <input type="text" class="js-range-slider" id="priceRange" name="my_range" value="" />
-                        </div>
-                    </div>
-                    <div class="sidebar">
-                        <div class="sidebar__title">
-                            <h4 class="h4__white">PHIÊN BẢN SẢN PHẨM</h4>
-                        </div>
-                        <div class="sidebar__checkbox">
-                            <div class="form__group">
-                                <label>Đường cắt xé</label>
-                                <div class="checkbox-wrapper-33">
-                                    <label class="checkbox">
-                                        <input class="checkbox__trigger visuallyhidden checkbox-btn checkbox-btn" type="checkbox" name="cutline" value="@item.Id" />
-                                        <span class="checkbox__symbol">
-                                            <svg aria-hidden="true" class="icon-checkbox" width="28px" height="28px" viewBox="0 0 28 28" version="1" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M4 14l8 7L24 7"></path>
-                                            </svg>
-                                        </span>
-                                        <p class="checkbox__textwrapper">Có</p>
-                                    </label>
-                                </div>
-                                <div class="checkbox-wrapper-33">
-                                    <label class="checkbox">
-                                        <input class="checkbox__trigger visuallyhidden checkbox-btn checkbox-btn" type="checkbox" name="cutline" value="@item.Id" />
-                                        <span class="checkbox__symbol">
-                                            <svg aria-hidden="true" class="icon-checkbox" width="28px" height="28px" viewBox="0 0 28 28" version="1" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M4 14l8 7L24 7"></path>
-                                            </svg>
-                                        </span>
-                                        <p class="checkbox__textwrapper">Không</p>
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form__group">
-                                <label>Cán màn</label>
-                                <div class="checkbox-wrapper-33">
-                                    <label class="checkbox">
-                                        <input class="checkbox__trigger visuallyhidden checkbox-btn checkbox-lamination" type="checkbox" name="lamination" value="@item.Id" />
-                                        <span class="checkbox__symbol">
-                                            <svg aria-hidden="true" class="icon-checkbox" width="28px" height="28px" viewBox="0 0 28 28" version="1" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M4 14l8 7L24 7"></path>
-                                            </svg>
-                                        </span>
-                                        <p class="checkbox__textwrapper">Không</p>
-                                    </label>
-                                </div>
-                                <div class="checkbox-wrapper-33">
-                                    <label class="checkbox">
-                                        <input class="checkbox__trigger visuallyhidden checkbox-btn checkbox-lamination" type="checkbox" name="lamination" value="@item.Id" />
-                                        <span class="checkbox__symbol">
-                                            <svg aria-hidden="true" class="icon-checkbox" width="28px" height="28px" viewBox="0 0 28 28" version="1" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M4 14l8 7L24 7"></path>
-                                            </svg>
-                                        </span>
-                                        <p class="checkbox__textwrapper">Màn bóng 1 mặt</p>
-                                    </label>
-                                </div>
-                                <div class="checkbox-wrapper-33">
-                                    <label class="checkbox">
-                                        <input class="checkbox__trigger visuallyhidden checkbox-btn checkbox-lamination" type="checkbox" name="lamination" value="@item.Id" />
-                                        <span class="checkbox__symbol">
-                                            <svg aria-hidden="true" class="icon-checkbox" width="28px" height="28px" viewBox="0 0 28 28" version="1" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M4 14l8 7L24 7"></path>
-                                            </svg>
-                                        </span>
-                                        <p class="checkbox__textwrapper">Màn bóng 2 mặt</p>
-                                    </label>
-                                </div>
-                                <div class="checkbox-wrapper-33">
-                                    <label class="checkbox">
-                                        <input class="checkbox__trigger visuallyhidden checkbox-btn checkbox-lamination" type="checkbox" name="lamination" value="@item.Id" />
-                                        <span class="checkbox__symbol">
-                                            <svg aria-hidden="true" class="icon-checkbox" width="28px" height="28px" viewBox="0 0 28 28" version="1" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M4 14l8 7L24 7"></path>
-                                            </svg>
-                                        </span>
-                                        <p class="checkbox__textwrapper">Màn mờ 2 mặt</p>
-                                    </label>
-                                </div>
-                                <div class="checkbox-wrapper-33">
-                                    <label class="checkbox">
-                                        <input class="checkbox__trigger visuallyhidden checkbox-btn checkbox-lamination" type="checkbox" name="lamination" value="@item.Id" />
-                                        <span class="checkbox__symbol">
-                                            <svg aria-hidden="true" class="icon-checkbox" width="28px" height="28px" viewBox="0 0 28 28" version="1" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M4 14l8 7L24 7"></path>
-                                            </svg>
-                                        </span>
-                                        <p class="checkbox__textwrapper">Màn mờ 1 mặt</p>
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form__group">
-                                <label>Kích thước</label>
-                                <div class="checkbox-wrapper-33">
-                                    <label class="checkbox">
-                                        <input class="checkbox__trigger visuallyhidden checkbox-btn checkbox-printsize" type="checkbox" name="printsize" value="@item.Id" />
-                                        <span class="checkbox__symbol">
-                                            <svg aria-hidden="true" class="icon-checkbox" width="28px" height="28px" viewBox="0 0 28 28" version="1" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M4 14l8 7L24 7"></path>
-                                            </svg>
-                                        </span>
-                                        <p class="checkbox__textwrapper">H1 (Ngang 3 cao 9 hông 3)</p>
-                                    </label>
-                                </div>
-                                <div class="checkbox-wrapper-33">
-                                    <label class="checkbox">
-                                        <input class="checkbox__trigger visuallyhidden checkbox-btn checkbox-printsize" type="checkbox" name="printsize" value="@item.Id" />
-                                        <span class="checkbox__symbol">
-                                            <svg aria-hidden="true" class="icon-checkbox" width="28px" height="28px" viewBox="0 0 28 28" version="1" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M4 14l8 7L24 7"></path>
-                                            </svg>
-                                        </span>
-                                        <p class="checkbox__textwrapper">H2 (Ngang 10 cao 8 hông 3)</p>
-                                    </label>
-                                </div>
-                                <div class="checkbox-wrapper-33">
-                                    <label class="checkbox">
-                                        <input class="checkbox__trigger visuallyhidden checkbox-btn checkbox-printsize" type="checkbox" name="printsize" value="@item.Id" />
-                                        <span class="checkbox__symbol">
-                                            <svg aria-hidden="true" class="icon-checkbox" width="28px" height="28px" viewBox="0 0 28 28" version="1" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M4 14l8 7L24 7"></path>
-                                            </svg>
-                                        </span>
-                                        <p class="checkbox__textwrapper">H1 (Ngang 15 cao 5 hông 10)</p>
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form__group">
-                                <label>Hình thức in</label>
-                                <div class="checkbox-wrapper-33">
-                                    <label class="checkbox">
-                                        <input class="checkbox__trigger visuallyhidden checkbox-btn checkbox-printedform" type="checkbox" name="printedform" value="@item.Id" />
-                                        <span class="checkbox__symbol">
-                                            <svg aria-hidden="true" class="icon-checkbox" width="28px" height="28px" viewBox="0 0 28 28" version="1" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M4 14l8 7L24 7"></path>
-                                            </svg>
-                                        </span>
-                                        <p class="checkbox__textwrapper">In 2 mặt</p>
-                                    </label>
-                                </div>
-                                <div class="checkbox-wrapper-33">
-                                    <label class="checkbox">
-                                        <input class="checkbox__trigger visuallyhidden checkbox-btn checkbox-printedform" type="checkbox" name="printedform" value="@item.Id" />
-                                        <span class="checkbox__symbol">
-                                            <svg aria-hidden="true" class="icon-checkbox" width="28px" height="28px" viewBox="0 0 28 28" version="1" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M4 14l8 7L24 7"></path>
-                                            </svg>
-                                        </span>
-                                        <p class="checkbox__textwrapper">In 1 mặt</p>
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form__group">
-                                <label>Loại giấy</label>
-                                <div class="checkbox-wrapper-33">
-                                    <label class="checkbox">
-                                        <input class="checkbox__trigger visuallyhidden checkbox-btn checkbox-papertype" type="checkbox" name="papertype" value="@item.Id" />
-                                        <span class="checkbox__symbol">
-                                            <svg aria-hidden="true" class="icon-checkbox" width="28px" height="28px" viewBox="0 0 28 28" version="1" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M4 14l8 7L24 7"></path>
-                                            </svg>
-                                        </span>
-                                        <p class="checkbox__textwrapper">S00 250gsm</p>
-                                    </label>
-                                </div>
-                                <div class="checkbox-wrapper-33">
-                                    <label class="checkbox">
-                                        <input class="checkbox__trigger visuallyhidden checkbox-btn checkbox-papertype" type="checkbox" name="papertype" value="@item.Id" />
-                                        <span class="checkbox__symbol">
-                                            <svg aria-hidden="true" class="icon-checkbox" width="28px" height="28px" viewBox="0 0 28 28" version="1" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M4 14l8 7L24 7"></path>
-                                            </svg>
-                                        </span>
-                                        <p class="checkbox__textwrapper">N05 250gsm</p>
-                                    </label>
-                                </div>
-                                <div class="checkbox-wrapper-33">
-                                    <label class="checkbox">
-                                        <input class="checkbox__trigger visuallyhidden checkbox-btn checkbox-papertype" type="checkbox" name="papertype" value="@item.Id" />
-                                        <span class="checkbox__symbol">
-                                            <svg aria-hidden="true" class="icon-checkbox" width="28px" height="28px" viewBox="0 0 28 28" version="1" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M4 14l8 7L24 7"></path>
-                                            </svg>
-                                        </span>
-                                        <p class="checkbox__textwrapper">K12 250gsm</p>
-                                    </label>
-                                </div>
-                                <div class="checkbox-wrapper-33">
-                                    <label class="checkbox">
-                                        <input class="checkbox__trigger visuallyhidden checkbox-btn checkbox-papertype" type="checkbox" name="papertype" value="@item.Id" />
-                                        <span class="checkbox__symbol">
-                                            <svg aria-hidden="true" class="icon-checkbox" width="28px" height="28px" viewBox="0 0 28 28" version="1" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M4 14l8 7L24 7"></path>
-                                            </svg>
-                                        </span>
-                                        <p class="checkbox__textwrapper">K04 250gsm</p>
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form__group">
-                                <label>Keo dán nắp</label>
-                                <div class="checkbox-wrapper-33">
-                                    <label class="checkbox">
-                                        <input class="checkbox__trigger visuallyhidden checkbox-btn checkbox-glue" type="checkbox" name="glue" value="@item.Id" />
-                                        <span class="checkbox__symbol">
-                                            <svg aria-hidden="true" class="icon-checkbox" width="28px" height="28px" viewBox="0 0 28 28" version="1" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M4 14l8 7L24 7"></path>
-                                            </svg>
-                                        </span>
-                                        <p class="checkbox__textwrapper">Có</p>
-                                    </label>
-                                </div>
-                                <div class="checkbox-wrapper-33">
-                                    <label class="checkbox">
-                                        <input class="checkbox__trigger visuallyhidden checkbox-btn checkbox-glue" type="checkbox" name="glue" value="@item.Id" />
-                                        <span class="checkbox__symbol">
-                                            <svg aria-hidden="true" class="icon-checkbox" width="28px" height="28px" viewBox="0 0 28 28" version="1" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M4 14l8 7L24 7"></path>
-                                            </svg>
-                                        </span>
-                                        <p class="checkbox__textwrapper">Không</p>
-                                    </label>
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <div class="sidebar">
@@ -390,7 +124,7 @@
                     </div>
                     <div class="product__list">
                         <div class="row row-cols-lg-4 row-cols-md-3 row-cols-2 g-3">
-                        <?php
+                            <?php
                             foreach ($listProduct as $key => $item) {
                             ?>
                                 <div class="col">

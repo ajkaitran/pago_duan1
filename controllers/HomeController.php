@@ -21,12 +21,52 @@ function product()
 {
     $product = "SELECT Product.* FROM `Product` JOIN `ProductCategory` ON product.ProductCategoryId  = productcategory.Id";
     $listProduct = db_query($product);
-    $categoryProduct = db_query("SELECT * FROM `ProductCategory`");
+    $categoryProduct = db_fetch_array("SELECT * FROM `ProductCategory` WHERE `ParentCategoryId` = 0");
+
+    $categories = [];
+
+    foreach ($categoryProduct as $parent) {
+
+        $ParentCategoryId = $parent['Id'];
+
+        $categories[] = [
+            "parent" => $parent,
+            "children" => db_fetch_array("SELECT * FROM ProductCategory WHERE ParentCategoryId='$ParentCategoryId'")
+        ];
+    }
+
     $model =  array(
         'listProduct' => $listProduct,
-        'categoryProduct' => $categoryProduct
+        'categories' => $categories
     );
     load_view('home/product', '_layout', $model);
+}
+function ProductCategory()
+{
+    $url = isset($_GET['url']) ? $_GET['url'] : '';
+
+    $catQuery = "SELECT * FROM `productcategory` WHERE slug = '$url'";
+    $catResult = db_fetch_array(db_query($catQuery));
+    $categoryId = $catResult['id'];
+    $productQuery = "SELECT * FROM `productcategory` WHERE ProductCategoryId = $categoryId";
+    $productResult = db_query($productQuery);
+    $categoryProductQuery = db_fetch_array("SELECT * FROM `ProductCategory` WHERE `ParentCategoryId` = 0");
+    $categoryProductResult = db_query($categoryProductQuery);
+    foreach ($categoryProductQuery as $parent) {
+
+        $ParentCategoryId = $parent['Id'];
+
+        $categories[] = [
+            "parent" => $parent,
+            "children" => db_fetch_array("SELECT * FROM ProductCategory WHERE ParentCategoryId='$ParentCategoryId'")
+        ];
+    }
+    $model = array(
+        'listProduct' => $productResult,
+        'categoryProduct' => $categoryProductResult,
+        'categories' => $categories
+    );
+    load_view('home/ProductCategory', '_layout', $model);
 }
 function ProductDetail()
 {
@@ -58,31 +98,22 @@ function Search()
     $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : '';
     $sql = "SELECT * FROM product WHERE Name LIKE '%" . $keyword . "%'";
     $listProduct = db_query($sql);
-    $categoryProduct = db_query("SELECT * FROM `ProductCategory`");
-    
+    $categoryProduct = db_fetch_array("SELECT * FROM `ProductCategory` WHERE `ParentCategoryId` = 0");
+    foreach ($categoryProduct as $parent) {
+
+        $ParentCategoryId = $parent['Id'];
+
+        $categories[] = [
+            "parent" => $parent,
+            "children" => db_fetch_array("SELECT * FROM ProductCategory WHERE ParentCategoryId='$ParentCategoryId'")
+        ];
+    }
     $model =  array(
         'listProduct' => $listProduct,
-        'categoryProduct' => $categoryProduct
+        'categoryProduct' => $categoryProduct,
+        'categories' => $categories
     );
-    load_view('home/Search' , '_layout', $model);
-}
-
-function ProductCategory() {
-    $url = isset($_GET['url']) ? $_GET['url'] : '';
-    
-    $catQuery = "SELECT * FROM `productcategory` WHERE slug = '$url'";
-    $catResult = db_fetch_assoc(db_query($catQuery)); 
-    $categoryId = $catResult['id'];
-    $productQuery = "SELECT * FROM `productcategory` WHERE ProductCategoryId = $categoryId";
-    $productResult = db_query($productQuery);
-    $categoryProductQuery = "SELECT * FROM `ProductCategory`";
-    $categoryProductResult = db_query($categoryProductQuery);
-    $model = array(
-        'listProduct' => $productResult,
-        'categoryProduct' => $categoryProductResult
-    );
-    load_view('home/ProductCategory', '_layout', $model);
+    load_view('home/Search', '_layout', $model);
 }
 
 
-    

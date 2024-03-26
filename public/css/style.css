@@ -750,6 +750,8 @@ a {
 
 .box__favorite__product p {
   margin: 10px 0;
+  height: 25px;
+  overflow: hidden;
 }
 
 .p__hover {
@@ -1242,9 +1244,11 @@ span.p__red {
   background-color: #F0F0F0;
   padding: 50px 0;
 }
-.breadcrumb{
+
+.breadcrumb {
   margin-bottom: 0;
 }
+
 .sidebar {
   border: 1px solid rgb(214, 214, 214);
   border-radius: 10px;

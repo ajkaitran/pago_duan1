@@ -35,10 +35,10 @@
                         </tr>
                         <tr>
                             <th scope="row">2</th>
-                            <td>dinh0107</td>
-                            <td>Dương Văn Định</td>
+                            <td>loi123</td>
+                            <td>Lê Văn Lợi</td>
                             <td>0877586111</td>
-                            <td>dinhdv@vico.vn</td>
+                            <td>loilv@gmail.com</td>
                             <td><a href="?controller=Admin&action=EditUser" class="btn btn-primary">Sửa</a><a href="" class="btn btn-danger">Xóa</a></td>
                         </tr>
                         <tr>
@@ -51,10 +51,10 @@
                         </tr>
                         <tr>
                             <th scope="row">4</th>
-                            <td>dinh0107</td>
-                            <td>Dương Văn Định</td>
+                            <td>haitn</td>
+                            <td>Trần Nam Hải</td>
                             <td>0877586111</td>
-                            <td>dinhdv@vico.vn</td>
+                            <td>haitn123#@gmail.com</td>
                             <td><a href="?controller=Admin&action=EditUser" class="btn btn-primary">Sửa</a><a href="" class="btn btn-danger">Xóa</a></td>
                         </tr>
                     </div>
