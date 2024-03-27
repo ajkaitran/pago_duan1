@@ -491,11 +491,10 @@ function ContactJS() {
         document.getElementById("code").value = randomCode;
     });
 }
-function QuantityJS() {
-    $(".input-quantity").niceNumber({
-        autoSize: false
-    });
-}
+$(".input-quantity").niceNumber({
+    autoSize: false
+});
+
 
 // Khởi tạo carousel cho phần "slide__images"
 $('.slide__images').slick({
