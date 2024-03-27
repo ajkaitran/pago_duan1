@@ -15,11 +15,9 @@
             <div class="col-12">
                 <div class="form-group d-flex">
                     <label for="" class="form_ext">Danh mục cha</label>
-                    <select name="ParentCategoryId" id="" class="form-control">
+                    <select name="dm" id="" class="form-control">
                         <option value="">Chọn danh mục</option>
-                        <?php foreach ($ProductCategory as $key => $value) { ?>
-                            <option value="<?= $value['Id'] ?>"><?= $value['Name'] ?></option>
-                        <?php } ?>
+                        <?= showCategories($ProductCategory) ?>
                     </select>
                 </div>
                 <div class="form-group d-flex">

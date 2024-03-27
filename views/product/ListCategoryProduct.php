@@ -28,14 +28,20 @@
                     foreach ($listDm as $value) {
                     ?>
                         <tr>
-                            <th scope="row"><?= $stt?></th>
+                            <th scope="row"><?= $stt ?></th>
                             <td><?= $value['Name'] ?></td>
-                            <td><img src="./public/uploads/AnhDanhMuc/<?= $value['Image'] ?>" alt="" style="width: 80px; height: 80px" ></td>
+                            <td>
+                                <?php if (!empty($value['Image'])) : ?>
+                                    <img src="./public/uploads/AnhDanhMuc/<?= $value['Image'] ?>" alt="" style="width: 80px; height: 80px">
+                                <?php else : ?>
+                                    NO IMAGES
+                                <?php endif; ?>
+                            </td>
                             <td><?= $value['Slug'] ?></td>
-                            <td><a href="?controller=Admin&action=UpdateCategoryProduct&id=<?= $value['Id'] ?>" class="btn btn-primary">Sua</a>  <a href="?controller=Admin&action=DeleteCategoryProduct&id=<?= $value['Id'] ?>" class="btn btn-danger">Xoa</a></td>
+                            <td><a href="?controller=Admin&action=UpdateCategoryProduct&id=<?= $value['Id'] ?>" class="btn btn-primary">Sua</a> <a href="?controller=Admin&action=DeleteCategoryProduct&id=<?= $value['Id'] ?>" class="btn btn-danger">Xoa</a></td>
                         </tr>
                     <?php
-                    $stt++;
+                        $stt++;
                     }
                     ?>
                 </tbody>

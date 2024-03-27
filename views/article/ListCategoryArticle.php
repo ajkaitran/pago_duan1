@@ -29,8 +29,8 @@
                     <tr>
                         <th scope="row"><?= $value['Id'] ?></th>
                         <td><?= $value['Title'] ?></td>
-                        <td><?= $value['Des'] ?></td>
                         <td><img src="./public/uploads/AnhDMBaiViet/<?= $value['Image'] ?>" style="width: 100px; height: 100px;" alt="ảnh logo"></td>
+                        <td><?= $value['Slug'] ?></td>
                         <td><a href="?controller=admin&action=UpdateCategoryArticle&id=<?= $value['Id'] ?>" class="btn btn-warning">Sua</a> | <a href="?controller=admin&action=DeleteCategoryArticle&id=<?= $value['Id'] ?>" class="btn btn-danger">Xoa</a>
                         </td>
                     </tr>
