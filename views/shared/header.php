@@ -31,7 +31,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="logo_header col-lg-2">
-                            <a href="/pago_duan1/">
+                            <a href="?">
                                 <img src="./public/images/logo_pago.png" alt="logo_papo">
                             </a>
                         </div>
@@ -94,9 +94,9 @@
                                         </div>
                                         <div class="drop__button">
                                             <button type="button" class="btn btn-dark"><a class="text-white"
-                                                    href="?controller=shoppingcard&action=index">GIỎ HÀNG </a></button>
+                                                    href="?controller=shoppingcart&action=index">GIỎ HÀNG </a></button>
                                             <button type="button" class="btn btn-dark"><a class="text-white"
-                                                    href="?controller=shoppingcard&action=checkout">THANH
+                                                    href="?controller=shoppingcart&action=checkout">THANH
                                                     TOÁN</a></button>
                                         </div>
                                     </div>

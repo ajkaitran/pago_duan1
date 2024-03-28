@@ -101,7 +101,10 @@
                                 <del class="old__price p__hover"><?= number_format($item['Price'])?>VND</del>
                             </div>
                         </a>
-                        <div class="add__to__cart" onclick="QuickCart(id)"><i class="fa-regular fa-bag-shopping fs-5"></i>Thêm vào giỏ hàng</div>
+                        <form action="?controller=ShoppingCart&action=add_to_cart" method="post">
+                            <input type="hidden" name="id" value="<?= $item['Id'] ?>">
+                            <button type="submit" class="add__to__cart"><i class="fa-regular fa-bag-shopping fs-5"></i>Thêm vào giỏ hàng</button>
+                        </form>
                         <div class="floating__box__product">
                             <div class="box__product">
                                 <a asp-action="ProductView" asp-controller="Home" asp-route-id="@item.Id" data-fancybox="" data-type="ajax" class="item-product">
@@ -109,10 +112,10 @@
                                 </a>
                             </div>
                             <div class="box__product">
-                                <a href="javascript:;" onclick="AddToWishlist('@item.Id')"><i class="fa-regular fa-heart"></i></a>
+                                <a href="javascript:;" onclick=""><i class="fa-regular fa-heart"></i></a>
                             </div>
                             <div class="box__product">
-                                <a href="javascript:;" onclick="AddToCollation('@item.Id')"><i class="fa-solid fa-code-compare fa-rotate-90"></i></a>
+                                <a href="javascript:;" onclick=""><i class="fa-solid fa-code-compare fa-rotate-90"></i></a>
                             </div>
                         </div>
                     </div>
