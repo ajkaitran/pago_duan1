@@ -51,17 +51,18 @@ function ListCategoryProduct()
 }
 function CategoryProduct()
 {
-    $parentCategory = db_fetch_array("SELECT * FROM `ProductCategory`");
+    $categories = db_fetch_array("SELECT * FROM `ProductCategory`");
 
     $model = array(
-        'ProductCategory' => $parentCategory
+        'ProductCategory' => $categories
     );
     load_view('/product/CategoryProduct', '_layoutAdmin', $model);
 }
 function AddCategoryProduct()
 {
     if (isset($_POST['them'])) {
-        $prentCategoryId = isset($_POST['ParentCategoryId']) ? $_POST['ParentCategoryId'] : null;
+        $prentCategoryId = isset($_POST['dm']) ? $_POST['dm'] : null;
+
         $name = isset($_POST['tendm']) ? $_POST['tendm'] : null;
         $img = isset($_FILES['img']) ? $_FILES['img']['name'] : null;
         $url = isset($_POST['slug']) ? $_POST['slug'] : null;
@@ -90,7 +91,7 @@ function UpdateCategoryProduct()
 {
     $id = isset($_GET['id']) ? $_GET['id'] : null;
     $sql = "SELECT * FROM `productcategory` WHERE Id = $id";
-    $parentCategory = db_fetch_array("SELECT * FROM `ProductCategory` WHERE ParentCategoryId IS NULL");
+    $parentCategory = db_fetch_array("SELECT * FROM `ProductCategory`");
     $danhmuc = db_fetch_row($sql);
     $data =  array(
         'danhmuc' => $danhmuc,
@@ -104,7 +105,7 @@ function EditCategoryProduct()
 {
     if (isset($_POST['sua'])) {
         $id = isset($_POST['id']) ? $_POST['id'] : null;
-        $prentCategoryId = isset($_POST['ParentCategoryId']) ? $_POST['ParentCategoryId'] : NULL;
+        $prentCategoryId = isset($_POST['dm']) ? $_POST['dm'] : NULL;
         $name = isset($_POST['tendm']) ? $_POST['tendm'] : null;
         $slug = isset($_POST['slug']) ? $_POST['slug'] : null;
         $img = (isset($_FILES['img']) && $_FILES['img']['name'] != '') ? $_FILES['img']['name'] : NULL;
@@ -250,7 +251,6 @@ function DeleteProduct()
 
 function CategoryArticle()
 {
-
     load_view('article/CategoryArticle', '_layoutAdmin');
 }
 function AddCategoryArticle()
