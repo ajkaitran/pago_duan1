@@ -18,7 +18,6 @@
                         <th scope="col">Stt</th>
                         <th scope="col">Tên bài viết</th>
                         <th scope="col">Hình ảnh</th>
-                        <th scope="col">Nội dung</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -30,7 +29,6 @@
                         <td scope="col"><?= $value['Id'] ?></td>
                         <td scope="col"><?= $value['Title'] ?></td>
                         <td scope="col"><img src="./public/uploads/AnhBaiViet/<?= $value['Image'] ?>" alt="" width="100px" height="100px"></td>
-                        <td scope="col"><?= $value['Content'] ?></td>
                         <td scope="col"><a href="?controller=admin&action=UpdateArticle&id=<?= $value['Id'] ?>" class="btn btn-warning">Sua</a> | <a href="?controller=admin&action=DeleteArticle&id=<?= $value['Id'] ?>" class="btn btn-danger">Xoa</a></td>
                     </tr>
                     <?php 

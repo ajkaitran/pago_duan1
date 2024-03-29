@@ -21,7 +21,7 @@ function product()
 {
     $product = "SELECT Product.* FROM `Product` JOIN `ProductCategory` ON product.ProductCategoryId  = productcategory.Id";
     $listProduct = db_query($product);
-    $categoryProduct = db_fetch_array("SELECT * FROM `ProductCategory` WHERE `ParentCategoryId` = 0");
+    $categoryProduct = db_fetch_array("SELECT * FROM `ProductCategory` WHERE `ParentCategoryId` IS NULL");
 
     $categories = [];
 
@@ -50,7 +50,7 @@ function ProductCategory()
     $categoryId = $catResult['id'];
     $productQuery = "SELECT * FROM `productcategory` WHERE ProductCategoryId = $categoryId";
     $productResult = db_query($productQuery);
-    $categoryProductQuery = db_fetch_array("SELECT * FROM `ProductCategory` WHERE `ParentCategoryId` = 0");
+    $categoryProductQuery = db_fetch_array("SELECT * FROM `ProductCategory` WHERE `ParentCategoryId` IS NULL");
     $categoryProductResult = db_query($categoryProductQuery);
     foreach ($categoryProductQuery as $parent) {
 
@@ -98,7 +98,7 @@ function Search()
     $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : '';
     $sql = "SELECT * FROM product WHERE Name LIKE '%" . $keyword . "%'";
     $listProduct = db_query($sql);
-    $categoryProduct = db_fetch_array("SELECT * FROM `ProductCategory` WHERE `ParentCategoryId` = 0");
+    $categoryProduct = db_fetch_array("SELECT * FROM `ProductCategory` WHERE `ParentCategoryId` IS NULL");
     foreach ($categoryProduct as $parent) {
 
         $ParentCategoryId = $parent['Id'];

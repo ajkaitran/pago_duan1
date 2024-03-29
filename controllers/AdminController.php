@@ -90,7 +90,7 @@ function UpdateCategoryProduct()
 {
     $id = isset($_GET['id']) ? $_GET['id'] : null;
     $sql = "SELECT * FROM `productcategory` WHERE Id = $id";
-    $parentCategory = db_fetch_array("SELECT * FROM `ProductCategory` WHERE ParentCategoryId IS NULL");
+    $parentCategory = db_fetch_array("SELECT * FROM `ProductCategory`");
     $danhmuc = db_fetch_row($sql);
     $data =  array(
         'danhmuc' => $danhmuc,
@@ -104,10 +104,10 @@ function EditCategoryProduct()
 {
     if (isset($_POST['sua'])) {
         $id = isset($_POST['id']) ? $_POST['id'] : null;
-        $prentCategoryId = isset($_POST['ParentCategoryId']) ? $_POST['ParentCategoryId'] : NULL;
+        $prentCategoryId = isset($_POST['ParentCategoryId']) ? $_POST['ParentCategoryId'] : null;
         $name = isset($_POST['tendm']) ? $_POST['tendm'] : null;
         $slug = isset($_POST['slug']) ? $_POST['slug'] : null;
-        $img = (isset($_FILES['img']) && $_FILES['img']['name'] != '') ? $_FILES['img']['name'] : NULL;
+        $img = (isset($_FILES['img']) && $_FILES['img']['name'] != '') ? $_FILES['img']['name'] : null;
         if (!empty($name)) {
             $slug = convertToUnSign($name);
         }else{
@@ -128,6 +128,7 @@ function EditCategoryProduct()
         db_update("productcategory", $data, "Id = $id");
         header("Location: ?controller=admin&action=ListCategoryProduct");
     } else {
+        
     }
 }
 
