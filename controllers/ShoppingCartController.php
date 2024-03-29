@@ -46,3 +46,11 @@ function remove_cart() {
         header("Location: ?controller=ShoppingCart&action=index");
     }
 }
+
+function update_shoppingcart() {
+    if (isset($_POST['update_cart'])) {
+        update_cart($_POST);
+    }
+
+    header("Location: ?controller=ShoppingCart&action=index");
+}
