@@ -46,7 +46,7 @@ function register_store()
 
     db_insert('Users', $arr);
 
-    header("Location: ?controller=member&action=register");
+    header("Location: ?controller=member&action=login");
     exit;
 }
 
