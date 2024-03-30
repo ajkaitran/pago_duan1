@@ -91,7 +91,7 @@ function UpdateCategoryProduct()
 {
     $id = isset($_GET['id']) ? $_GET['id'] : null;
     $sql = "SELECT * FROM `productcategory` WHERE Id = $id";
-    $parentCategory = db_fetch_array("SELECT * FROM `ProductCategory`");
+    $parentCategory = db_fetch_array("SELECT * FROM `ProductCategory` WHERE `Id` != $id");
     $danhmuc = db_fetch_row($sql);
     $data =  array(
         'danhmuc' => $danhmuc,
@@ -470,6 +470,84 @@ function Statistical()
 {
     load_view('statistical/Statistical', '_layoutAdmin');
 }
+
+// order
+function list_order()
+{
+    global $status, $payments;
+
+    $orders = db_fetch_array("SELECT orders.id as order_id, orders.created_at, orders.total_amount, orders.status, orders.payment, customers.*
+        FROM orders
+        INNER JOIN customers ON orders.customer_id = customers.id;
+    ");
+
+    // echoArray($orders);
+
+    $data = array(
+        'orders' => $orders,
+        'status' => $status,
+        'payments' => $payments,
+    );
+    load_view('order/list_order', '_layoutAdmin', $data);
+}
+
+function order_details() {
+    if (isset($_GET['id'])) {
+        $id = $_GET['id'];
+
+        $order = db_fetch_row("
+            SELECT orders.id as order_id, orders.created_at, orders.total_amount, orders.status, orders.payment, customers.*
+            FROM orders
+            INNER JOIN customers ON orders.customer_id = customers.id
+            WHERE orders.id = $id
+        ");
+
+        $order_id = $order['order_id'];
+
+        $order_items = db_fetch_array("
+            SELECT order_details.id as order_item_id, order_details.quantity, order_details.price, order_details.total_price, order_details.product_id, product.Name, product.Image
+            FROM `order_details` 
+            INNER JOIN product ON order_details.product_id = product.Id
+            WHERE `order_id` = $order_id
+        ");
+
+        $count_items = db_query("SELECT SUM(quantity) AS total_quantity FROM `order_details` WHERE `order_id` = $order_id");
+
+        $data = array(
+            'order' => $order,
+            'order_items' => $order_items,
+            'ship_fee' => 30000,
+            'total_quantity' => $count_items->fetch_assoc()['total_quantity'],
+        );
+
+        load_view('order/order_details', '_layoutAdmin', $data);
+    }
+}
+
+function update_order() {
+    if (isset($_POST['update_order'])) {
+        $id = isset($_POST['order_id']) ? $_POST['order_id'] : null;
+        $status = isset($_POST['status']) ? $_POST['status'] : null;
+
+        $data = array(
+            'status' => $status,
+        );
+
+        db_update("orders", $data, "`id` = $id");
+
+        header("Location: ?controller=admin&action=list_order");
+    }
+}
+
+function remove_order() {
+    if (isset($_GET['order_id'])) {
+        $id = $_GET['order_id'];
+
+        db_delete("orders", "`id` = $id");
+        header("Location: ?controller=admin&action=list_order");
+    }
+}
+
 
 
 // Chuyển thành ToUnSign

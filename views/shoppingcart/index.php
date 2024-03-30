@@ -84,7 +84,7 @@
                                 <button type="submit" name="update_cart" class="btn">
                                     Cập nhật giỏ hàng
                                 </button>
-                                <a class="btn" href="?controller=shoppingcard&action=checkout">
+                                <a class="btn" href="?controller=shoppingcart&action=checkout">
                                     Thanh toán
                                 </a>
                             </div>

@@ -24,3 +24,10 @@ function showCategories($selected, $categories, $parent_id = 0, $char = '')
     }
 
 }
+
+
+function echoArray($arr) {
+    echo '<pre>';
+    print_r($arr);
+    die();
+}
