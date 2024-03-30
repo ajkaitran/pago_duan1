@@ -4,7 +4,7 @@
         if(isset($_SESSION['cart']['buy'][$id])) {
             $arr_data['quantity'] = $_SESSION['cart']['buy'][$id]['quantity'] += $quantity;
         } else {
-            $arr_data['quantity'] = 1;
+            $arr_data['quantity'] = $quantity;
         }
 
         $_SESSION['cart']['buy'][$id] = $arr_data;

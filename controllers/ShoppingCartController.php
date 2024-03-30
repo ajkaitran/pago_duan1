@@ -86,7 +86,6 @@ function checkout_success() {
 function add_to_cart() {
     $id = isset($_POST['id']) ? $_POST['id'] : null;
     $quantity = isset($_POST['quantity']) ? $_POST['quantity'] : 1;
-
     if (!empty($id)) {
         $item = db_fetch_row("SELECT * FROM `product` WHERE `Id` = $id");
         $data = array(
@@ -96,9 +95,7 @@ function add_to_cart() {
             'price' => $item['SalePrice'] ?? $item['Price'],
             'quantity' => $quantity,
         );
-
         add_cart($id, $quantity, $data);
-
         header("Location: ?controller=ShoppingCart&action=index");
     }
 }

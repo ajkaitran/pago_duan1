@@ -179,36 +179,14 @@
                                         <?= $productDetail['Des'] ?>
                                     </p>
                                 </div>
-                                <form id="detailForm">
-                                    <!-- <div class="my-2">
-                                        <label>Đường cắt xé :</label> <br />
-                                        <input type="radio" class="input__radio__hidden" id="cutlines-@item.Id"
-                                            name="cutlines" value="có" />
-                                        <label class="label__check__red" for="cutlines-@item.Id">Có</label>
-                                        <input type="radio" class="input__radio__hidden" id="cutlines-@item.Id"
-                                            name="cutlines" value="không" />
-                                        <label class="label__check__red" for="cutlines-@item.Id">không</label>
-                                    </div> -->
+                                <form action="?controller=ShoppingCart&action=add_to_cart" method="post" class="row">
                                     <input class="input-quantity btn btn-light" id="input-quantity" type="text"
                                         name="quantity" value="1" min="1" max="100">
-                                    <input type="hidden" name="productId" value="@Model.Product.Id" />
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <button class="button__orange" type="submit"><i
-                                                    class="fa-regular fa-bag-shopping"></i>THÊM VÀO GIỎ HÀNG</button>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <button class="button__blue"><i class="fa-regular fa-heart"></i>YÊU
-                                                THÍCH</button>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <button class="button__blue"><i
-                                                    class="fa-solid fa-code-compare fa-rotate-90"></i>SO SÁNH</button>
-                                        </div>
+                                    <input type="hidden" name="id" value="<?= $productDetail['Id'] ?>">
+                                    <div class="col-12">
+                                        <button class="button__orange" type="submit"><i
+                                                class="fa-regular fa-bag-shopping"></i>THÊM VÀO GIỎ HÀNG</button>
                                     </div>
-                                    <p>Gọi cho chúng tôi để được tư vấn <strong class="p__red" title="1900 9477">1900
-                                            9477</strong> </p>
-                                    <hr>
                                 </form>
                             </div>
                             <div class="co-12">
@@ -224,8 +202,11 @@
                                     </div>
                                     <div class="tab" id="tabs-2">
                                         <div class="content">
-                                            <form action="?controller=home&action=AddProduct">
+                                            <?php if ($checkOrder != null): ?>
+                                            <form action="?controller=home&action=Comment" method="post">
                                                 <input type="hidden" name="userId" value="<?= $userId ?>">
+                                                <input type="hidden" name="productId" value="<?= $productDetail['Id'] ?>">
+                                                <input type="hidden" name="orderId" value="<?= $checkOrder['id'] ?>">
                                                 <div class="form-group">
                                                     <label for="exampleInputPassword1">Nội dung</label>
                                                     <input type="text" class="form-control" name="content"
@@ -233,6 +214,17 @@
                                                 </div>
                                                 <button type="submit" class="btn btn-primary mt-3">Đánh giá</button>
                                             </form>
+                                            <?php endif; ?>
+                                            <div class="mt-5">
+                                                <?php foreach($comment as $key => $value): ?>
+                                                    <div class="card mb-3">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title"><?= $value['fullname'] ?></h5>
+                                                            <p class="card-text"><?= $value['Content'] ?></p>
+                                                        </div>
+                                                    </div>
+                                                <?php endforeach; ?>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
