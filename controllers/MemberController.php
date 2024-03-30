@@ -87,5 +87,9 @@ function logout()
 
 function index()
 {
-    load_view('member/index');
+
+    $data = array(
+        
+    );
+    load_view('member/index', '_layout', $data);
 }

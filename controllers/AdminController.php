@@ -91,11 +91,7 @@ function UpdateCategoryProduct()
 {
     $id = isset($_GET['id']) ? $_GET['id'] : null;
     $sql = "SELECT * FROM `productcategory` WHERE Id = $id";
-<<<<<<< HEAD
-    $parentCategory = db_fetch_array("SELECT * FROM `ProductCategory`");
-=======
     $parentCategory = db_fetch_array("SELECT * FROM `ProductCategory` WHERE `Id` != $id");
->>>>>>> origin/truongson0123
     $danhmuc = db_fetch_row($sql);
     $data =  array(
         'danhmuc' => $danhmuc,
@@ -109,11 +105,7 @@ function EditCategoryProduct()
 {
     if (isset($_POST['sua'])) {
         $id = isset($_POST['id']) ? $_POST['id'] : null;
-<<<<<<< HEAD
-        $prentCategoryId = isset($_POST['ParentCategoryId']) ? $_POST['ParentCategoryId'] : null;
-=======
         $prentCategoryId = isset($_POST['dm']) ? $_POST['dm'] : NULL;
->>>>>>> origin/truongson0123
         $name = isset($_POST['tendm']) ? $_POST['tendm'] : null;
         $slug = isset($_POST['slug']) ? $_POST['slug'] : null;
         $img = (isset($_FILES['img']) && $_FILES['img']['name'] != '') ? $_FILES['img']['name'] : null;
@@ -221,18 +213,9 @@ function AddProduct()
         $createdAt = date('Y-m-d H:i:s');
         $slug = isset($_POST['slug']) ? $_POST['slug'] : null;
         $dm = isset($_POST['dm']) ? $_POST['dm'] : null;
-<<<<<<< HEAD
-        if (!empty($name)) {
-            $slug = convertToUnSign($name);
-        }else{
-            $slug = convertToUnSign($slug);
-        }
-        $sql = "INSERT INTO `product`( `Name`, `Des`, `Image`, `Slug`, `Price`, `PriceSale`, `Active`, `CreatedAt`, `ProductCategoryId`) VALUES ('$name','$desc','$img','$slug',$gia,$giasale,1,'$date',$dm)";
-=======
         $sql = "INSERT INTO `product` 
         (`Name`, `Des`, `Image`, `Slug`, `Price`, `PriceSale`, `Active`, `CreatedAt`, `ProductCategoryId`) 
         VALUES ('$name', '$desc', '$imgString', '$slug', $gia, $giasale, 1, '$createdAt', $dm)";
->>>>>>> origin/dinh0107
         db_query($sql);
         header("Location: ?controller=admin&action=ListProduct");
     }
@@ -292,14 +275,6 @@ function EditProduct()
                 }
             }
         }
-<<<<<<< HEAD
-        if (!empty($name)) {
-            $slug = convertToUnSign($name);
-        }else{
-            $slug = convertToUnSign($slug);
-        }
-        $sql = "UPDATE `product` SET `Name`='$name',`Des`='$desc',`Image`='$img',`Slug`='$slug',`Price`='$gia',`PriceSale`='$giasale',`Active`= 1,`CreatedAt`='$date',`ProductCategoryId`='$dm' WHERE Id = $id";
-=======
         $imgNames = rtrim($imgNames, ',');
 
         // Nếu không có file ảnh mới được tải lên, giữ nguyên giá trị của ảnh cũ
@@ -308,7 +283,6 @@ function EditProduct()
         }
 
         $sql = "UPDATE `product` SET `Name`='$name',`Des`='$desc',`Image`='$imgNames',`Slug`='$slug',`Price`='$gia',`PriceSale`='$giasale',`Active`= 1,`CreatedAt`='$date',`ProductCategoryId`='$dm' WHERE Id = $id";
->>>>>>> origin/dinh0107
         db_query($sql);
         header("Location: ?controller=admin&action=ListProduct");
     }
