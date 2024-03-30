@@ -173,19 +173,19 @@
             </div>
         </div>
     </section>
-    <section class="service__pago">
-        <div class="container">
-            <div class="img__service">
-                <img src="./public/images/bg-service.jpg" alt="">
-                <div class="title__orange">
-                    <img src="./public/images/get-image-v3 (3).png" alt="">
-                    <h3>DỊCH VỤ TẠI PAGO</h3>
+        <!-- <section class="service__pago">
+            <div class="container">
+                <div class="img__service">
+                    <img src="./public/images/bg-service.jpg" alt="">
+                    <div class="title__orange">
+                        <img src="./public/images/get-image-v3 (3).png" alt="">
+                        <h3>DỊCH VỤ TẠI PAGO</h3>
+                    </div>
                 </div>
+                <button type="button" class="btn btn-dark"><img src="./public/images/icon-btn-dv.png" alt="">Dịch vụ in ấn</button>
+                <button type="button" class="btn btn-dark"><img src="./public/images/icon-btn-dv.png" alt="">Dịch vụ thiết kế</button>
             </div>
-            <button type="button" class="btn btn-dark"><img src="./public/images/icon-btn-dv.png" alt="">Dịch vụ in ấn</button>
-            <button type="button" class="btn btn-dark"><img src="./public/images/icon-btn-dv.png" alt="">Dịch vụ thiết kế</button>
-        </div>
-    </section>
+        </section> -->
     <section class="product__accessory">
         <div class="container">
             <div class="title__pink">
