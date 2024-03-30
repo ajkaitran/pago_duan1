@@ -706,10 +706,13 @@ a {
 .box__favorite__product {
   border: 1px solid rgb(195, 195, 195);
   padding: 5px 10px 20px 10px;
-  height: 370px;
   border-radius: 5px;
   background-color: white;
   position: relative;
+}
+
+.box__favorite__product>p {
+  height: 48px;
 }
 
 .box__favorite__product:hover {
@@ -757,6 +760,7 @@ a {
 .p__hover {
   color: #000000;
   font-weight: 500;
+  height: 48px;
 }
 
 .p__hover:hover {

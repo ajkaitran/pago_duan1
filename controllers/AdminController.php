@@ -157,7 +157,7 @@ function ListProduct()
     $sql = "SELECT sp.*, dm.Name  AS ten_danhmuc 
     FROM `product` sp 
     JOIN `productcategory` dm ON sp.ProductCategoryId  = dm.Id
-    ";
+    ORDER BY CreatedAt DESC";
     $listSp = db_query($sql);
     $data =  array(
         'listSp' => $listSp
@@ -184,23 +184,55 @@ function AddProduct()
 {
     if (isset($_POST['them'])) {
         $name = isset($_POST['ten']) ? $_POST['ten'] : null;
-        $img = isset($_FILES['img']) ? $_FILES['img']['name'] : null;
-        if ($img != null) {
-            $uploadFile = './public/uploads/AnhSanPham/' . $img;
-            move_uploaded_file($_FILES['img']['tmp_name'], $uploadFile);
+        $imgNames = array();
+        if (isset($_FILES['img'])) {
+            $imgFiles = $_FILES['img'];
+            $names = $imgFiles['name'];
+            $types = $imgFiles['type'];
+            $tmp_names = $imgFiles['tmp_name'];
+        
+            foreach ($tmp_names as $index => $tmp_name) {
+                $img = $names[$index]; 
+        
+                if (!empty($img)) {
+                    $uploadDir = './public/uploads/AnhSanPham/';
+                    $uploadFile = $uploadDir . basename($img);
+                    $imageFileType = strtolower(pathinfo($uploadFile, PATHINFO_EXTENSION));
+                    $allowedExtensions = array('jpg', 'jpeg', 'png', 'gif');
+                    if (!in_array($imageFileType, $allowedExtensions)) {
+                        echo "Chỉ cho phép tải lên các tệp ảnh có định dạng JPG, JPEG, PNG, GIF.";
+                        return;
+                    }
+        
+                    // Move the uploaded file to the destination directory
+                    if (!move_uploaded_file($tmp_name, $uploadFile)) {
+                        echo "Có lỗi xảy ra khi tải lên ảnh.";
+                        return;
+                    }
+        
+                    $imgNames[] = $img;
+                }
+            }
         }
+        $imgString = implode(',', $imgNames);
         $gia = isset($_POST['gia']) ? $_POST['gia'] : null;
         $desc = isset($_POST['desc']) ? $_POST['desc'] : null;
         $giasale = isset($_POST['giasale']) ? $_POST['giasale'] : null;
-        $date = date("Y-m-d H:i:s");
+        $createdAt = date('Y-m-d H:i:s');
         $slug = isset($_POST['slug']) ? $_POST['slug'] : null;
         $dm = isset($_POST['dm']) ? $_POST['dm'] : null;
+<<<<<<< HEAD
         if (!empty($name)) {
             $slug = convertToUnSign($name);
         }else{
             $slug = convertToUnSign($slug);
         }
         $sql = "INSERT INTO `product`( `Name`, `Des`, `Image`, `Slug`, `Price`, `PriceSale`, `Active`, `CreatedAt`, `ProductCategoryId`) VALUES ('$name','$desc','$img','$slug',$gia,$giasale,1,'$date',$dm)";
+=======
+        $sql = "INSERT INTO `product` 
+        (`Name`, `Des`, `Image`, `Slug`, `Price`, `PriceSale`, `Active`, `CreatedAt`, `ProductCategoryId`) 
+        VALUES ('$name', '$desc', '$imgString', '$slug', $gia, $giasale, 1, '$createdAt', $dm)";
+>>>>>>> origin/dinh0107
         db_query($sql);
         header("Location: ?controller=admin&action=ListProduct");
     }
@@ -232,17 +264,51 @@ function EditProduct()
         $slug = isset($_POST['slug']) ? $_POST['slug'] : null;
         $dm = isset($_POST['dm']) ? $_POST['dm'] : null;
         $id = isset($_POST['id']) ? $_POST['id'] : null;
-        $img = isset($_POST['img']) && ($_POST['img'] != '') ? $_POST['img'] : $_POST['imgOld'];
-        if ($img != null) {
-            $uploadFile = './public/uploads/AnhSanPham/' . $img;
-            move_uploaded_file($_FILES['img']['tmp_name'], $uploadFile);
+        $imgNames = ''; // Đưa biến $imgNames về chuỗi trống
+        
+        if (isset($_FILES['img'])) {
+            $imgFiles = $_FILES['img'];
+            $names = $imgFiles['name'];
+            $types = $imgFiles['type'];
+            $tmp_names = $imgFiles['tmp_name'];
+        
+            foreach ($tmp_names as $index => $tmp_name) {
+                $img = $names[$index]; 
+        
+                if (!empty($img)) {
+                    $uploadDir = './public/uploads/AnhSanPham/';
+                    $uploadFile = $uploadDir . basename($img);
+                    $imageFileType = strtolower(pathinfo($uploadFile, PATHINFO_EXTENSION));
+                    $allowedExtensions = array('jpg', 'jpeg', 'png', 'gif');
+                    if (!in_array($imageFileType, $allowedExtensions)) {
+                        echo "Chỉ cho phép tải lên các tệp ảnh có định dạng JPG, JPEG, PNG, GIF.";
+                        return;
+                    }
+                    if (!move_uploaded_file($tmp_name, $uploadFile)) {
+                        echo "Có lỗi xảy ra khi tải lên ảnh.";
+                        return;
+                    }
+                    $imgNames .= $img . ',';
+                }
+            }
         }
+<<<<<<< HEAD
         if (!empty($name)) {
             $slug = convertToUnSign($name);
         }else{
             $slug = convertToUnSign($slug);
         }
         $sql = "UPDATE `product` SET `Name`='$name',`Des`='$desc',`Image`='$img',`Slug`='$slug',`Price`='$gia',`PriceSale`='$giasale',`Active`= 1,`CreatedAt`='$date',`ProductCategoryId`='$dm' WHERE Id = $id";
+=======
+        $imgNames = rtrim($imgNames, ',');
+
+        // Nếu không có file ảnh mới được tải lên, giữ nguyên giá trị của ảnh cũ
+        if (empty($imgNames)) {
+            $imgNames = isset($_POST['imgOld']) ? $_POST['imgOld'] : null;
+        }
+
+        $sql = "UPDATE `product` SET `Name`='$name',`Des`='$desc',`Image`='$imgNames',`Slug`='$slug',`Price`='$gia',`PriceSale`='$giasale',`Active`= 1,`CreatedAt`='$date',`ProductCategoryId`='$dm' WHERE Id = $id";
+>>>>>>> origin/dinh0107
         db_query($sql);
         header("Location: ?controller=admin&action=ListProduct");
     }

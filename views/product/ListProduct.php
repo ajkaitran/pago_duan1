@@ -27,11 +27,12 @@
                     <div>
                         <?php
                         foreach ($listSp as $key => $value) {
+                        $imageNames = explode(',', $value['Image']);
                         ?>
                             <tr>
                                 <th scope="row"><?= $key + 1 ?></th>
                                 <td><?= $value['ten_danhmuc'] ?></td>
-                                <td><img src="./public/uploads/AnhSanPham/<?= $value['Image'] ?>" alt="" style="width: 100px; height: 100px"></td>
+                                <td><img src="./public/uploads/AnhSanPham/<?= $imageNames[0] ?>" alt="" style="width: 100px; height: 100px"></td>
                                 <td><?= $value['Name'] ?></td>
                                 <td>
                                     <h5><?= number_format($value['PriceSale']) ?>VND</h5>

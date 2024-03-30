@@ -40,11 +40,11 @@
                 <div class="col-lg-12">
                     <div class="slide__service text-center">
                         <?php
-                        for ($i = 0; $i < 12; $i++) {
+                        foreach ($categoryProduct as $key => $cate) {
                         ?>
-                            <a href="#" class="box__service">
-                                <img src="./public/images/unnamed-removebg-preview<?= $i ?>.png" alt="">
-                                <p class="p__hover">Bao thư</p>
+                            <a href="?controller=home&action=ProductCategory&Id=<?= $cate['Id'] ?>" class="box__service">
+                                <img src="./public/uploads/AnhDanhMuc/<?= $cate['Image'] ?>" alt="">
+                                <p class="p__hover"><?= $cate['Name'] ?></p>
                             </a>
                         <?php
                         }
@@ -62,7 +62,7 @@
             </div>
         </div>
     </section>
-    <section class="new__service">
+    <!-- <section class="new__service">
         <div class="container">
             <div class="title__orange">
                 <img src="./public/images/get-image-v3 (4).png" alt="">
@@ -81,7 +81,7 @@
                 ?>
             </div>
         </div>
-    </section>
+    </section> -->
     <section class="favorite__product">
         <div class="container">
             <div class="title__orange">
@@ -93,7 +93,7 @@
                 foreach ($listSp as $key => $item) {
                 ?>
                     <div class="box__favorite__product">
-                        <a href="#">
+                        <a href="?controller=home&action=ProductDetail&Id=<?= $item['Id'] ?>">
                             <img src="./public/uploads/AnhSanPham/<?= $item['Image'] ?>" alt="">
                             <p class="p__hover"><?= $item['Name']?></p>
                             <div class="price">

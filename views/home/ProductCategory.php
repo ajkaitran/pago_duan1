@@ -20,6 +20,7 @@
                         <div class="sidebar__menu">
                             <ul>
                                 <?php
+<<<<<<< HEAD
                                 foreach ($categories as $cate) {
                                 ?>
                                     <li>
@@ -41,10 +42,20 @@
                                                 </li>
                                             <?php endforeach; ?>
                                         </ul>
+=======
+                                foreach ($categoryProduct as $key => $cate) {
+                                ?>
+                                    <li>
+                                        <div class="border__dashed p__hover">
+                                            <a class="p__hover" href="?controller=home&action=ProductCategory&Id=<?= $cate['Id'] ?>"><?= $cate['Name']?></a>
+                                            <i class="fa-regular fa-caret-down dropdown"></i>
+                                        </div>
+>>>>>>> origin/dinh0107
                                     </li>
                                 <?php
                                 }
                                 ?>
+<<<<<<< HEAD
                             </ul>
                         </div>
                     </div>
@@ -91,12 +102,73 @@
                             <?php
                             }
                             ?>
+=======
+                                <!-- <li>
+                                    <div class="border__dashed p__hover">
+                                        <a class="p__hover" href="#">Ấn phẩm bao bì</a>
+                                        <i class="fa-regular fa-caret-down dropdown"></i>
+                                    </div>
+                                    <ul class="dropdown__menu ps-2">
+                                        <li class="border__solid">
+                                            <a class="p__hover" href="#">Nhãn dán</a>
+                                        </li>
+                                        <li class="border__solid">
+                                            <a class="p__hover" href="#">Túi giấy</a>
+                                        </li>
+                                        <li class="border__solid">
+                                            <a class="p__hover" href="#">Hộp giấy</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <div class="border__dashed p__hover">
+                                        <a class="p__hover" href="#">Ấn phẩm tiếp thị</a>
+                                        <i class="fa-regular fa-caret-down dropdown"></i>
+                                    </div>
+                                    <ul class="dropdown__menu ps-2">
+                                        <li class="border__solid">
+                                            <a class="p__hover" href="#">Catalogue</a>
+                                        </li>
+                                        <li class="border__solid">
+                                            <a class="p__hover" href="#">Tờ rơi</a>
+                                        </li>
+                                        <li class="border__solid">
+                                            <a class="p__hover" href="#">Poster</a>
+                                        </li>
+                                        <li class="border__solid">
+                                            <a class="p__hover" href="#">Tờ gấp</a>
+                                        </li>
+                                        <li class="border__solid">
+                                            <a class="p__hover" href="#">Vé</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <div class="border__dashed p__hover">
+                                        <a class="p__hover" href="#">Ấn phẩm văn phòng</a>
+                                        <i class="fa-regular fa-caret-down dropdown"></i>
+                                    </div>
+                                    <ul class="dropdown__menu ps-2">
+                                        <li class="border__solid">
+                                            <a class="p__hover" href="#">Bìa đựng hồ sơ</a>
+                                        </li>
+                                        <li class="border__solid">
+                                            <a class="p__hover" href="#">Bao thư</a>
+                                        </li>
+                                        <li class="border__solid">
+                                            <a class="p__hover" href="#">Danh thiếp</a>
+                                        </li>
+                                    </ul>
+                                </li> -->
+                            </ul>
+>>>>>>> origin/dinh0107
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-9 order-0 order-lg-1 ">
                     <div class="display__product">
                         <div class="row">
+<<<<<<< HEAD
                             <div class="col-lg-3 col-md-3 col-sm-12">
                                 <label>Hiển thị</label>
                                 <select>
@@ -118,6 +190,16 @@
                                     <option>Sấp xếp theo giá (Lớn-Nhỏ)</option>
                                     <option>Sấp xếp theo khuyến mãi (Có-Không)</option>
                                     <option>Sấp xếp theo khuyến mãi (Không-Có)</option>
+=======
+                            <div class="col-lg-12 col-md-7 col-sm-12">
+                                <label>Sắp xếp</label>
+                                <select class="form-control mt-2" name="Sort" onchange = "window.location.href='?controller=home&action=ProductCategory&Id=<?= $Category['Id'] ?>&Sort='+this.value">
+                                    <option value="">Mặc định</option>
+                                    <option <?= 1 == $Sort ? "selected" : null ?> value="1">Sắp xếp theo tên (A-Z)</option>
+                                    <option <?= 2 == $Sort ? "selected" : null ?> value="2">Sắp xếp theo tên (Z-A)</option>
+                                    <option <?= 3 == $Sort ? "selected" : null ?> value="3">Sắp xếp theo giá (Nhỏ-Lớn)</option>
+                                    <option <?= 4 == $Sort ? "selected" : null ?> value="4">Sắp xếp theo giá (Lớn-Nhỏ)</option>
+>>>>>>> origin/dinh0107
                                 </select>
                             </div>
                         </div>
@@ -125,6 +207,7 @@
                     <div class="product__list">
                         <div class="row row-cols-lg-4 row-cols-md-3 row-cols-2 g-3">
                         <?php
+<<<<<<< HEAD
                             foreach ($listProduct as $key => $item) {
                             ?>
                                 <div class="col">
@@ -133,6 +216,16 @@
                                             <img src="./public/uploads/AnhSanPham/<?= $item['Image'] ?>" alt="">
                                             <p class="p__hover"><?= $item['Name'] ?></p>
                                             <div class="price">
+=======
+                            foreach ($products as $key => $item) {
+                            ?>
+                                <div class="col">
+                                    <div class="box__favorite__product">
+                                        <a href="?controller=home&action=ProductDetail&Id=<?= $item['Id'] ?>">
+                                            <img src="./public/uploads/AnhSanPham/<?= $item['Image'] ?>" alt="">
+                                            <p class="p__hover"><?= $item['Name'] ?></p>
+                                            <div class="price d-flex" style="gap:10px">
+>>>>>>> origin/dinh0107
                                                 <h5 class="new__price"><?= number_format($item['PriceSale']) ?>VND</h5>
                                                 <del class="old__price p__hover"><?= number_format($item['Price']) ?>VND</del>
                                             </div>
