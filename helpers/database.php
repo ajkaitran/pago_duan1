@@ -80,7 +80,6 @@ function db_update($table, $data, $where) {
     }
     $sql = substr($sql, 0, -2);
 
-    echo $sql;
     db_query("
             UPDATE $table
             SET $sql

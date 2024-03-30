@@ -17,7 +17,7 @@
                     <label for="" class="form_ext">Danh mục cha</label>
                     <select name="dm" id="" class="form-control">
                         <option value="">Chọn danh mục</option>
-                        <?= showCategories($ProductCategory) ?>
+                        <?= showCategories(null, $ProductCategory) ?>
                     </select>
                     <!-- <select name="ParentCategoryId" id="" class="form-control">
                         <option value="">Chọn danh mục</option>

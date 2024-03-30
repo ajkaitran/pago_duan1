@@ -80,9 +80,7 @@
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="login.html">Thêm danh mục sản phẩm</a>
-            <a class="collapse-item" href="login.html">Thêm sản phẩm</a>
-            <a class="collapse-item" href="login.html">Danh sách sản phẩm</a>
+            <a class="collapse-item" href="?controller=Admin&action=list_order">Danh sách đơn hàng</a>
           </div>
         </div>
       </li>
