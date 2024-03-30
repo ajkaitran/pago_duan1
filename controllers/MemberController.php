@@ -87,5 +87,55 @@ function logout()
 
 function index()
 {
-    load_view('member/index');
+    global $status, $payments;
+
+    $user_id = $_SESSION['user']['Id'];
+
+    $orders = db_fetch_array("SELECT orders.user_id, orders.id as order_id, orders.created_at, orders.total_amount, orders.status, orders.payment, customers.*
+        FROM orders
+        INNER JOIN customers ON orders.customer_id = customers.id
+        WHERE orders.user_id = $user_id
+    ");
+
+    // echoArray($orders);
+
+    $data = array(
+        'orders' => $orders,
+        'status' => $status,
+        'payments' => $payments,
+    );
+    load_view('member/index', '_layout', $data);
+}
+
+function order_details() {
+    if (isset($_GET['id'])) {
+        $id = $_GET['id'];
+
+        $order = db_fetch_row("
+            SELECT orders.id as order_id, orders.created_at, orders.total_amount, orders.status, orders.payment, customers.*
+            FROM orders
+            INNER JOIN customers ON orders.customer_id = customers.id
+            WHERE orders.id = $id
+        ");
+
+        $order_id = $order['order_id'];
+
+        $order_items = db_fetch_array("
+            SELECT order_details.id as order_item_id, order_details.quantity, order_details.price, order_details.total_price, order_details.product_id, product.Name, product.Image
+            FROM `order_details` 
+            INNER JOIN product ON order_details.product_id = product.Id
+            WHERE `order_id` = $order_id
+        ");
+
+        $count_items = db_query("SELECT SUM(quantity) AS total_quantity FROM `order_details` WHERE `order_id` = $order_id");
+
+        $data = array(
+            'order' => $order,
+            'order_items' => $order_items,
+            'ship_fee' => 30000,
+            'total_quantity' => $count_items->fetch_assoc()['total_quantity'],
+        );
+
+        load_view('member/order_details', '_layoutNone', $data);
+    }
 }

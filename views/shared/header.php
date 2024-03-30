@@ -259,7 +259,7 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-action="Contact" asp-controller="Home">LIÊN HỆ</a>
+                            <a class="nav-link">LIÊN HỆ</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link btn " href="#">

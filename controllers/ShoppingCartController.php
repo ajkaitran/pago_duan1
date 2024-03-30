@@ -23,6 +23,7 @@ function checkout()
 
     $data = array (
         'cart' => isset($_SESSION['cart']) ? $_SESSION['cart'] : null,
+        'user' => isset($_SESSION['user']) ? $_SESSION['user'] : null,
         'ship_fee' => 30000,
         'payments' => $payments
     );
@@ -50,7 +51,7 @@ function checkout_order() {
 
             $data_order = array(
                 'customer_id' => $customer_id,
-                'user_id' => isset($_SESSION['user']['id']) ? $_SESSION['user']['id'] : null,
+                'user_id' => isset($_SESSION['user']['Id']) ? $_SESSION['user']['Id'] : null,
                 'created_at' => date('Y-m-d H:i:s'),
                 'payment' => $payment,
                 'total_amount' => isset($_SESSION['cart']['info']['total']) ? $_SESSION['cart']['info']['total'] : 0

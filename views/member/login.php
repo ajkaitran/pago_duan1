@@ -29,21 +29,8 @@
                 </div>
             </form>
             <ul>
-                <li><a asp-action="ForgotPassword" asp-controller="Member" class="p__hover">Quên mật khẩu</a></li>
-                <span>|</span>
-                <li><a asp-action="Register" asp-controller="Member" class="p__hover">Đăng ký</a></li>
+                <li><a href="?controller=member&action=register" class="p__hover">Đăng ký</a></li>
             </ul>
-            <div class="login__box">
-                <a href="#" class="facebook">
-                    <div class="box"><i class="fa-brands fa-facebook-f" style="color: #3B5998;"></i></div><span>Facebook</span>
-                </a>
-                <a href="#" class="google">
-                    <div class="box"><i class="fa-brands fa-google" style="color: #DC4E41;"></i></div><span>Google</span>
-                </a>
-                <a href="#" class="zalo">
-                    <div class="box"><i class="fa-solid fa-z" style="color: #0591E9;"></i></div><span>Zalo</span>
-                </a>
-            </div>
         </div>
     </div>
 </section>
