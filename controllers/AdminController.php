@@ -511,7 +511,17 @@ function UpdateService()
 //comment
 function Comment()
 {
-    load_view('comment/Comment', '_layoutAdmin');
+    $sql =  db_query("SELECT * FROM `comments`");
+    $model = array(
+        'listComment' => $sql,
+    );
+    load_view('comment/Comment', '_layoutAdmin' , $model);
+}
+function DeleteComment()
+{
+    $id = isset($_GET['id']) ? $_GET['id'] : null;
+    db_delete('comments', "`Id` = $id");
+    header("Location: ?controller=admin&action=Comment");
 }
 //stalistical
 function Statistical()

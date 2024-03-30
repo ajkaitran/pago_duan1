@@ -102,7 +102,7 @@
                             ?>
                                 <div class="col">
                                     <div class="box__favorite__product">
-                                        <a href="?controller=home&action=ProductDetail">
+                                        <a href="?controller=home&action=ProductDetail&Id=<?= $item['Id'] ?>">
                                             <img src="./public/uploads/AnhSanPham/<?= $item['Image'] ?>" alt="">
                                             <p class="p__hover"><?= $item['Name'] ?></p>
                                             <div class="price">

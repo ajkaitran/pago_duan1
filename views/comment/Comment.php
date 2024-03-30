@@ -15,8 +15,18 @@
                 </thead>
                 <tbody class="">
                     <div>
-                    
-                    
+                    <?php
+                        foreach ($listComment as $key => $value) {
+                        ?>
+                            <tr>
+                                <th scope="row"><?= $key + 1 ?></th>
+                                <td><?= $value['Content'] ?></td>
+                                <td><?= $value['CreatedAt'] ?></td>
+                                <td><a href="?controller=Admin&action=DeleteComment&id=<?= $value['Id'] ?>" class="btn btn-danger">Xóa </a></td>
+                            </tr>
+                        <?php
+                        }
+                        ?>
                     </div>
                 </tbody>
             </table>
