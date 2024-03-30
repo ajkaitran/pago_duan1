@@ -66,7 +66,7 @@
                         <div class="w-100">
                             <label class="form__container" id="upload-container">Choose or Drag & Drop Files
                                 <input class="form__file" id="upload-files" type="file" accept="image/*"
-                                    multiple="multiple" name="img" />
+                                    multiple="multiple" name="img[]" />
                             </label>
                             <div class="form__files-container" id="files-list-container"></div>
                         </div>
