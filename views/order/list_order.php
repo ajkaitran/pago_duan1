@@ -6,7 +6,7 @@
     <th scope="col">#</th>
     <th scope="col">Thông tin mua hàng</th>
     <th scope="col">Trạng thái</th>
-    <th scope="col" style="width: 300px;">Hoạt động</th>
+    <th scope="col" style="width: 300px;">Hành động</th>
     </tr>
 </thead>
 <tbody>

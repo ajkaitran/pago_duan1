@@ -30,16 +30,16 @@
                         <div class="w-100 page_checkout__col">
                             <h6 class="page_checkout__customer-title">Thông tin mua hàng</h6>
                             <div class="form-group mb-3">
-                                <input class="form-control customer-fullname" name="fullname" type="text" placeholder="Họ và tên" />
+                                <input class="form-control customer-fullname" name="fullname" value="<?= isset($user['FullName']) ? $user['FullName'] : null ?>" type="text" placeholder="Họ và tên" />
                             </div>
                             <div class="form-group mb-3">
-                                <input class="form-control" type="email" name="email" placeholder="Email" />
+                                <input class="form-control" type="email" name="email" value="<?= isset($user['Email']) ? $user['Email'] : null ?>" placeholder="Email" />
                             </div>
                             <div class="form-group mb-3">
-                                <input class="form-control customer-phone" name="phone_number" type="text" placeholder="Điện thoại" />
+                                <input class="form-control customer-phone" name="phone_number" value="<?= isset($user['PhoneNumber']) ? $user['PhoneNumber'] : null ?>" type="text" placeholder="Điện thoại" />
                             </div>
                             <div class="form-group mb-3">
-                                <input class="form-control receiver-fullname" name="address" type="text" placeholder="Địa chỉ nhận hàng" />
+                                <input class="form-control receiver-fullname" name="address" value="<?= isset($user['Address']) ? $user['Address'] : null ?>" type="text" placeholder="Địa chỉ nhận hàng" />
                             </div>
                         </div>
                     </div>

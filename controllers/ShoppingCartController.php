@@ -23,6 +23,7 @@ function checkout()
 
     $data = array (
         'cart' => isset($_SESSION['cart']) ? $_SESSION['cart'] : null,
+        'user' => isset($_SESSION['user']) ? $_SESSION['user'] : null,
         'ship_fee' => 30000,
         'payments' => $payments
     );

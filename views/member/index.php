@@ -37,25 +37,10 @@
                                 <div class="member-icon">
                                     <i class="fa-sharp fa-solid fa-file ms-1"></i>
                                 </div>
-                                Đơn hàng của bạn
+                                Lịch sử mua hàng
                             </a>
                         </li>
-                        <li class="ps-3">
-                            <a href="#member-tabs-2">
-                                <div class="member-icon">
-                                    <i class="fa-solid fa-eye"></i>
-                                </div>
-                                Sản phẩm đã xem
-                            </a>
-                        </li>
-                        <li class="ps-3">
-                            <a href="#member-tabs-3">
-                                <div class="member-icon">
-                                    <i class="fa-solid fa-heart"></i>
-                                </div>
-                                Danh sách yêu thích
-                            </a>
-                        </li>
+                        
                         <li>
                             <h3 class="page_member__category mt-2">
                                 Quản lý tài khoản
@@ -83,22 +68,48 @@
             <div class="col-lg-8">
                 <div id="member-tabs-1">
                     <h1 class="page_member__title-tab mb-4 border-bottom">
-                        Quản lý giao dịch
+                        Lịch sử mua hàng
                     </h1>
-                    
+                    <table class="table table-secondary table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Thông tin mua hàng</th>
+                                <th scope="col">Tổng giá trị</th>
+                                <th scope="col" style="width: 160px;">Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php 
+                                $i = 1;
+                                foreach($orders as $key => $value): 
+                            ?>
+                                <tr>
+                                    <th scope="row"><?= $i++ ?></th>
+                                    <td>
+                                        <ul>
+                                            <li><b>Họ tên: </b><?= isset($value['fullname']) ? $value['fullname'] : null ?></li>
+                                            <li><b>Email: </b><?= isset($value['email']) ? $value['email'] : null ?></li>
+                                            <li><b>Số điện thoại: </b><?= isset($value['phone_number']) ? $value['phone_number'] : null ?></li>
+                                            <li><b>Địa chỉ nhận hàng: </b><?= isset($value['address']) ? $value['address'] : null ?></li>
+                                            <li><b>Trạng thái: </b><?= $status[$value['status']] ?></li>
+                                            <li><b>Hình thức thanh toán: </b><?= $payments[$value['payment']] ?></li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <b><?= number_format(isset($value['total_amount']) ? $value['total_amount'] : 0) ?> VNĐ</b>
+                                    </td>
+                                    <td>
+                                        <a data-fancybox="" data-type="ajax" href="?controller=Member&action=order_details&id=<?= isset($value['order_id']) ? $value['order_id'] : null ?>" class="btn btn-primary mr-1">Xem chi tiết</a>
+                                    </td>
+                                </tr>
+                            <?php 
+                                endforeach; 
+                            ?>
+                        </tbody>
+                    </table>
                 </div>
-                <div id="member-tabs-2">
-                    <h1 class="page_member__title-tab mb-4 border-bottom">
-                        Sản phẩm đã xem
-                    </h1>
-                    
-                </div>
-                <div id="member-tabs-3">
-                    <h1 class="page_member__title-tab mb-4 border-bottom">
-                        Danh sách yêu thích
-                    </h1>
-                    
-                </div>
+                
                 <div id="member-tabs-4">
                     <h1 class="page_member__title-tab mb-4 border-bottom">
                         Thông tin tài khoản
