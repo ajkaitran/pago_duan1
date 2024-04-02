@@ -43,6 +43,7 @@
       </div>
         <h1>Thanh toán hoàn tất</h1> 
         <p>Chúng tôi sẽ liên hệ với bạn sớm thôi<br/> Cảm ơn bạn đã mua hàng!</p>
+        <a href="?controller=home"><h5>Quay lại trang chủ</h5><i class="fa-light fa-house"></i></a>
       </div>
     </body>
 </html>

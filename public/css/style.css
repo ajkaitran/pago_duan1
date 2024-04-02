@@ -760,7 +760,6 @@ a {
 .p__hover {
   color: #000000;
   font-weight: 500;
-  height: 48px;
 }
 
 .p__hover:hover {
@@ -1724,7 +1723,6 @@ span.p__red {
 
 .form ul li {
   list-style: none;
-  width: 25%;
 }
 
 .form .login__box {

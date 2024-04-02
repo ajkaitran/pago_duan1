@@ -21,75 +21,29 @@
                         <div class="sidebar__menu">
                             <ul>
                                 <?php
-                                foreach ($categoryProduct as $key => $cate) {
+                                foreach ($categories as $cate) {
                                 ?>
-                                <li>
-                                    <div class="border__dashed p__hover">
-                                        <a class="p__hover"
-                                            href="?controller=home&action=ProductCategory&Id=<?= $cate['Id'] ?>"><?= $cate['Name']?></a>
-                                        <i class="fa-regular fa-caret-down dropdown"></i>
-                                    </div>
-                                </li>
+                                    <li>
+                                        <div class="border__dashed p__hover">
+                                            <a class="p__hover" href="?controller=home&action=ProductCategory&Id=<?= $cate['parent']['Id'] ?>"><?= $cate['parent']['Name'] ?></a>
+                                            <?php echo !empty($cate['children']) ? '<i class="fa-regular fa-caret-down dropdown"></i>' : ""; ?>
+                                        </div>
+                                        <ul class="dropdown__menu ps-2">
+
+                                            <?php
+                                            foreach ($cate['children'] as $key => $child) :
+                                            ?>
+                                                <li class="border__solid">
+                                                    <a class="p__hover" href="?controller=home&action=ProductCategory&Id=<?php echo $child['Id'] ?>"><?php echo $child['Name'] ?></a>
+                                                </li>
+                                            <?php
+                                            endforeach;
+                                            ?>
+                                        </ul>
+                                    </li>
                                 <?php
                                 }
                                 ?>
-                                <!-- <li>
-                                    <div class="border__dashed p__hover">
-                                        <a class="p__hover" href="#">Ấn phẩm bao bì</a>
-                                        <i class="fa-regular fa-caret-down dropdown"></i>
-                                    </div>
-                                    <ul class="dropdown__menu ps-2">
-                                        <li class="border__solid">
-                                            <a class="p__hover" href="#">Nhãn dán</a>
-                                        </li>
-                                        <li class="border__solid">
-                                            <a class="p__hover" href="#">Túi giấy</a>
-                                        </li>
-                                        <li class="border__solid">
-                                            <a class="p__hover" href="#">Hộp giấy</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <div class="border__dashed p__hover">
-                                        <a class="p__hover" href="#">Ấn phẩm tiếp thị</a>
-                                        <i class="fa-regular fa-caret-down dropdown"></i>
-                                    </div>
-                                    <ul class="dropdown__menu ps-2">
-                                        <li class="border__solid">
-                                            <a class="p__hover" href="#">Catalogue</a>
-                                        </li>
-                                        <li class="border__solid">
-                                            <a class="p__hover" href="#">Tờ rơi</a>
-                                        </li>
-                                        <li class="border__solid">
-                                            <a class="p__hover" href="#">Poster</a>
-                                        </li>
-                                        <li class="border__solid">
-                                            <a class="p__hover" href="#">Tờ gấp</a>
-                                        </li>
-                                        <li class="border__solid">
-                                            <a class="p__hover" href="#">Vé</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <div class="border__dashed p__hover">
-                                        <a class="p__hover" href="#">Ấn phẩm văn phòng</a>
-                                        <i class="fa-regular fa-caret-down dropdown"></i>
-                                    </div>
-                                    <ul class="dropdown__menu ps-2">
-                                        <li class="border__solid">
-                                            <a class="p__hover" href="#">Bìa đựng hồ sơ</a>
-                                        </li>
-                                        <li class="border__solid">
-                                            <a class="p__hover" href="#">Bao thư</a>
-                                        </li>
-                                        <li class="border__solid">
-                                            <a class="p__hover" href="#">Danh thiếp</a>
-                                        </li>
-                                    </ul>
-                                </li> -->
                             </ul>
                         </div>
                     </div>

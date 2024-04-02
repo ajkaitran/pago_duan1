@@ -22,7 +22,7 @@ function index()
 function product()
 {
     $listProduct = db_query("SELECT * FROM `Product`");
-    $categoryProduct = db_query("SELECT * FROM `ProductCategory`");
+    $categoryProduct = db_fetch_array("SELECT * FROM `ProductCategory` WHERE `ParentCategoryId` IS NULL");
 
     // Xử lý sắp xếp
     $sort = isset($_GET['Sort']) ? $_GET['Sort'] : '';
@@ -42,55 +42,36 @@ function product()
                 break;
         }
     }
+    foreach ($categoryProduct as $parent) {
 
+        $ParentCategoryId = $parent['Id'];
+
+        $categories[] = [
+            "parent" => $parent,
+            "children" => db_fetch_array("SELECT * FROM ProductCategory WHERE ParentCategoryId='$ParentCategoryId'")
+        ];
+    }
     $model = array(
         'listProduct' => $listProduct,
-        'categories' => $categoryProduct,
+        'categories' => $categories,
         'Sort' => $sort
     );
 
     load_view('home/product', '_layout', $model);
 }
 
-// function ProductCategory()
-// {
-//     $url = isset($_GET['url']) ? $_GET['url'] : '';
-
-//     $catQuery = "SELECT * FROM `productcategory` WHERE slug = '$url'";
-//     $catResult = db_fetch_array(db_query($catQuery));
-//     $categoryId = $catResult['id'];
-//     $productQuery = "SELECT * FROM `productcategory` WHERE ProductCategoryId = $categoryId";
-//     $productResult = db_query($productQuery);
-//     $categoryProductQuery = db_fetch_array("SELECT * FROM `ProductCategory` WHERE `ParentCategoryId` IS NULL");
-//     $categoryProductResult = db_query($categoryProductQuery);
-//     foreach ($categoryProductQuery as $parent) {
-
-//         $ParentCategoryId = $parent['Id'];
-
-//         $categories[] = [
-//             "parent" => $parent,
-//             "children" => db_fetch_array("SELECT * FROM ProductCategory WHERE ParentCategoryId='$ParentCategoryId'")
-//         ];
-//     }
-//     $model = array(
-//         'listProduct' => $productResult,
-//         'categoryProduct' => $categoryProductResult,
-//         'categories' => $categories
-//     );
-//     load_view('home/ProductCategory', '_layout', $model);
-// }
 function ProductDetail()
 {
-    $Userid = $_SESSION['user']['Id'] ?? null;
-    $id = isset($_GET['Id']) ? $_GET['Id'] : '';
+    $Userid = $_SESSION['user']['Id'] ?? 0;
+    $id = isset($_GET['Id']) ? $_GET['Id'] : 0;
     $sql = "SELECT * FROM product WHERE Id = '$id'";
     $productDetail = db_fetch_row($sql);
-
-    $checkorder = db_fetch_row("SELECT orders.id, orders.status, order_details.*
+    $cate_id = $productDetail['ProductCategoryId'];
+        $checkorder = db_fetch_row("SELECT orders.id, orders.status, order_details.*
     FROM orders
     JOIN order_details ON orders.id = order_details.order_id
     WHERE orders.user_id = $Userid AND orders.status = 'delivered' AND order_details.product_id = $id");
-    $products = db_query("SELECT * FROM product WHERE ProductCategoryId = '$id'");
+    $products = db_query("SELECT * FROM product WHERE ProductCategoryId = '$cate_id'");
     $commet =  db_query("SELECT comments.*, users.FullName as fullname FROM comments JOIN users ON comments.UserId = users.Id WHERE ProductId = '$id'");
     $categoryProduct = db_query("SELECT * FROM `ProductCategory`");
     $id = $_SESSION['user']['Id'] ?? null;
@@ -108,14 +89,15 @@ function ProductDetail()
         echo "Sản phẩm không tồn tại";
     }
 }
-function ProductCategory(){
+function ProductCategory()
+{
     $id = isset($_GET['Id']) ? $_GET['Id'] : '';
     $sort = isset($_GET['Sort']) ? $_GET['Sort'] : '';
     $sql = db_fetch_row("SELECT * FROM productcategory WHERE Id = '$id'");
     $products = db_query("SELECT * FROM product WHERE ProductCategoryId = '$sql[Id]'");
-    $categoryProduct = db_query("SELECT * FROM `ProductCategory`");
-    if($sort != null){
-        switch($sort){
+    $categoryProduct = db_fetch_array("SELECT * FROM `ProductCategory` WHERE `ParentCategoryId` IS NULL");
+    if ($sort != null) {
+        switch ($sort) {
             case 1:
                 $products = db_query("SELECT * FROM product WHERE ProductCategoryId = '$sql[Id]' ORDER BY Name ASC");
                 break;
@@ -124,16 +106,25 @@ function ProductCategory(){
                 break;
             case 3:
                 $products = db_query("SELECT * FROM product WHERE ProductCategoryId = '$sql[Id]' ORDER BY PriceSale ASC, Price ASC");
-                    break;
+                break;
             case 4:
                 $products = db_query("SELECT * FROM product WHERE ProductCategoryId = '$sql[Id]' ORDER BY PriceSale DESC, Price DESC");
                 break;
-        }  
-    } 
+        }
+    }
+    foreach ($categoryProduct as $parent) {
+
+        $ParentCategoryId = $parent['Id'];
+
+        $categories[] = [
+            "parent" => $parent,
+            "children" => db_fetch_array("SELECT * FROM ProductCategory WHERE ParentCategoryId='$ParentCategoryId'")
+        ];
+    }
     $model = array(
         'products' => $products,
         'Category' => $sql,
-        'categoryProduct' => $categoryProduct,
+        'categories' => $categories,
         'Sort' => $sort
     );
     load_view('home/ProductCategory', '_layout', $model);
@@ -183,7 +174,8 @@ function Search()
     load_view('home/Search', '_layout', $model);
 }
 
-function Comment(){
+function Comment()
+{
     $id = isset($_POST['userId']) ? $_POST['userId'] : '';
     $productId = isset($_POST['productId']) ? $_POST['productId'] : '';
     // $orderId = isset($_POST['orderId']) ? $_POST['orderId'] : '';
@@ -192,6 +184,6 @@ function Comment(){
     $sql = "INSERT INTO `comments` 
         (`Content`, `UserId`, `ProductId`, `CreatedAt`) 
         VALUES ('$content', '$id' ,'$productId','$createdAt')";
-        db_query($sql);
-        header("Location: ?controller=Home&action=ProductDetail&Id=$productId");
+    db_query($sql);
+    header("Location: ?controller=Home&action=ProductDetail&Id=$productId");
 }

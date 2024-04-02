@@ -62,7 +62,7 @@
             </div>
         </div>
     </section>
-    <!-- <section class="new__service">
+    <section class="new__service">
         <div class="container">
             <div class="title__orange">
                 <img src="./public/images/get-image-v3 (4).png" alt="">
@@ -81,7 +81,7 @@
                 ?>
             </div>
         </div>
-    </section> -->
+    </section>
     <section class="favorite__product">
         <div class="container">
             <div class="title__orange">

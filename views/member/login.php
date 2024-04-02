@@ -29,7 +29,7 @@
                 </div>
             </form>
             <ul>
-                <li><a href="?controller=member&action=register" class="p__hover">Đăng ký</a></li>
+                <li>Bạn chưa có tài khoản <a href="?controller=member&action=register" class="p__hover">Đăng ký</a> ngay!</li>
             </ul>
         </div>
     </div>

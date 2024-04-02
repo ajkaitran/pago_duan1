@@ -25,25 +25,25 @@
                             </div>
                             <div class="input">
                                 <p class="p__red">*</p>
-                                <input name="PhoneNumber" placeholder="Điện Thoại">
+                                <input name="PhoneNumber" type="text" placeholder="Điện Thoại">
                             </div>
                             <div class="input">
                                 <p class="p__red">*</p>
-                                <input name="Email" placeholder="Email">
+                                <input name="Email" type="email" placeholder="Email">
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="input">
                                 <p class="p__red">*</p>
-                                <input name="Username" placeholder="Tên truy cập">
+                                <input name="Username" type="text" placeholder="Tên truy cập">
                             </div>
                             <div class="input">
                                 <p class="p__red">*</p>
-                                <input name="Password" placeholder="Mật khẩu">
+                                <input name="Password" type="password" placeholder="Mật khẩu">
                             </div>
                             <div class="input">
                                 <p class="p__red">*</p>
-                                <input name="ConfirmPassword" placeholder="Xác nhận mật khẩu">
+                                <input name="ConfirmPassword" type="password" placeholder="Xác nhận mật khẩu">
                             </div>
                         </div>
                         <div class="col-lg-12">

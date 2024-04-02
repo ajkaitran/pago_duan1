@@ -1,10 +1,10 @@
+
 <div class="content">
     <section class="path">
         <div class="container">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><i class="fa-duotone fa-house-chimney me-3"></i><a class="p__hover"
-                            href="#">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><i class="fa-duotone fa-house-chimney me-3"></i><a class="p__hover" href="#">Trang chủ</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Sản phẩm</li>
                 </ol>
             </nav>
@@ -23,13 +23,24 @@
                                 <?php
                                 foreach ($categories as $cate) {
                                 ?>
-                                <li>
-                                    <div class="border__dashed p__hover">
-                                        <a class="p__hover"
-                                            href="?controller=home&action=ProductCategory&Id=<?= $cate['Id'] ?>"><?= $cate['Name']?></a>
-                                        <i class="fa-regular fa-caret-down dropdown"></i>
-                                    </div>
-                                </li>
+                                    <li>
+                                        <div class="border__dashed p__hover">
+                                            <a class="p__hover" href="?controller=home&action=ProductCategory&Id=<?= $cate['parent']['Id'] ?>"><?= $cate['parent']['Name'] ?></a>
+                                            <?php echo !empty($cate['children']) ? '<i class="fa-regular fa-caret-down dropdown"></i>' : ""; ?>
+                                        </div>
+                                        <ul class="dropdown__menu ps-2">
+
+                                            <?php
+                                            foreach ($cate['children'] as $key => $child) :
+                                            ?>
+                                                <li class="border__solid">
+                                                    <a class="p__hover" href="<?php echo $child['Id'] ?>"><?php echo $child['Name'] ?></a>
+                                                </li>
+                                            <?php
+                                            endforeach;
+                                            ?>
+                                        </ul>
+                                    </li>
                                 <?php
                                 }
                                 ?>
@@ -52,37 +63,33 @@
                             <?php
                             foreach ($listProduct as $key => $item) {
                             ?>
-                            <div class="box__favorite__product">
-                                <a href="?controller=home&action=ProductDetail">
-                                    <img src="./public/uploads/AnhSanPham/<?= $item['Image'] ?>" alt="">
-                                    <p class="p__hover"><?= $item['Name'] ?></p>
-                                    <div class="price">
-                                        <h5 class="new__price"><?= number_format($item['PriceSale']) ?>VND</h5>
-                                        <del class="old__price p__hover"><?= number_format($item['Price']) ?>VND</del>
-                                    </div>
-                                </a>
-                                <form action="?controller=ShoppingCart&action=add_to_cart" method="post">
-                                    <input type="hidden" name="id" value="<?= $item['Id'] ?>">
-                                    <button type="submit" class="add__to__cart"><i
-                                            class="fa-regular fa-bag-shopping fs-5"></i>Thêm vào giỏ hàng</button>
-                                </form>
-                                <div class="floating__box__product">
-                                    <div class="box__product">
-                                        <a asp-action="ProductView" asp-controller="Home" asp-route-id="@item.Id"
-                                            data-fancybox="" data-type="ajax" class="item-product">
-                                            <i class="fa-regular fa-eye"></i>
-                                        </a>
-                                    </div>
-                                    <div class="box__product">
-                                        <a href="javascript:;" onclick="AddToWishlist('@item.Id')"><i
-                                                class="fa-regular fa-heart"></i></a>
-                                    </div>
-                                    <div class="box__product">
-                                        <a href="javascript:;" onclick="AddToCollation('@item.Id')"><i
-                                                class="fa-solid fa-code-compare fa-rotate-90"></i></a>
+                                <div class="box__favorite__product">
+                                    <a href="?controller=home&action=ProductDetail">
+                                        <img src="./public/uploads/AnhSanPham/<?= $item['Image'] ?>" alt="">
+                                        <p class="p__hover"><?= $item['Name'] ?></p>
+                                        <div class="price">
+                                            <h5 class="new__price"><?= number_format($item['PriceSale']) ?>VND</h5>
+                                            <del class="old__price p__hover"><?= number_format($item['Price']) ?>VND</del>
+                                        </div>
+                                    </a>
+                                    <form action="?controller=ShoppingCart&action=add_to_cart" method="post">
+                                        <input type="hidden" name="id" value="<?= $item['Id'] ?>">
+                                        <button type="submit" class="add__to__cart"><i class="fa-regular fa-bag-shopping fs-5"></i>Thêm vào giỏ hàng</button>
+                                    </form>
+                                    <div class="floating__box__product">
+                                        <div class="box__product">
+                                            <a asp-action="ProductView" asp-controller="Home" asp-route-id="@item.Id" data-fancybox="" data-type="ajax" class="item-product">
+                                                <i class="fa-regular fa-eye"></i>
+                                            </a>
+                                        </div>
+                                        <div class="box__product">
+                                            <a href="javascript:;" onclick="AddToWishlist('@item.Id')"><i class="fa-regular fa-heart"></i></a>
+                                        </div>
+                                        <div class="box__product">
+                                            <a href="javascript:;" onclick="AddToCollation('@item.Id')"><i class="fa-solid fa-code-compare fa-rotate-90"></i></a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                             <?php
                             }
                             ?>
@@ -94,8 +101,7 @@
                         <div class="row">
                             <div class="col-lg-12 col-md-7 col-sm-12">
                                 <label>Sắp xếp</label>
-                                <select class="form-control mt-2" name="Sort"
-                                    onchange="window.location.href='?controller=home&action=product&Sort='+this.value">
+                                <select class="form-control mt-2" name="Sort" onchange="window.location.href='?controller=home&action=product&Sort='+this.value">
                                     <option value="">Mặc định</option>
                                     <option <?= 1 == $Sort ? "selected" : null ?> value="1">Sắp xếp theo tên (A-Z)
                                     </option>
@@ -114,39 +120,35 @@
                             <?php
                             foreach ($listProduct as $key => $item) {
                             ?>
-                            <div class="col">
-                                <div class="box__favorite__product">
-                                    <a href="?controller=home&action=ProductDetail&Id=<?= $item['Id'] ?>">
-                                        <img src="./public/uploads/AnhSanPham/<?= $item['Image'] ?>" alt="">
-                                        <p class="p__hover"><?= $item['Name'] ?></p>
-                                        <div class="price d-flex" style="gap:10px">
-                                            <h5 class="new__price"><?= number_format($item['PriceSale']) ?>VND</h5>
-                                            <del
-                                                class="old__price p__hover"><?= number_format($item['Price']) ?>VND</del>
-                                        </div>
-                                    </a>
-                                    <form action="?controller=ShoppingCart&action=add_to_cart" method="post">
-                            <input type="hidden" name="id" value="<?= $item['Id'] ?>">
-                            <button type="submit" class="add__to__cart"><i class="fa-regular fa-bag-shopping fs-5"></i>Thêm vào giỏ hàng</button>
-                        </form>
-                                    <div class="floating__box__product">
-                                        <div class="box__product">
-                                            <a asp-action="ProductView" asp-controller="Home" asp-route-id="@item.Id"
-                                                data-fancybox="" data-type="ajax" class="item-product">
-                                                <i class="fa-regular fa-eye"></i>
-                                            </a>
-                                        </div>
-                                        <div class="box__product">
-                                            <a href="javascript:;" onclick="AddToWishlist('@item.Id')"><i
-                                                    class="fa-regular fa-heart"></i></a>
-                                        </div>
-                                        <div class="box__product">
-                                            <a href="javascript:;" onclick="AddToCollation('@item.Id')"><i
-                                                    class="fa-solid fa-code-compare fa-rotate-90"></i></a>
+                                <div class="col">
+                                    <div class="box__favorite__product">
+                                        <a href="?controller=home&action=ProductDetail&Id=<?= $item['Id'] ?>">
+                                            <img src="./public/uploads/AnhSanPham/<?= $item['Image'] ?>" alt="">
+                                            <p class="p__hover"><?= $item['Name'] ?></p>
+                                            <div class="price d-flex" style="gap:10px">
+                                                <h5 class="new__price"><?= number_format($item['PriceSale']) ?>VND</h5>
+                                                <del class="old__price p__hover"><?= number_format($item['Price']) ?>VND</del>
+                                            </div>
+                                        </a>
+                                        <form action="?controller=ShoppingCart&action=add_to_cart" method="post">
+                                            <input type="hidden" name="id" value="<?= $item['Id'] ?>">
+                                            <button type="submit" class="add__to__cart"><i class="fa-regular fa-bag-shopping fs-5"></i>Thêm vào giỏ hàng</button>
+                                        </form>
+                                        <div class="floating__box__product">
+                                            <div class="box__product">
+                                                <a asp-action="ProductView" asp-controller="Home" asp-route-id="@item.Id" data-fancybox="" data-type="ajax" class="item-product">
+                                                    <i class="fa-regular fa-eye"></i>
+                                                </a>
+                                            </div>
+                                            <div class="box__product">
+                                                <a href="javascript:;" onclick="AddToWishlist('@item.Id')"><i class="fa-regular fa-heart"></i></a>
+                                            </div>
+                                            <div class="box__product">
+                                                <a href="javascript:;" onclick="AddToCollation('@item.Id')"><i class="fa-solid fa-code-compare fa-rotate-90"></i></a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                             <?php
                             }
                             ?>

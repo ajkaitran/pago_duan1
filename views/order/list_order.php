@@ -39,7 +39,8 @@
                     <button name="update_order" type="submit" class="btn btn-success">Cập nhật</button>
                 </form>
                 <a href="?controller=Admin&action=order_details&id=<?= isset($value['order_id']) ? $value['order_id'] : null ?>" class="btn btn-primary mr-1">Xem chi tiết</a>
-                <a href="?controller=Admin&action=remove_order&id=<?= isset($value['order_id']) ? $value['order_id'] : null ?>" class="btn btn-danger">Xóa</a>
+                <a href="?controller=Admin&action=remove_order&order_id=<?= isset($value['order_id']) ? $value['order_id'] : null ?>" class="btn btn-danger">Xóa</a>
+
             </td>
         </tr>
     <?php 
