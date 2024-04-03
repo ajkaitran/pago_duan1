@@ -17,13 +17,10 @@
                     <label for="" class="form_ext">Danh mục cha</label>
                     <select name="ParentCategoryId" id="" class="form-control">
                         <option value="">Chọn danh mục</option>
-<<<<<<< HEAD
                         <?php foreach ($ProductCategory as $key => $value) { ?>
                             <option value="<?= $value['Id'] ?>"><?= $value['Name'] ?></option>
                         <?php } ?>
-=======
                         <?= showCategories($danhmuc['ParentCategoryId'], $ProductCategory) ?>
->>>>>>> origin/truongson0123
                     </select>
                 </div>
                 <div class="form-group d-flex">

@@ -33,12 +33,15 @@
                                 <th scope="row"><?= $key + 1 ?></th>
                                 <td><?= $value['ten_danhmuc'] ?></td>
                                 <td><img src="./public/uploads/AnhSanPham/<?= $imageNames[0] ?>" alt="" style="width: 100px; height: 100px"></td>
-                                <td><?= $value['Name'] ?></td>
+                                <td><a href="?controller=home&action=ProductDetail&Id=<?= $value['Id'] ?>"><?= $value['Name'] ?></a></td>
                                 <td>
                                     <h5><?= number_format($value['PriceSale']) ?>VND</h5>
                                     <del><?= number_format($value['Price']) ?>VND</del>
                                 </td>
-                                <td><a href="?controller=Admin&action=UpdateProduct&id=<?= $value['Id'] ?>" class="btn btn-primary">Sua</a> <a href="?controller=Admin&action=DeleteProduct&id=<?= $value['Id'] ?>" class="btn btn-danger">Xoa</a></td>
+                                <td>
+                                    <a href="?controller=Admin&action=UpdateProduct&id=<?= $value['Id'] ?>" class="btn btn-primary">Sua</a> 
+                                    <a href="?controller=Admin&action=DeleteProduct&id=<?= $value['Id'] ?>" class="btn btn-danger">Xoa</a>
+                                </td>
                             </tr>
                         <?php
                         }

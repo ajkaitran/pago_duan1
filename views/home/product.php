@@ -34,7 +34,7 @@
                                             foreach ($cate['children'] as $key => $child) :
                                             ?>
                                                 <li class="border__solid">
-                                                    <a class="p__hover" href="<?php echo $child['Id'] ?>"><?php echo $child['Name'] ?></a>
+                                                    <a class="p__hover" href="?controller=home&action=ProductCategory&Id=<?php echo $child['Id'] ?>"><?php echo $child['Name'] ?></a>
                                                 </li>
                                             <?php
                                             endforeach;
