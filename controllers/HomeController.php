@@ -86,7 +86,7 @@ function ProductDetail()
     $productDetail = db_fetch_row($sql);
     $products = db_query("SELECT * FROM product WHERE ProductCategoryId = '$productDetail[ProductCategoryId]'");
     $categoryProduct = db_query("SELECT * FROM `ProductCategory`");
-    $id = $_SESSION['user']['Id'] ?? null;
+    $id = $_SESSION['auth']['member']['Id'] ?? null;
     if ($productDetail) {
         $model = array(
             'productDetail' => $productDetail,

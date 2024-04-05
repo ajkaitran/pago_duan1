@@ -2,9 +2,12 @@
 
 function construct()
 {
+
 }
+
 function login()
 {
+
     $username = isset($_POST['Username']) ? $_POST['Username'] : null;
     $password = isset($_POST['Password']) ? $_POST['Password'] : null;
 
@@ -14,7 +17,7 @@ function login()
         $user = db_fetch_row("SELECT * FROM `Admins` WHERE `Username` = '$username' AND `Password` = '$hashed_password'");
 
         if ($user) {
-            $_SESSION['user'] = $user;
+            $_SESSION['auth']['admin'] = $user;
             header("Location: ?controller=admin&action=index");
             exit;
         } else {
@@ -30,14 +33,15 @@ function login()
 
 function logout()
 {
-    if (isset($_SESSION['user'])) {
-        unset($_SESSION['user']);
+    if (isset($_SESSION['auth']['admin'])) {
+        unset($_SESSION['auth']['admin']);
         header("Location: ?controller=home&action=index");
         exit;
     }
 }
 function Index()
 {
+    authorize("admin");
     load_view('/admin/Index', '_layoutAdmin');
 }
 function ListCategoryProduct()

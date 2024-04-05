@@ -1,6 +1,8 @@
 <?php
 //Triệu gọi đến file xử lý thông qua request
 
+$authorize = "none";
+
 $route_controllers = get_controller();
 
 $route_action = get_action();
@@ -14,3 +16,4 @@ if (file_exists($request_path)) {
 }
 
 call_function(array('construct', $route_action));
+
