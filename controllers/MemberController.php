@@ -61,7 +61,7 @@ function login()
         $user = db_fetch_row("SELECT * FROM `Users` WHERE `Username` = '$username' AND `Password` = '$hashed_password'");
 
         if ($user) {
-            $_SESSION['user'] = $user;
+            $_SESSION['auth']['member'] = $user;
             header("Location: ?controller=member&action=index");
             exit;
         } else {
@@ -77,9 +77,9 @@ function login()
 
 function logout()
 {
-    if(isset($_SESSION['user']))
+    if(isset($_SESSION['auth']['member']))
     {
-        unset($_SESSION['user']);
+        unset($_SESSION['auth']['member']);
         header("Location: ?controller=home&action=index");
         exit;
     }
@@ -89,7 +89,7 @@ function index()
 {
     global $status, $payments;
 
-    $user_id = $_SESSION['user']['Id'];
+    $user_id = $_SESSION['auth']['member']['Id'];
 
     $orders = db_fetch_array("SELECT orders.user_id, orders.id as order_id, orders.created_at, orders.total_amount, orders.status, orders.payment, customers.*
         FROM orders

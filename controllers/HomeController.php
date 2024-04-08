@@ -74,7 +74,7 @@ function ProductDetail()
     $products = db_query("SELECT * FROM product WHERE ProductCategoryId = '$cate_id'");
     $commet =  db_query("SELECT comments.*, users.FullName as fullname FROM comments JOIN users ON comments.UserId = users.Id WHERE ProductId = '$id'");
     $categoryProduct = db_query("SELECT * FROM `ProductCategory`");
-    $id = $_SESSION['user']['Id'] ?? null;
+    $id = $_SESSION['auth']['member']['Id'] ?? null;
     if ($productDetail) {
         $model = array(
             'productDetail' => $productDetail,

@@ -24,6 +24,7 @@ function register_admin()
 }
 function login()
 {
+
     $username = isset($_POST['Username']) ? $_POST['Username'] : null;
     $password = isset($_POST['Password']) ? $_POST['Password'] : null;
 
@@ -33,7 +34,7 @@ function login()
         $user = db_fetch_row("SELECT * FROM `Admins` WHERE `Username` = '$username' AND `Password` = '$hashed_password'");
 
         if ($user) {
-            $_SESSION['user'] = $user;
+            $_SESSION['auth']['admin'] = $user;
             header("Location: ?controller=admin&action=index");
             exit;
         } else {
@@ -49,14 +50,15 @@ function login()
 
 function logout()
 {
-    if (isset($_SESSION['user'])) {
-        unset($_SESSION['user']);
+    if (isset($_SESSION['auth']['admin'])) {
+        unset($_SESSION['auth']['admin']);
         header("Location: ?controller=home&action=index");
         exit;
     }
 }
 function Index()
 {
+    // authorize("admin");
     load_view('/admin/Index', '_layoutAdmin');
 }
 function ListCategoryProduct()
@@ -91,7 +93,7 @@ function AddCategoryProduct()
         }
         if (!empty($name)) {
             $url = convertToUnSign($name);
-        }else{
+        } else {
             $url = convertToUnSign($url);
         }
         $arr = array(
@@ -130,7 +132,7 @@ function EditCategoryProduct()
         $img = (isset($_FILES['img']) && $_FILES['img']['name'] != '') ? $_FILES['img']['name'] : null;
         if (!empty($name)) {
             $slug = convertToUnSign($name);
-        }else{
+        } else {
             $slug = convertToUnSign($slug);
         }
         $data = array(
@@ -144,11 +146,10 @@ function EditCategoryProduct()
             $uploadFile = './public/uploads/AnhDanhMuc/' . $img;
             move_uploaded_file($_FILES['img']['tmp_name'], $uploadFile);
         }
-        
+
         db_update("productcategory", $data, "Id = $id");
         header("Location: ?controller=admin&action=ListCategoryProduct");
     } else {
-        
     }
 }
 
@@ -201,10 +202,10 @@ function AddProduct()
             $names = $imgFiles['name'];
             $types = $imgFiles['type'];
             $tmp_names = $imgFiles['tmp_name'];
-        
+
             foreach ($tmp_names as $index => $tmp_name) {
-                $img = $names[$index]; 
-        
+                $img = $names[$index];
+
                 if (!empty($img)) {
                     $uploadDir = './public/uploads/AnhSanPham/';
                     $uploadFile = $uploadDir . basename($img);
@@ -214,13 +215,13 @@ function AddProduct()
                         echo "Chỉ cho phép tải lên các tệp ảnh có định dạng JPG, JPEG, PNG, GIF.";
                         return;
                     }
-        
+
                     // Move the uploaded file to the destination directory
                     if (!move_uploaded_file($tmp_name, $uploadFile)) {
                         echo "Có lỗi xảy ra khi tải lên ảnh.";
                         return;
                     }
-        
+
                     $imgNames[] = $img;
                 }
             }
@@ -267,16 +268,16 @@ function EditProduct()
         $dm = isset($_POST['dm']) ? $_POST['dm'] : null;
         $id = isset($_POST['id']) ? $_POST['id'] : null;
         $imgNames = ''; // Đưa biến $imgNames về chuỗi trống
-        
+
         if (isset($_FILES['img'])) {
             $imgFiles = $_FILES['img'];
             $names = $imgFiles['name'];
             $types = $imgFiles['type'];
             $tmp_names = $imgFiles['tmp_name'];
-        
+
             foreach ($tmp_names as $index => $tmp_name) {
-                $img = $names[$index]; 
-        
+                $img = $names[$index];
+
                 if (!empty($img)) {
                     $uploadDir = './public/uploads/AnhSanPham/';
                     $uploadFile = $uploadDir . basename($img);
@@ -568,7 +569,8 @@ function list_order()
     load_view('order/list_order', '_layoutAdmin', $data);
 }
 
-function order_details() {
+function order_details()
+{
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
 
@@ -601,7 +603,8 @@ function order_details() {
     }
 }
 
-function update_order() {
+function update_order()
+{
     if (isset($_POST['update_order'])) {
         $id = isset($_POST['order_id']) ? $_POST['order_id'] : null;
         $status = isset($_POST['status']) ? $_POST['status'] : null;
@@ -616,7 +619,8 @@ function update_order() {
     }
 }
 
-function remove_order() {
+function remove_order()
+{
     if (isset($_GET['order_id'])) {
         $id = $_GET['order_id'];
 
@@ -628,34 +632,35 @@ function remove_order() {
 
 
 // Chuyển thành ToUnSign
-function convertToUnSign($str) {
+function convertToUnSign($str)
+{
     $unsignChars = array(
-        'á'=>'a','à'=>'a','ả'=>'a','ã'=>'a','ạ'=>'a',
-        'ă'=>'a','ắ'=>'a','ằ'=>'a','ẳ'=>'a','ẵ'=>'a','ặ'=>'a',
-        'â'=>'a','ấ'=>'a','ầ'=>'a','ẩ'=>'a','ẫ'=>'a','ậ'=>'a',
-        'đ'=>'d',
-        'é'=>'e','è'=>'e','ẻ'=>'e','ẽ'=>'e','ẹ'=>'e',
-        'ê'=>'e','ế'=>'e','ề'=>'e','ể'=>'e','ễ'=>'e','ệ'=>'e',
-        'í'=>'i','ì'=>'i','ỉ'=>'i','ĩ'=>'i','ị'=>'i',
-        'ó'=>'o','ò'=>'o','ỏ'=>'o','õ'=>'o','ọ'=>'o',
-        'ô'=>'o','ố'=>'o','ồ'=>'o','ổ'=>'o','ỗ'=>'o','ộ'=>'o',
-        'ơ'=>'o','ớ'=>'o','ờ'=>'o','ở'=>'o','ỡ'=>'o','ợ'=>'o',
-        'ú'=>'u','ù'=>'u','ủ'=>'u','ũ'=>'u','ụ'=>'u',
-        'ư'=>'u','ứ'=>'u','ừ'=>'u','ử'=>'u','ữ'=>'u','ự'=>'u',
-        'ý'=>'y','ỳ'=>'y','ỷ'=>'y','ỹ'=>'y','ỵ'=>'y',
-        'Á'=>'A','À'=>'A','Ả'=>'A','Ã'=>'A','Ạ'=>'A',
-        'Ă'=>'A','Ắ'=>'A','Ằ'=>'A','Ẳ'=>'A','Ẵ'=>'A','Ặ'=>'A',
-        'Â'=>'A','Ấ'=>'A','Ầ'=>'A','Ẩ'=>'A','Ẫ'=>'A','Ậ'=>'A',
-        'Đ'=>'D',
-        'É'=>'E','È'=>'E','Ẻ'=>'E','Ẽ'=>'E','Ẹ'=>'E',
-        'Ê'=>'E','Ế'=>'E','Ề'=>'E','Ể'=>'E','Ễ'=>'E','Ệ'=>'E',
-        'Í'=>'I','Ì'=>'I','Ỉ'=>'I','Ĩ'=>'I','Ị'=>'I',
-        'Ó'=>'O','Ò'=>'O','Ỏ'=>'O','Õ'=>'O','Ọ'=>'O',
-        'Ô'=>'O','Ố'=>'O','Ồ'=>'O','Ổ'=>'O','Ỗ'=>'O','Ộ'=>'O',
-        'Ơ'=>'O','Ớ'=>'O','Ờ'=>'O','Ở'=>'O','Ỡ'=>'O','Ợ'=>'O',
-        'Ú'=>'U','Ù'=>'U','Ủ'=>'U','Ũ'=>'U','Ụ'=>'U',
-        'Ư'=>'U','Ứ'=>'U','Ừ'=>'U','Ử'=>'U','Ữ'=>'U','Ự'=>'U',
-        'Ý'=>'Y','Ỳ'=>'Y','Ỷ'=>'Y','Ỹ'=>'Y','Ỵ'=>'Y'
+        'á' => 'a', 'à' => 'a', 'ả' => 'a', 'ã' => 'a', 'ạ' => 'a',
+        'ă' => 'a', 'ắ' => 'a', 'ằ' => 'a', 'ẳ' => 'a', 'ẵ' => 'a', 'ặ' => 'a',
+        'â' => 'a', 'ấ' => 'a', 'ầ' => 'a', 'ẩ' => 'a', 'ẫ' => 'a', 'ậ' => 'a',
+        'đ' => 'd',
+        'é' => 'e', 'è' => 'e', 'ẻ' => 'e', 'ẽ' => 'e', 'ẹ' => 'e',
+        'ê' => 'e', 'ế' => 'e', 'ề' => 'e', 'ể' => 'e', 'ễ' => 'e', 'ệ' => 'e',
+        'í' => 'i', 'ì' => 'i', 'ỉ' => 'i', 'ĩ' => 'i', 'ị' => 'i',
+        'ó' => 'o', 'ò' => 'o', 'ỏ' => 'o', 'õ' => 'o', 'ọ' => 'o',
+        'ô' => 'o', 'ố' => 'o', 'ồ' => 'o', 'ổ' => 'o', 'ỗ' => 'o', 'ộ' => 'o',
+        'ơ' => 'o', 'ớ' => 'o', 'ờ' => 'o', 'ở' => 'o', 'ỡ' => 'o', 'ợ' => 'o',
+        'ú' => 'u', 'ù' => 'u', 'ủ' => 'u', 'ũ' => 'u', 'ụ' => 'u',
+        'ư' => 'u', 'ứ' => 'u', 'ừ' => 'u', 'ử' => 'u', 'ữ' => 'u', 'ự' => 'u',
+        'ý' => 'y', 'ỳ' => 'y', 'ỷ' => 'y', 'ỹ' => 'y', 'ỵ' => 'y',
+        'Á' => 'A', 'À' => 'A', 'Ả' => 'A', 'Ã' => 'A', 'Ạ' => 'A',
+        'Ă' => 'A', 'Ắ' => 'A', 'Ằ' => 'A', 'Ẳ' => 'A', 'Ẵ' => 'A', 'Ặ' => 'A',
+        'Â' => 'A', 'Ấ' => 'A', 'Ầ' => 'A', 'Ẩ' => 'A', 'Ẫ' => 'A', 'Ậ' => 'A',
+        'Đ' => 'D',
+        'É' => 'E', 'È' => 'E', 'Ẻ' => 'E', 'Ẽ' => 'E', 'Ẹ' => 'E',
+        'Ê' => 'E', 'Ế' => 'E', 'Ề' => 'E', 'Ể' => 'E', 'Ễ' => 'E', 'Ệ' => 'E',
+        'Í' => 'I', 'Ì' => 'I', 'Ỉ' => 'I', 'Ĩ' => 'I', 'Ị' => 'I',
+        'Ó' => 'O', 'Ò' => 'O', 'Ỏ' => 'O', 'Õ' => 'O', 'Ọ' => 'O',
+        'Ô' => 'O', 'Ố' => 'O', 'Ồ' => 'O', 'Ổ' => 'O', 'Ỗ' => 'O', 'Ộ' => 'O',
+        'Ơ' => 'O', 'Ớ' => 'O', 'Ờ' => 'O', 'Ở' => 'O', 'Ỡ' => 'O', 'Ợ' => 'O',
+        'Ú' => 'U', 'Ù' => 'U', 'Ủ' => 'U', 'Ũ' => 'U', 'Ụ' => 'U',
+        'Ư' => 'U', 'Ứ' => 'U', 'Ừ' => 'U', 'Ử' => 'U', 'Ữ' => 'U', 'Ự' => 'U',
+        'Ý' => 'Y', 'Ỳ' => 'Y', 'Ỷ' => 'Y', 'Ỹ' => 'Y', 'Ỵ' => 'Y'
     );
 
     $str = strtr($str, $unsignChars);

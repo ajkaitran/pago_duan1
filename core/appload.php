@@ -1,5 +1,5 @@
 <?php
-defined('APPPATH') OR exit('Không được quyền truy cập phần này');
+defined('APPPATH') or exit('Không được quyền truy cập phần này');
 
 // Include file config/database
 require CONFIGPATH . DIRECTORY_SEPARATOR . 'database.php';
@@ -23,24 +23,9 @@ if (is_array($helpers)) {
 }
 
 session_start();
+date_default_timezone_set("Asia/Ho_Chi_Minh");
 
 //connect db
 db_connect($db);
 
 require COREPATH . DIRECTORY_SEPARATOR . 'router.php';
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

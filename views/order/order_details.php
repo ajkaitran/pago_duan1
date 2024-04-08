@@ -3,8 +3,9 @@
             <div class="modal-body ">
                 <div class="px-4 py-5">
                     <h3 class="text-uppercase">Đơn hàng số #<?= isset($order['order_id']) ? $order['order_id'] : null ?></h3>
-                    
-                    <?php foreach($order_items as $item): ?>
+                    <p><b>Ngày mua: </b><?= isset($order['created_at']) ? $order['created_at'] : null ?></p>
+
+                    <?php foreach ($order_items as $item) : ?>
                         <div class="mb-3">
                             <div class="media">
                                 <img src="./public/uploads/AnhSanPham/<?= isset($item['Image']) ? $item['Image'] : null ?>" class="mr-3" alt="" style="width: 100px;">
@@ -26,15 +27,15 @@
                         <small>Phí vận chuyển</small>
                         <small><?= number_format(isset($ship_fee) ? $ship_fee : 0) ?> VNĐ</small>
                     </div>
-                    
+
                     <h5 class="d-flex justify-content-between mt-3">
                         <span class="font-weight-bold">Tổng tiền</span>
                         <span class="font-weight-bold theme-color"><?= number_format($order['total_amount'] + $ship_fee) ?> VNĐ</span>
-                    </h5>  
+                    </h5>
 
                     <div class="text-center mt-5">
                         <a href="?controller=Admin&action=list_order" class="btn btn-primary">Quay lại danh sách</a>
-                    </div>                   
+                    </div>
                 </div>
             </div>
         </div>

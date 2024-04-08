@@ -36,8 +36,8 @@ function load_helpers($name)
  * Gọi đến hàm theo tham số biến
  */
 
-function call_function($list_function = array())
-{
+ function call_function($list_function = array())
+ {
     if (is_array($list_function)) {
         foreach ($list_function as $f) {
             if (is_string($f) && function_exists($f)) {
@@ -85,5 +85,16 @@ function partial_view($name = '')
         require $path;
     } else {
         echo "Không tìm thấy {$path}";
+    }
+}
+
+function authorize($role = null) {
+    if ($role == null && !isset($_SESSION['auth'])) {
+        echo "<h1 style='color: red'>Bạn không có quyền truy cập</h1>";
+        die();
+    } elseif ($role == "admin" && !isset($_SESSION['auth']['admin'])) {
+        header("Location: ?controller=admin&action=login");
+    } elseif ($role == "member" && !isset($_SESSION['auth']['member'])) {
+        header("Location: ?controller=member&action=login");
     }
 }

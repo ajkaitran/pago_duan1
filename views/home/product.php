@@ -100,17 +100,13 @@
                     <div class="display__product">
                         <div class="row">
                             <div class="col-lg-12 col-md-7 col-sm-12">
-                                <label>Sắp xếp</label>
+                                <label>Hiển thị</label>
                                 <select class="form-control mt-2" name="Sort" onchange="window.location.href='?controller=home&action=product&Sort='+this.value">
                                     <option value="">Mặc định</option>
-                                    <option <?= 1 == $Sort ? "selected" : null ?> value="1">Sắp xếp theo tên (A-Z)
-                                    </option>
-                                    <option <?= 2 == $Sort ? "selected" : null ?> value="2">Sắp xếp theo tên (Z-A)
-                                    </option>
-                                    <option <?= 3 == $Sort ? "selected" : null ?> value="3">Sắp xếp theo giá (Nhỏ-Lớn)
-                                    </option>
-                                    <option <?= 4 == $Sort ? "selected" : null ?> value="4">Sắp xếp theo giá (Lớn-Nhỏ)
-                                    </option>
+                                    <option <?= 1 == $Sort ? "selected" : null ?> value="1">Sắp xếp theo tên (A-Z)</option>
+                                    <option <?= 2 == $Sort ? "selected" : null ?> value="2">Sắp xếp theo tên (Z-A)</option>
+                                    <option <?= 3 == $Sort ? "selected" : null ?> value="3">Sắp xếp theo giá (Nhỏ-Lớn)</option>
+                                    <option <?= 4 == $Sort ? "selected" : null ?> value="4">Sắp xếp theo giá (Lớn-Nhỏ)</option>
                                 </select>
                             </div>
                         </div>
@@ -141,10 +137,10 @@
                                                 </a>
                                             </div>
                                             <div class="box__product">
-                                                <a href="javascript:;" onclick="AddToWishlist('@item.Id')"><i class="fa-regular fa-heart"></i></a>
+                                                <a href="javascript:;"><i class="fa-regular fa-heart"></i></a>
                                             </div>
                                             <div class="box__product">
-                                                <a href="javascript:;" onclick="AddToCollation('@item.Id')"><i class="fa-solid fa-code-compare fa-rotate-90"></i></a>
+                                                <a href="javascript:;"><i class="fa-solid fa-code-compare fa-rotate-90"></i></a>
                                             </div>
                                         </div>
                                     </div>
