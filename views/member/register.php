@@ -4,8 +4,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <i class="fa-duotone fa-house-chimney me-3"></i><a class="p__hover"
-                                                                           href="#">Trang chủ</a>
+                        <i class="fa-duotone fa-house-chimney me-3"></i><a class="p__hover" href="#">Trang chủ</a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">Đăng Ký</li>
                 </ol>

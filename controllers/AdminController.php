@@ -3,6 +3,25 @@
 function construct()
 {
 }
+function register_admin()
+{
+    $username = isset($_POST['Username']) ? $_POST['Username'] : null;
+    $password = isset($_POST['Password']) ? $_POST['Password'] : null;
+
+    if ($username == null || $password == null ) {
+        echo "Lỗi: Điền đầy đủ thông tin.";
+        load_view('admin/ListAdmin');
+    }
+    $arr = array(
+        'Username' => $username,
+        'Password' => md5($password),
+    );
+
+    db_insert('Admins', $arr);
+
+    header("Location: ?controller=admin&action=listadmin");
+    exit;
+}
 function login()
 {
     $username = isset($_POST['Username']) ? $_POST['Username'] : null;

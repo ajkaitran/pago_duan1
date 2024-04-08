@@ -1,23 +1,25 @@
 <div class="box_content">
-    <div class="row">
-        <div class="col-12">
-            <div class="form-group d-flex">
-                <label for="" class="form_ext">Tên đăng nhập</label>
-                <input type="text" class="input-text form-control">
-            </div>
-            <div class="form-group d-flex">
-                <label for="" class="form_ext">Mật khẩu</label>
-                <input type="text" class="input-text form-control">
-            </div>
-            <div class="form-group d-flex">
-                <label for="" class="form_ext" style="margin-right: 45px;">Trạng thái</label>
-                <input type="checkbox">
-            </div>
-            <div class="form-group">
-                <button class="btn btn-success" style="margin-left: 175px;">Thêm mới</button>
+    <form method="post" action="?controller=admin&action=register_admin">
+        <div class="row ">
+            <div class="col-6 mx-auto">
+                <div class="form-group d-flex">
+                    <label for="" class="form_ext">Tên đăng nhập</label>
+                    <input type="text" class="input-text form-control w-75" name="Username">
+                </div>
+                <div class="form-group d-flex">
+                    <label for="" class="form_ext">Mật khẩu</label>
+                    <input type="text" class="input-text form-control w-75" name="Password">
+                </div>
+                <div class="form-group d-flex">
+                    <label for="" class="form_ext" name="Active">Trạng thái</label>
+                    <input type="checkbox">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success">Thêm mới</button>
+                </div>
             </div>
         </div>
-    </div>
+    </form>
 </div>
 
 <div class="right-column">
