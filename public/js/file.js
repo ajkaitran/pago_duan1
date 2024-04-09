@@ -52,7 +52,8 @@ const fileUpload = () => {
         } else {
           const uploadedFiles = {
             name: fileName,
-            url: fileURL };
+            url: fileURL
+          };
 
 
           FILE_LIST.push(uploadedFiles);
@@ -88,7 +89,7 @@ const removeFile = () => {
 fileUpload();
 removeFile();
 ClassicEditor
-            .create( document.querySelector( '#editor' ) )
-            .catch( error => {
-                console.error( error );
-            } );
+  .create(document.querySelector('#editor'))
+  .catch(error => {
+    console.error(error);
+  });

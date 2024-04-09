@@ -57,7 +57,7 @@
             <a class="collapse-item" href="?controller=Admin&action=UpdatePassword">Đổi mật khẩu</a>
             <a class="collapse-item" href="?controller=Admin&action=ListAdmin">Quản lý admin</a>
             <!-- <a class="collapse-item" href="#">Thông tin chung</a> -->
-            <a class="collapse-item" href="#">Đăng xuất</a>
+            <a class="collapse-item" href="?controller=Admin&action=logout">Đăng xuất</a>
           </div>
         </div>
       </li>
@@ -136,19 +136,19 @@
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="?controller=Admin&action=Comment">
-        <i class="fas fa-fw fa-cog"></i>
+          <i class="fas fa-fw fa-cog"></i>
           <span>Quản lý bình luận</span>
         </a>
 
-        <li class="nav-item">
+      <li class="nav-item">
         <a class="nav-link collapsed" href="?controller=Admin&action=Statistical">
-        <i class="fas fa-fw fa-cog"></i>
+          <i class="fas fa-fw fa-cog"></i>
           <span>Quản lý thống kê</span>
         </a>
 
-      
-     
-      <!-- Nav Item - Pages Collapse Menu -->
+
+
+        <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages6" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-folder"></i>

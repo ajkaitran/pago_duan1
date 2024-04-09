@@ -8,7 +8,7 @@ function register_admin()
     $username = isset($_POST['Username']) ? $_POST['Username'] : null;
     $password = isset($_POST['Password']) ? $_POST['Password'] : null;
 
-    if ($username == null || $password == null ) {
+    if ($username == null || $password == null) {
         echo "Lỗi: Điền đầy đủ thông tin.";
         load_view('admin/ListAdmin');
     }
@@ -24,27 +24,28 @@ function register_admin()
 }
 function login()
 {
+    load_view('admin/login', '_layoutNone');
+}
 
+function login_admin()
+{
     $username = isset($_POST['Username']) ? $_POST['Username'] : null;
-    $password = isset($_POST['Password']) ? $_POST['Password'] : null;
+    $password = isset($_POST['Password']) ? md5($_POST['Password']) : null;
+
 
     if ($username && $password) {
-        $hashed_password = md5($password);
+        $user = db_fetch_row("SELECT * FROM `admins` WHERE `Username` = '$username' AND `Password` = '$password' AND `Active` = 1");
 
-        $user = db_fetch_row("SELECT * FROM `Admins` WHERE `Username` = '$username' AND `Password` = '$hashed_password'");
-
-        if ($user) {
+        if (!empty($user)) {
             $_SESSION['auth']['admin'] = $user;
+
+
             header("Location: ?controller=admin&action=index");
             exit;
-        } else {
-            echo "Lỗi: Tên người dùng hoặc mật khẩu không đúng.";
-            load_view('admin/login', '_layoutNone');
         }
-    } else {
-        echo "Lỗi: Vui lòng điền đầy đủ thông tin.";
-        load_view('admin/login', '_layoutNone');
     }
+
+    header("Location: ?controller=admin&action=login");
 }
 
 
@@ -52,17 +53,18 @@ function logout()
 {
     if (isset($_SESSION['auth']['admin'])) {
         unset($_SESSION['auth']['admin']);
-        header("Location: ?controller=home&action=index");
+        header("Location: ?controller=admin&action=login");
         exit;
     }
 }
 function Index()
 {
-    // authorize("admin");
+    authorize("admin");
     load_view('/admin/Index', '_layoutAdmin');
 }
 function ListCategoryProduct()
 {
+    authorize("admin");
     $sql = "SELECT * FROM `productcategory` WHERE 1";
     $listDm = db_fetch_array($sql);
     $data =  array(
@@ -72,6 +74,7 @@ function ListCategoryProduct()
 }
 function CategoryProduct()
 {
+    authorize("admin");
     $categories = db_fetch_array("SELECT * FROM `ProductCategory`");
 
     $model = array(
@@ -81,6 +84,7 @@ function CategoryProduct()
 }
 function AddCategoryProduct()
 {
+    authorize("admin");
     if (isset($_POST['them'])) {
         $prentCategoryId = isset($_POST['dm']) ? $_POST['dm'] : null;
 
@@ -110,6 +114,7 @@ function AddCategoryProduct()
 
 function UpdateCategoryProduct()
 {
+    authorize("admin");
     $id = isset($_GET['id']) ? $_GET['id'] : null;
     $sql = "SELECT * FROM `productcategory` WHERE Id = $id";
     $parentCategory = db_fetch_array("SELECT * FROM `ProductCategory` WHERE `Id` != $id");
@@ -124,6 +129,7 @@ function UpdateCategoryProduct()
 
 function EditCategoryProduct()
 {
+    authorize("admin");
     if (isset($_POST['sua'])) {
         $id = isset($_POST['id']) ? $_POST['id'] : null;
         $prentCategoryId = isset($_POST['dm']) ? $_POST['dm'] : NULL;
@@ -166,6 +172,7 @@ function DeleteCategoryProduct()
 
 function ListProduct()
 {
+    authorize("admin");
     $sql = "SELECT sp.*, dm.Name  AS ten_danhmuc 
     FROM `product` sp 
     JOIN `productcategory` dm ON sp.ProductCategoryId  = dm.Id
@@ -176,8 +183,25 @@ function ListProduct()
     );
     load_view('/product/ListProduct', '_layoutAdmin', $data);
 }
+function ProductDetail()
+{
+    authorize("admin");
+    $id = isset($_GET['Id']) ? $_GET['Id'] : 0;
+    $sql = "SELECT * FROM product WHERE Id = '$id'";
+    $productDetail = db_fetch_row($sql);
+    if ($productDetail) {
+        $model = array(
+            'productDetail' => $productDetail,
+        );
+        load_view('/product/ProductDetail', '_layoutAdmin', $model);
+    } else {
+        echo "Sản phẩm không tồn tại";
+    }
+    // load_view('/product/ProductDetail', '_layoutAdmin');
+}
 function Product()
 {
+    authorize("admin");
     $sql = "SELECT sp.*, dm.Name  AS ten_danhmuc 
     FROM `product` sp 
     JOIN `productcategory` dm ON sp.ProductCategoryId = dm.Id
@@ -194,6 +218,7 @@ function Product()
 }
 function AddProduct()
 {
+    authorize("admin");
     if (isset($_POST['them'])) {
         $name = isset($_POST['ten']) ? $_POST['ten'] : null;
         $imgNames = array();
@@ -229,13 +254,14 @@ function AddProduct()
         $imgString = implode(',', $imgNames);
         $gia = isset($_POST['gia']) ? $_POST['gia'] : null;
         $desc = isset($_POST['desc']) ? $_POST['desc'] : null;
+        $content = isset($_POST['content']) ? $_POST['content'] : null;
         $giasale = isset($_POST['giasale']) ? $_POST['giasale'] : null;
         $createdAt = date('Y-m-d H:i:s');
-        $slug = isset($_POST['slug']) ? $_POST['slug'] : null;
+        $slug = convertToUnSign($name);
         $dm = isset($_POST['dm']) ? $_POST['dm'] : null;
         $sql = "INSERT INTO `product` 
-        (`Name`, `Des`, `Image`, `Slug`, `Price`, `PriceSale`, `Active`, `CreatedAt`, `ProductCategoryId`) 
-        VALUES ('$name', '$desc', '$imgString', '$slug', $gia, $giasale, 1, '$createdAt', $dm)";
+        (`Name`, `Des`, `Content`, `Image`, `Slug`, `Price`, `PriceSale`, `Active`, `CreatedAt`, `ProductCategoryId`) 
+        VALUES ('$name', '$desc', '$content', '$imgString', '$slug', $gia, $giasale, 1, '$createdAt', $dm)";
         db_query($sql);
         header("Location: ?controller=admin&action=ListProduct");
     }
@@ -243,6 +269,7 @@ function AddProduct()
 
 function UpdateProduct()
 {
+    authorize("admin");
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
         $sql = "SELECT * FROM `product` WHERE Id = $id";
@@ -258,13 +285,15 @@ function UpdateProduct()
 }
 function EditProduct()
 {
+    authorize("admin");
     if (isset($_POST['sua'])) {
         $name = isset($_POST['ten']) ? $_POST['ten'] : null;
         $gia = isset($_POST['gia']) ? $_POST['gia'] : null;
         $desc = isset($_POST['desc']) ? $_POST['desc'] : null;
+        $content = isset($_POST['content']) ? $_POST['content'] : null;
         $giasale = isset($_POST['giasale']) ? $_POST['giasale'] : null;
         $date = date("Y-m-d H:i:s");
-        $slug = isset($_POST['slug']) ? $_POST['slug'] : null;
+        $slug = convertToUnSign($name);
         $dm = isset($_POST['dm']) ? $_POST['dm'] : null;
         $id = isset($_POST['id']) ? $_POST['id'] : null;
         $imgNames = ''; // Đưa biến $imgNames về chuỗi trống
@@ -301,7 +330,7 @@ function EditProduct()
         if (empty($imgNames)) {
             $imgNames = isset($_POST['imgOld']) ? $_POST['imgOld'] : null;
         }
-        $sql = "UPDATE `product` SET `Name`='$name',`Des`='$desc',`Image`='$imgNames',`Slug`='$slug',`Price`='$gia',`PriceSale`='$giasale',`Active`= 1,`CreatedAt`='$date',`ProductCategoryId`='$dm' WHERE Id = $id";
+        $sql = "UPDATE `product` SET `Name`='$name',`Des`='$desc', `Content`='$content',`Image`='$imgNames',`Slug`='$slug',`Price`='$gia',`PriceSale`='$giasale',`Active`= 1,`CreatedAt`='$date',`ProductCategoryId`='$dm' WHERE Id = $id";
         db_query($sql);
         header("Location: ?controller=admin&action=ListProduct");
     }
@@ -484,20 +513,24 @@ function DeleteArticle()
 // admin
 function UpdatePassword()
 {
+    authorize("admin");
     load_view('admin/UpdatePassword', '_layoutAdmin');
 }
 function ListAdmin()
 {
+    authorize("admin");
     load_view('admin/ListAdmin', '_layoutAdmin');
 }
 
 // User
 function ListUser()
 {
+    authorize("admin");
     load_view('admin/ListUser', '_layoutAdmin');
 }
 function EditUser()
 {
+    authorize("admin");
     load_view('admin/EditUser', '_layoutAdmin');
 }
 
@@ -531,11 +564,12 @@ function UpdateService()
 //comment
 function Comment()
 {
+    authorize("admin");
     $sql =  db_query("SELECT * FROM `comments`");
     $model = array(
         'listComment' => $sql,
     );
-    load_view('comment/Comment', '_layoutAdmin' , $model);
+    load_view('comment/Comment', '_layoutAdmin', $model);
 }
 function DeleteComment()
 {
@@ -552,6 +586,7 @@ function Statistical()
 // order
 function list_order()
 {
+    authorize("admin");
     global $status, $payments;
 
     $orders = db_fetch_array("SELECT orders.id as order_id, orders.created_at, orders.total_amount, orders.status, orders.payment, customers.*
@@ -571,6 +606,7 @@ function list_order()
 
 function order_details()
 {
+    authorize("admin");
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
 
@@ -605,6 +641,7 @@ function order_details()
 
 function update_order()
 {
+    authorize("admin");
     if (isset($_POST['update_order'])) {
         $id = isset($_POST['order_id']) ? $_POST['order_id'] : null;
         $status = isset($_POST['status']) ? $_POST['status'] : null;

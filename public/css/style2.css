@@ -371,13 +371,74 @@
     width: 150px;
     text-align: left;
 }
+
 /* .scroll-table{
     width: 100%;
     display: block;
     height: 400px;
     overflow-y: auto;
 } */
-.form_ext{
+.form_ext {
     width: 200px;
     font-weight: 600;
+}
+
+.product__detail {
+    width: 100%;
+    background-color: white;
+    padding: 20px;
+}
+
+.slide__images {
+    border: 1px solid gray;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.slide__images img {
+    width: 100%;
+    height: 300px;
+}
+
+.slide__images__nav .nav-image {
+    padding: 5px;
+}
+
+.slide__images__nav img {
+    width: 100%;
+    height: 60px;
+}
+
+.article_detail,
+.album_detail {
+    width: 100%;
+}
+
+.album_content {
+    width: 100%;
+}
+
+.border_botton__gray {
+    width: 100%;
+    display: block;
+    padding: 10px 0;
+    margin-bottom: 15px;
+    border-bottom: 1px solid gray;
+}
+
+.box_bg-white__border-left {
+    padding: 10px;
+    margin: 15px 0;
+    background-color: white;
+    border-left: 2px solid #f7941e;
+}
+
+/* Màu viền khi hover và khi ảnh được chọn */
+.slide__images__nav .nav-image.active {
+    border: 2px solid red;
+}
+
+/* Màu viền khi hover */
+.slide__images__nav .nav-image:hover {
+    border: 2px solid red;
 }

@@ -22,13 +22,25 @@
                         <div class="sidebar__menu">
                             <ul>
                                 <?php
-                                foreach ($categoryProduct as $key => $cate) {
+                                foreach ($categories as $cate) {
                                 ?>
                                     <li>
                                         <div class="border__dashed p__hover">
-                                            <a class="p__hover" href="?controller=home&action=ProductCategory&Id=<?= $cate['Id'] ?>"><?= $cate['Name'] ?></a>
-                                            <i class="fa-regular fa-caret-down dropdown"></i>
+                                            <a class="p__hover" href="?controller=home&action=ProductCategory&Id=<?= $cate['parent']['Id'] ?>"><?= $cate['parent']['Name'] ?></a>
+                                            <?php echo !empty($cate['children']) ? '<i class="fa-regular fa-caret-down dropdown"></i>' : ""; ?>
                                         </div>
+                                        <ul class="dropdown__menu ps-2">
+
+                                            <?php
+                                            foreach ($cate['children'] as $key => $child) :
+                                            ?>
+                                                <li class="border__solid">
+                                                    <a class="p__hover" href="?controller=home&action=ProductCategory&Id=<?php echo $child['Id'] ?>"><?php echo $child['Name'] ?></a>
+                                                </li>
+                                            <?php
+                                            endforeach;
+                                            ?>
+                                        </ul>
                                     </li>
                                 <?php
                                 }
@@ -40,7 +52,7 @@
                 <div class="col-lg-9 order-0 order-lg-1">
                     <div class="product__detail">
                         <div class="row">
-                            <div class="col-lg-6 col-md-6 ">
+                            <div class="col-lg-5 col-md-5 ">
                                 <div class="slide__images">
                                     <?php
                                     $imageNames = explode(',', $productDetail['Image']);
@@ -67,7 +79,7 @@
                                     ?>
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-6">
+                            <div class="col-lg-7 col-md-7">
                                 <h3><?= $productDetail['Name'] ?></h3>
                                 <div class="d-flex" style="gap:20px">
                                     <h3 class="new__price my-4">
@@ -95,12 +107,12 @@
                                     </ul>
                                     <div class="tab" id="tabs-1">
                                         <div class="content">
-                                            <?= $productDetail['Des'] ?>
+                                            <?= $productDetail['Content'] ?>
                                         </div>
                                     </div>
                                     <div class="tab" id="tabs-2">
                                         <div class="content">
-                                            <?php if ($checkOrder != null) : ?>
+                                            <?php if ($checkOrder != null && $checkComment == 0) : ?>
                                                 <form action="?controller=home&action=Comment" method="post">
                                                     <input type="hidden" name="userId" value="<?= $userId ?>">
                                                     <input type="hidden" name="productId" value="<?= $productDetail['Id'] ?>">
@@ -111,13 +123,23 @@
                                                     </div>
                                                     <button type="submit" class="btn btn-primary mt-3">Đánh giá</button>
                                                 </form>
+                                            <?php else : ?>
+                                                <p class="text-danger">Vui lòng mua hàng để được đánh giá sản phẩm này!</p>
                                             <?php endif; ?>
                                             <div class="mt-5">
                                                 <?php foreach ($comment as $key => $value) : ?>
                                                     <div class="card mb-3">
                                                         <div class="card-body">
                                                             <h5 class="card-title"><?= $value['fullname'] ?></h5>
-                                                            <p class="card-text"><?= $value['Content'] ?></p>
+                                                            <p class="card-text">
+                                                                <?= $value['Content'] ?>
+                                                                <?php if ((isset($_SESSION['auth']['member']['id']) && $value['UserId'] == $_SESSION['auth']['member']['id']) || isset($_SESSION['auth']['admin'])) : ?>
+                                                            <div class="btn-group">
+                                                                <a href="?controller=home&action=edit_cmt&id=<?= $value['Id'] ?>" data-fancybox="" data-type="ajax" class="btn btn-success">Sửa</a>
+                                                                <a href="?controller=home&action=delete_cmt&id=<?= $value['Id'] ?>&product_id=<?= $value['ProductId'] ?>" class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xoá?')">Xoá</a>
+                                                            </div>
+                                                        <?php endif; ?>
+                                                        </p>
                                                         </div>
                                                     </div>
                                                 <?php endforeach; ?>

@@ -185,16 +185,16 @@
 <body>
     <div class="login_form">
         <h1>ĐĂNG NHẬP QUẢN TRỊ</h1>
-        <form class="form_control" action="">
+        <form class="form_control" method="post" action="?controller=admin&action=login_admin">
             <div class="form_group">
                 <label class="form_label">Tài khoản</label>
-                <input class="form_input" id="username" type="text" placeholder="*Nhập tài khoản">
+                <input class="form_input" id="username" name="Username" type="text" placeholder="*Nhập tài khoản">
                 <small class="warning"></small>
                 <span class="focus"></span>
             </div>
             <div class="form_group">
                 <label class="form_label">Password</label>
-                <input class="form_input" id="password" type="password" placeholder="*Nhập mật khẩu">
+                <input class="form_input" id="password" name="Password" type="password" placeholder="*Nhập mật khẩu">
                 <small class="warning"></small>
                 <span class="focus"></span>
             </div>
@@ -249,9 +249,9 @@
                 input.value = input.value.trim()
 
                 if (!input.value) {
-                    isEmptyError = true;
                     showError(input, 'Không được để trống trường này!!!')
                 } else {
+                    isEmptyError = true;
                     showSuccess(input)
                 }
             });
@@ -260,11 +260,12 @@
         }
 
         form.addEventListener('submit', function(e) {
-            e.preventDefault()
+            e.preventDefault();
 
             let isEmptyError = checkEmptyError([username, password])
-
-
+            if (isEmptyError) {
+                form.submit();
+            }
         })
     </script>
 </body>

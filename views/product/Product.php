@@ -72,15 +72,20 @@
                         </div>
                     </div>
                 </div>
-
+                <div class="form-group d-flex">
+                    <div class="col-2">
+                        <label for="" class="label_form">Mô tả</label>
+                    </div>
+                    <div class="col-10">
+                        <textarea class="input-text form-control" name="desc" cols="10" rows="10"></textarea>
+                    </div>
+                </div>
                 <div class="form-group d-flex">
                     <div class="col-2">
                         <label for="" class="label_form">Nội dung</label>
                     </div>
                     <div class="col-10">
-                        <textarea class="input-text form-control" name="desc" id="editor" cols="30" rows="10">
-
-                        </textarea>
+                        <textarea class="input-text form-control" name="content" id="editor" cols="30" rows="10"></textarea>
                     </div>
                 </div>
                 <div class="form-group d-flex">
@@ -92,26 +97,5 @@
                 </div>
             </form>
         </div>
-        <!-- <div class="col-4">
-            <div class="form-group d-flex">
-                <div class="col-4">
-                    <label for="" class="label_form">Danh mục cha</label>
-                </div>
-                <div class="col-8">
-                    <select name="dm" id="" class="form-control">
-                        <option>Chọn danh mục</option>
-                       
-                    </select>
-                </div>
-            </div>
-            <div class="form-group d-flex">
-                <div class="col-4">
-                    <label for="" class="label_form" style="margin-right: 45px;">Trạng thái</label>
-                </div>
-                <div class="col-8">
-                    <input type="checkbox">
-                </div>
-            </div>
-        </div> -->
     </div>
 </div>

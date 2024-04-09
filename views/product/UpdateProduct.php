@@ -3,7 +3,7 @@
 </h2>
 <div class="box_content">
     <div class="row">
-    <div class="listname" style="margin-top:-60px;">
+        <div class="listname" style="margin-top:-60px;">
             <div class="icons" style="margin-left:-25px;">
                 <a href="?controller=Admin&action=ListProduct">
                     <i class="fa-thin fa-list"></i>
@@ -68,7 +68,10 @@
                                 <input class="form__file" id="upload-files" type="file" accept="image/*" multiple="multiple" name="img[]" />
                             </label>
                             <div class="form__files-container" id="files-list-container">
+                            <div class="form__image-container js-remove-image" data-index="0">
+                                <img class="form__image" src="./public/uploads/AnhSanPham/<?= $product['Image'] ?>" alt="">
                             </div>
+                        </div>
                         </div>
                     </div>
                 </div>
@@ -76,12 +79,18 @@
                 <input type="hidden" name="id" value="<?= $product['Id'] ?>">
                 <div class="form-group d-flex">
                     <div class="col-2">
+                        <label for="" class="label_form">Mô tả</label>
+                    </div>
+                    <div class="col-10">
+                        <textarea class="input-text form-control" name="desc" cols="10" rows="10"><?= $product['Des'] ?></textarea>
+                    </div>
+                </div>
+                <div class="form-group d-flex">
+                    <div class="col-2">
                         <label for="" class="label_form">Nội dung</label>
                     </div>
                     <div class="col-10">
-                        <textarea class="input-text form-control" name="desc" id="editor" cols="30" rows="10">
-                   <?= $product['Des'] ?>
-                    </textarea>
+                        <textarea class="input-text form-control" name="content" id="editor" cols="30" rows="10"><?= $product['Content'] ?></textarea>
                     </div>
                 </div>
                 <div class="form-group d-flex">

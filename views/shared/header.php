@@ -115,7 +115,7 @@
                                     <div class="user__drop">
                                         <ul class="nav">
                                             <?php
-                                                if (isset($_SESSION['user'])):
+                                                if (isset($_SESSION['auth']['member'])):
                                             ?>
                                             <li class="nav-item"><a class="nav-link"
                                                     href="?controller=member&action=index">Quản lý tài khoản</a></li>

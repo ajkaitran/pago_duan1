@@ -7,6 +7,7 @@ $status = [
     'processing' => 'Đang xử lý',
     'shipped' => 'Đang vận chuyển',
     'delivered' => 'Đã giao hàng',
+    'completed' => 'Đã hoàn thành',
     'cancelled' => 'Đã hủy',
 ];
 
