@@ -12,6 +12,18 @@
             </div>
         </div>
         <div class="content p-3">
+        <form action="" 
+                class="mt-3 d-none d-sm-inline-block form-inline mr-auto  my-2 my-md-0 mw-100 navbar-search">
+                <div class="d-flex">
+                    <input name="controller" value="Admin" type="hidden">
+                    <input name="action" value="ListCategoryProduct" type="hidden">
+                    <input type="text"  name="keyword" class="form-control bg-light border-0 small"
+                        placeholder="Tìm kiếm" aria-label="Search" aria-describedby="basic-addon2">
+                    <button class="btn btn-primary" type="submit">
+                        <i class="fas fa-search fa-sm"></i>
+                    </button>
+                </div>
+            </form>
             <table class="table table-strped mt-4">
                 <thead class="thead">
                     <tr>

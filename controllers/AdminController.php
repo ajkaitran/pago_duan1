@@ -65,13 +65,19 @@ function Index()
 function ListCategoryProduct()
 {
     authorize("admin");
-    $sql = "SELECT * FROM `productcategory` WHERE 1";
+    $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : '';
+    $condition = '';
+    if (!empty($keyword)) {
+        $condition = "AND Name LIKE '%$keyword%'";
+    }
+    $sql = "SELECT * FROM `productcategory` WHERE 1 $condition";
     $listDm = db_fetch_array($sql);
     $data =  array(
         'listDm' => $listDm
     );
     load_view('/product/ListCategoryProduct', '_layoutAdmin', $data);
 }
+
 function CategoryProduct()
 {
     authorize("admin");
@@ -173,16 +179,26 @@ function DeleteCategoryProduct()
 function ListProduct()
 {
     authorize("admin");
-    $sql = "SELECT sp.*, dm.Name  AS ten_danhmuc 
-    FROM `product` sp 
-    JOIN `productcategory` dm ON sp.ProductCategoryId  = dm.Id
-    ORDER BY CreatedAt DESC";
+    $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : '';
+    $condition = '';
+    if (!empty($keyword)) {
+        $condition = "WHERE sp.Name LIKE '%$keyword%'";
+    }
+    $cat = "SELECT * FROM `productcategory`";
+    $sql = "SELECT sp.*, dm.Name AS ten_danhmuc 
+            FROM `product` sp 
+            JOIN `productcategory` dm ON sp.ProductCategoryId = dm.Id
+            $condition
+            ORDER BY sp.CreatedAt DESC";
     $listSp = db_query($sql);
-    $data =  array(
-        'listSp' => $listSp
+    $data = array(
+        'listSp' => $listSp,
+        'listCat' => $cat,
     );
     load_view('/product/ListProduct', '_layoutAdmin', $data);
 }
+
+
 function ProductDetail()
 {
     authorize("admin");
@@ -526,7 +542,16 @@ function ListAdmin()
 function ListUser()
 {
     authorize("admin");
-    load_view('admin/ListUser', '_layoutAdmin');
+    $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : '';
+    $condition = '';
+    if (!empty($keyword)) {
+        $condition = "WHERE Username LIKE '%$keyword%' OR FullName LIKE '%$keyword%' OR PhoneNumber LIKE '%$keyword%' OR Email LIKE '%$keyword%'";
+    }
+    $user = db_fetch_array("SELECT * FROM `users` $condition");
+    $model = array(
+        'users' => $user
+    );
+    load_view('/Admin/ListUser', '_layoutAdmin', $model);
 }
 function EditUser()
 {
@@ -665,7 +690,6 @@ function remove_order()
         header("Location: ?controller=admin&action=list_order");
     }
 }
-
 
 
 // Chuyển thành ToUnSign

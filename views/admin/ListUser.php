@@ -3,15 +3,19 @@
 </h2>
 <div class="right-column">
     <div class="formcontent">
-        <!-- <div class="listname">
-            <div class="icons">
-                <a href="http://localhost/pago_duan1/?controller=Admin&action=Product">
-                    <i class="fa-light fa-circle-plus mr-1"></i>
-                    <span>Thêm sản phẩm</span>
-                </a>
-            </div>
-        </div> -->
         <div class="content p-3">
+            <form action="" 
+                class="d-none d-sm-inline-block form-inline mr-auto  my-2 my-md-0 mw-100 navbar-search">
+                <div class="d-flex">
+                    <input name="controller" value="Admin" type="hidden">
+                    <input name="action" value="ListUser" type="hidden">
+                    <input type="text"  name="keyword" class="form-control bg-light border-0 small"
+                        placeholder="Tìm kiếm" aria-label="Search" aria-describedby="basic-addon2">
+                    <button class="btn btn-primary" type="submit">
+                        <i class="fas fa-search fa-sm"></i>
+                    </button>
+                </div>
+            </form>
             <table class="table table-strped mt-5 ">
                 <thead>
                     <tr>
@@ -25,38 +29,22 @@
                 </thead>
                 <tbody class="">
                     <div>
+                        <?php
+                            $stt = 1;
+                            foreach ($users as $value) {
+                        ?>
                         <tr>
-                            <th scope="row">1</th>
-                            <td>tranghrh5</td>
-                            <td>Bùi Thị Huyền Trang</td>
-                            <td>0384749388</td>
-                            <td>trangbht1201@gmail.com</td>
-                            <td><a href="?controller=Admin&action=EditUser" class="btn btn-primary">Sửa</a><a href="" class="btn btn-danger">Xóa</a></td>
+                            <th scope="row"><?= $stt ?></th>
+                            <td><?= $value['Username'] ?></td>
+                            <td><?= $value['FullName'] ?></td>
+                            <td><?= $value['PhoneNumber'] ?></td>
+                            <td><?= $value['Email'] ?></td>
+                            <td><a href="?controller=Admin&action=EditUser" class="btn btn-primary">Sửa</a>
                         </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>loi123</td>
-                            <td>Lê Văn Lợi</td>
-                            <td>0877586111</td>
-                            <td>loilv@gmail.com</td>
-                            <td><a href="?controller=Admin&action=EditUser" class="btn btn-primary">Sửa</a><a href="" class="btn btn-danger">Xóa</a></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>giappp38</td>
-                            <td>Phạm Phú Giáp</td>
-                            <td>0938377393  </td>
-                            <td>giaphfb3663@gmai.com</td>
-                            <td><a href="?controller=Admin&action=EditUser" class="btn btn-primary">Sửa</a><a href="" class="btn btn-danger">Xóa</a></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">4</th>
-                            <td>haitn</td>
-                            <td>Trần Nam Hải</td>
-                            <td>0877586111</td>
-                            <td>haitn123#@gmail.com</td>
-                            <td><a href="?controller=Admin&action=EditUser" class="btn btn-primary">Sửa</a><a href="" class="btn btn-danger">Xóa</a></td>
-                        </tr>
+                        <?php
+                                $stt++;
+                            }
+                        ?>
                     </div>
                 </tbody>
             </table>
