@@ -100,67 +100,11 @@
           </div>
         </div>
       </li>
-
-      <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages2" aria-expanded="true" aria-controls="collapsePages">
-          <i class="fas fa-fw fa-folder"></i>
-          <span>Quản lý dịch vụ</span>
-        </a>
-        <div id="collapsePages2" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="?controller=Admin&action=CategoryService">Thêm danh mục dịch vụ</a>
-            <a class="collapse-item" href="?controller=Admin&action=ListCategoryService">Danh sách danh mục</a>
-            <a class="collapse-item" href="?controller=Admin&action=Service">Thêm dịch vụ</a>
-            <a class="collapse-item" href="?controller=Admin&action=ListService">Danh sách dịch vụ</a>
-          </div>
-        </div>
-      </li>
-
-      <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages3" aria-expanded="true" aria-controls="collapsePages">
-          <i class="fas fa-fw fa-folder"></i>
-          <span>Quản lý bài viết</span>
-        </a>
-        <div id="collapsePages3" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="?controller=Admin&action=CategoryArticle">Thêm danh mục bài viết</a>
-            <a class="collapse-item" href="?controller=Admin&action=ListCategoryArticle">Danh sách danh mục bài viết</a>
-            <a class="collapse-item" href="?controller=Admin&action=Article">Thêm bài viết</a>
-            <a class="collapse-item" href="?controller=Admin&action=ListArticle">Danh sách bài viết</a>
-          </div>
-        </div>
-      </li>
-
-
       <li class="nav-item">
         <a class="nav-link collapsed" href="?controller=Admin&action=Comment">
           <i class="fas fa-fw fa-cog"></i>
           <span>Quản lý bình luận</span>
         </a>
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="?controller=Admin&action=Statistical">
-          <i class="fas fa-fw fa-cog"></i>
-          <span>Quản lý thống kê</span>
-        </a>
-
-
-
-        <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages6" aria-expanded="true" aria-controls="collapsePages">
-          <i class="fas fa-fw fa-folder"></i>
-          <span>Quản lý liên hệ</span>
-        </a>
-        <div id="collapsePages6" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="login.html">Thêm danh mục sản phẩm</a>
-            <a class="collapse-item" href="login.html">Thêm sản phẩm</a>
-            <a class="collapse-item" href="login.html">Danh sách sản phẩm</a>
-          </div>
-        </div>
       </li>
 
       <!-- Divider -->
