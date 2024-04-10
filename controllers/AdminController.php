@@ -179,21 +179,28 @@ function DeleteCategoryProduct()
 function ListProduct()
 {
     authorize("admin");
+    $CatId = isset($_GET['CatId']) ? $_GET['CatId'] : '';
     $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : '';
     $condition = '';
     if (!empty($keyword)) {
         $condition = "WHERE sp.Name LIKE '%$keyword%'";
     }
-    $cat = "SELECT * FROM `productcategory`";
+
+    if (!empty($CatId) && $CatId > 0) {
+        $condition .= " AND sp.ProductCategoryId = $CatId";
+    }
+
+    $cat = "SELECT * FROM `productcategory` WHERE ParentCategoryId IS NOT NULL";;
     $sql = "SELECT sp.*, dm.Name AS ten_danhmuc 
             FROM `product` sp 
             JOIN `productcategory` dm ON sp.ProductCategoryId = dm.Id
-            $condition
-            ORDER BY sp.CreatedAt DESC";
+            WHERE 1=1 $condition
+            ORDER BY sp.CreatedAt DESC";    
     $listSp = db_query($sql);
+    $listDm = db_fetch_array($cat);
     $data = array(
         'listSp' => $listSp,
-        'listCat' => $cat,
+        'listCat' => $listDm,
     );
     load_view('/product/ListProduct', '_layoutAdmin', $data);
 }

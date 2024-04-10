@@ -19,7 +19,8 @@
                     <input name="action" value="ListCategoryProduct" type="hidden">
                     <input type="text"  name="keyword" class="form-control bg-light border-0 small"
                         placeholder="Tìm kiếm" aria-label="Search" aria-describedby="basic-addon2">
-                    <button class="btn btn-primary" type="submit">
+                    
+                        <button class="btn btn-primary" type="submit">
                         <i class="fas fa-search fa-sm"></i>
                     </button>
                 </div>
