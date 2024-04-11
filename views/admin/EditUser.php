@@ -1,41 +1,33 @@
 <h2 class="title_page">
-    Cập nhật tài khoản
+   Thêm tài khoản
 </h2>
 <div class="box_content">
-    <div class="row">
+    <form action="?controller=admin&action=UpdateUser" method="POST" class="row">
         <div class="col-12">
+        <input type="hidden" name="id" value="<?= $user['Id'] ?>" /> 
+        <div class="form-group d-flex">
+                <label for="" class="form_ext">Tên đăng nhập</label>
+                <input type="text" name="Username"  class="input-text form-control" value="<?= $user['Username'] ?>">
+            </div>
             <div class="form-group d-flex">
                 <label for="" class="form_ext">Họ và tên</label>
-                <input type="text" class="input-text form-control">
+                <input type="text" name="FullName"  class="input-text form-control" value="<?= $user['FullName'] ?>">
             </div>
             <div class="form-group d-flex">
                 <label for="" class="form_ext">Email</label>
-                <input type="text" class="input-text form-control">
-            </div>
-            <div class="form-group d-flex">
-                <label for="" class="form_ext">Ảnh</label>
-                <div class="w-100">
-                <label class="form__container" id="upload-container">Choose or Drag & Drop Files
-                    <input class="form__file" id="upload-files" type="file" accept="image/*" multiple="multiple"/>
-                </label>
-                <div class="form__files-container" id="files-list-container"></div>
-                </div>
+                <input  name="Email" type="email"  class="input-text form-control" value="<?= $user['Email'] ?>">
             </div>
             <div class="form-group d-flex">
                 <label for="" class="form_ext">Số điện thoại</label>
-                <input type="text" class="input-text form-control">
+                <input type="text" name="PhoneNumber" class="input-text form-control" value="<?= $user['PhoneNumber'] ?>" >
             </div>
             <div class="form-group d-flex">
                 <label for="" class="form_ext">Mật khẩu</label>
-                <input type="text" class="input-text form-control">
-            </div>
-            <div class="form-group d-flex">
-                <label for="" class="form_ext">Hoạt động</label>
-                <input type="checkbox">
+                <input name="Password" type="password" class="input-text form-control" placeholder="Bỏ trống nếu không đổi mật khẩu" >
             </div>
             <div class="form-group">
-                <button class="btn btn-success" style="margin-left: 175px;">Cập nhật</button>
-            </div>
+                    <button class="btn btn-success" style="margin-left: 175px;" name="update">Cập nhật</button>
+                </div>
         </div>
-    </div>
+    </form>
 </div>

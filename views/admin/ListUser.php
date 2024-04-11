@@ -39,7 +39,7 @@
                             <td><?= $value['FullName'] ?></td>
                             <td><?= $value['PhoneNumber'] ?></td>
                             <td><?= $value['Email'] ?></td>
-                            <td><a href="?controller=Admin&action=EditUser" class="btn btn-primary">Sửa</a>
+                            <td><a href="?controller=Admin&action=EditUser&id=<?= $value['Id'] ?>" class="btn btn-primary">Sửa</a>
                         </tr>
                         <?php
                                 $stt++;
