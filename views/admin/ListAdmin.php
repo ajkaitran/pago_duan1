@@ -28,13 +28,28 @@
             <table class="table table-strped mt-4">
                 <thead class="thead">
                     <tr>
+                        <th scope="col">STT</th>
                         <th scope="col">Tên đăng nhập</th>
                         <th scope="col">Hoạt động</th>
-                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
-
+                    <div>
+                        <?php
+                            $stt = 1;
+                            foreach ($admin as $value) {
+                        ?>
+                        <tr>
+                            <th scope="row"><?= $stt ?></th>
+                            <td><?= $value['Username'] ?></td>
+                            <td><?= $active_status = ($value['Active'] == 1) ? "Hoạt động" : "Khóa";
+ ?></td>
+                        </tr>
+                        <?php
+                                $stt++;
+                            }
+                        ?>
+                    </div>
                 </tbody>
             </table>
         </div>

@@ -565,9 +565,17 @@ function UpdatePassword()
 function ListAdmin()
 {
     authorize("admin");
-    load_view('admin/ListAdmin', '_layoutAdmin');
+    $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : '';
+    $condition = '';
+    if (!empty($keyword)) {
+        $condition = "WHERE Username LIKE '%$keyword%'";
+    }
+    $admin = db_fetch_array("SELECT * FROM `admins` $condition");
+    $model = array(
+        'admin' => $admin
+    );
+    load_view('/Admin/ListAdmin', '_layoutAdmin', $model);
 }
-
 // User
 function ListUser()
 {
