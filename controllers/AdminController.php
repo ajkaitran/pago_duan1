@@ -193,31 +193,39 @@ function DeleteCategoryProduct()
 function ListProduct()
 {
     authorize("admin");
+    
     $CatId = isset($_GET['CatId']) ? $_GET['CatId'] : '';
     $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : '';
+
     $condition = '';
     if (!empty($keyword)) {
         $condition = "WHERE sp.Name LIKE '%$keyword%'";
+        if (!empty($CatId) && $CatId > 0) {
+            $condition .= " AND sp.ProductCategoryId = $CatId";
+        }
+    } elseif (!empty($CatId) && $CatId > 0) {
+        $condition = "WHERE sp.ProductCategoryId = $CatId";
     }
 
-    if (!empty($CatId) && $CatId > 0) {
-        $condition .= " AND sp.ProductCategoryId = $CatId";
-    }
-
-    $cat = "SELECT * FROM `productcategory` WHERE ParentCategoryId IS NOT NULL";;
     $sql = "SELECT sp.*, dm.Name AS ten_danhmuc 
             FROM `product` sp 
             JOIN `productcategory` dm ON sp.ProductCategoryId = dm.Id
-            WHERE 1=1 $condition
+            $condition
             ORDER BY sp.CreatedAt DESC";    
     $listSp = db_query($sql);
+
+    $cat = "SELECT * FROM `productcategory` WHERE ParentCategoryId IS NOT NULL";
     $listDm = db_fetch_array($cat);
+
     $data = array(
         'listSp' => $listSp,
         'listCat' => $listDm,
     );
+
+    // Load view
     load_view('/product/ListProduct', '_layoutAdmin', $data);
 }
+
 
 
 function ProductDetail()
@@ -659,6 +667,18 @@ function UpdateUser(){
         header("Location: ?controller=admin&action=ListUser");
         exit;
     }
+}
+function DeleteUser()
+{
+    $id = isset($_GET['id']) ? $_GET['id'] : null;
+    $result_comment = db_query("DELETE FROM comments WHERE UserId = $id");
+    $result = db_query("DELETE FROM users WHERE id = $id");
+    if ($result) {
+        header("Location: ?controller=admin&action=ListUser");
+    } else {
+        echo "Đã xảy ra lỗi khi xóa người dùng!";
+    }
+    header("Location: ?controller=admin&action=ListUser");
 }
 
 //service

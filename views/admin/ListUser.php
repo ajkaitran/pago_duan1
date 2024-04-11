@@ -40,6 +40,9 @@
                             <td><?= $value['PhoneNumber'] ?></td>
                             <td><?= $value['Email'] ?></td>
                             <td><a href="?controller=Admin&action=EditUser&id=<?= $value['Id'] ?>" class="btn btn-primary">Sửa</a>
+                            <br>
+                            <br>
+                            <a href="?controller=Admin&action=DeleteUser&id=<?= $value['Id'] ?>" class="btn btn-danger">Sửa</a>
                         </tr>
                         <?php
                                 $stt++;
