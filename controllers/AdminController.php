@@ -62,15 +62,17 @@ function Index()
     authorize("admin");
     
     $admin = db_num_rows("SELECT * FROM `admins`");
+    $user = db_num_rows("SELECT * FROM `users`");
     $product = db_num_rows("SELECT * FROM `product`");
-    $article = db_num_rows("SELECT * FROM `articles`");
     $order = db_num_rows("SELECT * FROM `orders`");
+    $comment = db_num_rows("SELECT * FROM `comments`");
 
     $data = array(
         'admin' => $admin,
+        'user' => $user,
         'product' => $product,
-        'article' => $article,
         'order' => $order,
+        'comment' => $comment,
     );
     load_view('/admin/Index', '_layoutAdmin', $data);
 }
