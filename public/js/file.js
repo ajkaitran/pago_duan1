@@ -93,3 +93,40 @@ ClassicEditor
   .catch(error => {
     console.error(error);
   });
+
+
+$(document).ready(function () {
+  $('#productForm').validate({
+    rules: {
+      // Define validation rules for each form field
+      dm: {
+        required: true
+      },
+      ten: {
+        required: true
+      },
+      gia: {
+        required: true,
+        number: true
+      }
+    },
+    messages: {
+      // Define custom error messages for each field
+      dm: {
+        required: "Xin vui lòng chọn danh mục"
+      },
+      ten: {
+        required: "Xin vui lòng nhập tên"
+      },
+      gia: {
+        required: "Xin vui lòng nhập giá",
+        number: "Xin vui lòng chỉ nhập số"
+      },
+    },
+    // Submit the form via AJAX if it's valid
+    submitHandler: function (form) {
+      form.submit();
+    }
+  });
+
+});

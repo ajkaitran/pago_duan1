@@ -14,13 +14,11 @@
     <div class="container">
         <div class="form">
             <h4 class="p__orange"><span class="border__bot__orange">ĐĂNG NHẬP</span></h4>
-            <form action="?controller=member&action=login" method="post">
+            <form id="loginForm" action="?controller=member&action=login_store" method="post">
                 <div class="input">
-                    <p class="p__red">*</p>
                     <input type="text" name="Username" placeholder="Tên truy cập">
                 </div>
                 <div class="input">
-                    <p class="p__red">*</p>
                     <input type="password" name="Password" placeholder="Mật khẩu">
                 </div>
                 <div class="button">

@@ -61,8 +61,11 @@
                                     href="?controller=admin&action=ProductDetail&Id=<?= $value['Id'] ?>"><?= $value['Name'] ?></a>
                             </td>
                             <td>
-                                <h5><?= number_format($value['PriceSale']) ?>VND</h5>
-                                <del><?= number_format($value['Price']) ?>VND</del>
+                                <?php if (isset($value['PriceSale']) && !empty($value['PriceSale'])): ?>
+                                    <h5><?= number_format($value['PriceSale']) ?>VND</h5>
+                                <?php elseif (isset($value['Price']) && !empty($value['Price'])): ?>
+                                    <h5><?= number_format($value['Price']) ?>VND</h5>
+                                <?php endif; ?>
                             </td>
                             <td>
                                 <a href="?controller=Admin&action=UpdateProduct&id=<?= $value['Id'] ?>"

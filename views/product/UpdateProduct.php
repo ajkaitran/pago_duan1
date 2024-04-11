@@ -12,7 +12,7 @@
             </div>
         </div>
         <div class="col-8">
-            <form action="?controller=admin&action=EditProduct" method="post" enctype="multipart/form-data">
+            <form id="productForm" action="?controller=admin&action=EditProduct" method="post" enctype="multipart/form-data">
                 <div class="form-group d-flex">
                     <div class="col-2">
                         <label for="" class="label_form">Chon danh muc</label>

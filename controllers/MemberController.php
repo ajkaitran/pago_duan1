@@ -52,6 +52,12 @@ function register_store()
 
 function login()
 {
+    load_view('member/login');
+}
+
+
+function login_store()
+{
     $username = isset($_POST['Username']) ? $_POST['Username'] : null;
     $password = isset($_POST['Password']) ? $_POST['Password'] : null;
 
@@ -65,12 +71,10 @@ function login()
             header("Location: ?controller=member&action=index");
             exit;
         } else {
-            echo "Lỗi: Tên người dùng hoặc mật khẩu không đúng.";
-            load_view('member/login');
+            
+            header("Location: ?controller=member&action=login");
+            exit;
         }
-    } else {
-        echo "Lỗi: Vui lòng điền đầy đủ thông tin.";
-        load_view('member/login');
     }
 }
 

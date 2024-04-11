@@ -821,3 +821,90 @@ $("#contactForm").on("submit", function (e) {
         }
     });
 });
+
+
+$(document).ready(function () {
+    $('#loginForm').validate({
+      rules: {
+        // Define validation rules for each form field
+        Username: {
+          required: true
+        },
+        Password: {
+          required: true,
+          minlength: 3
+        },
+      },
+      messages: {
+        // Define custom error messages for each field
+        Username: {
+          required: "Xin vui lòng tên đăng nhập"
+        },
+        Password: {
+          required: "Xin vui lòng mật khẩu",
+          minlength: "Mật khẩu phải dài ít nhất 3 ký tự"
+        },
+      },
+      // Submit the form via AJAX if it's valid
+      submitHandler: function (form) {
+        form.submit();
+      }
+    });
+
+    $('#registerForm').validate({
+        rules: {
+          // Define validation rules for each form field
+          FullName: {
+            required: true
+          },
+          PhoneNumber: {
+            required: true,
+            pattern: /^\+?\d{8,}$/,
+          },
+          Email: {
+            required: true,
+            email: true
+          },
+          Username: {
+            required: true
+          },
+          Password: {
+            required: true,
+            minlength: 3
+          },
+          ConfirmPassword: {
+            required: true,
+            equalTo: "#Password"
+          }
+        },
+        messages: {
+          // Define custom error messages for each field
+          FullName: {
+            required: "Xin vui lòng tên họ và tên"
+          },
+          PhoneNumber: {
+            required: "Xin vui lòng tên số điện thoại",
+            pattern: "Vui lòng nhập đúng định dạng điện thoại"
+          },
+          Email: {
+            required: "Xin vui lòng tên email",
+            email: "Vui lòng nhập đúng định dạng email"
+          },
+          Username: {
+            required: "Xin vui lòng tên đăng nhập"
+          },
+          Password: {
+            required: "Xin vui lòng mật khẩu",
+            minlength: "Mật khẩu phải dài ít nhất 8 ký tự"
+          },
+          ConfirmPassword: {
+            required: "Xin vui lòng nhập lại mật khẩu",
+            equalTo: "Mật khẩu không khớp"
+          }
+        },
+        // Submit the form via AJAX if it's valid
+        submitHandler: function (form) {
+          form.submit();
+        }
+      });
+});

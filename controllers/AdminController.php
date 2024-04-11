@@ -60,7 +60,19 @@ function logout()
 function Index()
 {
     authorize("admin");
-    load_view('/admin/Index', '_layoutAdmin');
+    
+    $admin = db_num_rows("SELECT * FROM `admins`");
+    $product = db_num_rows("SELECT * FROM `product`");
+    $article = db_num_rows("SELECT * FROM `articles`");
+    $order = db_num_rows("SELECT * FROM `orders`");
+
+    $data = array(
+        'admin' => $admin,
+        'product' => $product,
+        'article' => $article,
+        'order' => $order,
+    );
+    load_view('/admin/Index', '_layoutAdmin', $data);
 }
 function ListCategoryProduct()
 {
@@ -275,16 +287,17 @@ function AddProduct()
             }
         }
         $imgString = implode(',', $imgNames);
-        $gia = isset($_POST['gia']) ? $_POST['gia'] : null;
+        $gia = isset($_POST['gia']) ? $_POST['gia'] : 0;
         $desc = isset($_POST['desc']) ? $_POST['desc'] : null;
         $content = isset($_POST['content']) ? $_POST['content'] : null;
-        $giasale = isset($_POST['giasale']) ? $_POST['giasale'] : null;
+        $giasale = isset($_POST['giasale']) && !empty($_POST['giasale']) ? $_POST['giasale'] : 0;
         $createdAt = date('Y-m-d H:i:s');
         $slug = convertToUnSign($name);
         $dm = isset($_POST['dm']) ? $_POST['dm'] : null;
         $sql = "INSERT INTO `product` 
         (`Name`, `Des`, `Content`, `Image`, `Slug`, `Price`, `PriceSale`, `Active`, `CreatedAt`, `ProductCategoryId`) 
         VALUES ('$name', '$desc', '$content', '$imgString', '$slug', $gia, $giasale, 1, '$createdAt', $dm)";
+
         db_query($sql);
         header("Location: ?controller=admin&action=ListProduct");
     }

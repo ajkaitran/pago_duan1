@@ -15,7 +15,7 @@
                         <a href="#">
                             <h5 class="m-0">Quản trị viên</h5>
                         </a>
-                        <p>1</p>
+                        <p><?= isset($admin) ? $admin: 0 ?></p>
                     </div>
                     <div class="bot">
                         <a href="#">
@@ -36,7 +36,7 @@
                         <a href="http://localhost/pago_duan1/?controller=Admin&action=listsp">
                             <h5 class="m-0">Sản phẩm</h5>
                         </a>
-                        <p>2</p>
+                        <p><?= isset($product) ? $product: 0 ?></p>
                     </div>
                     <div class="bot">
                         <a href="#">
@@ -55,9 +55,9 @@
                 <div class="cart">
                     <div class="top">
                         <a href="http://localhost/pago_duan1/?controller=Admin&action=listdm">
-                            <h5 class="m-0">Danh mục</h5>
+                            <h5 class="m-0">Bài viết</h5>
                         </a>
-                        <p>3</p>
+                        <p><?= isset($article) ? $article: 0 ?></p>
                     </div>
                     <div class="bot">
                         <a href="#">
@@ -78,70 +78,7 @@
                         <a href="#">
                             <h5 class="m-0">Đơn hàng</h5>
                         </a>
-                        <p>4</p>
-                    </div>
-                    <div class="bot">
-                        <a href="#">
-                            <i class="fa-solid fa-clock-rotate-left"></i>
-                            <span>Cập nhật liên tục</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="icon icon4">
-                    <i class="fa-regular fa-cart-shopping"></i>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-4 col-6 mb-3">
-            <div class="box">
-                <div class="cart">
-                    <div class="top">
-                        <a href="#">
-                            <h5 class="m-0">Đơn hàng</h5>
-                        </a>
-                        <p>4</p>
-                    </div>
-                    <div class="bot">
-                        <a href="#">
-                            <i class="fa-solid fa-clock-rotate-left"></i>
-                            <span>Cập nhật liên tục</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="icon icon4">
-                    <i class="fa-regular fa-cart-shopping"></i>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-4 col-6 mb-3">
-            <div class="box">
-                <div class="cart">
-                    <div class="top">
-                        <a href="#">
-                            <h5 class="m-0">Đơn hàng</h5>
-                        </a>
-                        <p>4</p>
-                    </div>
-                    <div class="bot">
-                        <a href="#">
-                            <i class="fa-solid fa-clock-rotate-left"></i>
-                            <span>Cập nhật liên tục</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="icon icon4">
-                    <i class="fa-regular fa-cart-shopping"></i>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-4 col-6 mb-3">
-            <div class="box">
-                <div class="cart">
-                    <div class="top">
-                        <a href="#">
-                            <h5 class="m-0">Đơn hàng</h5>
-                        </a>
-                        <p>4</p>
+                        <p><?= isset($order) ? $order: 0 ?></p>
                     </div>
                     <div class="bot">
                         <a href="#">

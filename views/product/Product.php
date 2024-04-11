@@ -12,14 +12,14 @@
             </div>
         </div>
         <div class="col-8">
-            <form action="?controller=admin&action=AddProduct" method="post" enctype="multipart/form-data">
+            <form id="productForm" action="?controller=admin&action=AddProduct" method="post" enctype="multipart/form-data">
                 <div class="form-group d-flex">
                     <div class="col-2">
                         <label for="" class="label_form">Chọn danh muc</label>
                     </div>
                     <div class="col-10">
                         <select name="dm" id="" class="form-control">
-                            <option>Chọn danh mục</option>
+                            <option value="">Chọn danh mục</option>
                             <?php foreach ($listDm as $key => $value) { ?>
                             <option value="<?= $value['Id'] ?>"><?= $value['Name'] ?></option>
                             <?php } ?>
