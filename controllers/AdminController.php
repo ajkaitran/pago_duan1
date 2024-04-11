@@ -672,6 +672,7 @@ function DeleteUser()
 {
     $id = isset($_GET['id']) ? $_GET['id'] : null;
     $result_comment = db_query("DELETE FROM comments WHERE UserId = $id");
+    $result_order = db_query("DELETE FROM orders WHERE user_id = $id");
     $result = db_query("DELETE FROM users WHERE id = $id");
     if ($result) {
         header("Location: ?controller=admin&action=ListUser");
