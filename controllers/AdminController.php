@@ -573,10 +573,90 @@ function ListUser()
     );
     load_view('/Admin/ListUser', '_layoutAdmin', $model);
 }
+
+function AddUser(){
+    load_view('admin/AddUser', '_layoutAdmin');
+}
+function AddUser_Form()
+{
+    if (isset($_POST['them'])) {
+        $fullname = isset($_POST['FullName']) ? $_POST['FullName'] : null;
+        $phone_num = isset($_POST['PhoneNumber']) ? $_POST['PhoneNumber'] : null;
+        $email = isset($_POST['Email']) ? $_POST['Email'] : null;
+        $username = isset($_POST['Username']) ? $_POST['Username'] : null;
+        $password =  isset($_POST['Password']) ? $_POST['Password'] : null;
+    
+        if ($fullname == null || $phone_num == null || $username == null || $password == null) {
+            echo "Lỗi: Điền đầy đủ thông tin.";
+            load_view('admin/AddUser', '_layoutAdmin');
+        }
+    
+        $exist_username = db_fetch_row("SELECT * FROM `Users` WHERE `Username` = '$username'");
+    
+        if ($exist_username) {
+            echo "Lỗi: Tên người dùng đã tồn tại.";
+            load_view('admin/AddUser', '_layoutAdmin');
+        }
+    
+        $arr = array(
+            'FullName' => $fullname,
+            'PhoneNumber' => $phone_num,
+            'Email' => $email,
+            'Username' => $username,
+            'Password' => md5($password),
+        );
+    
+        db_insert('Users', $arr);
+        header("Location: ?controller=admin&action=ListUser");
+        exit;
+    }
+}
+
 function EditUser()
 {
     authorize("admin");
-    load_view('admin/EditUser', '_layoutAdmin');
+    if (isset($_GET['id'])) {
+        $id = $_GET['id'];
+        $sql = "SELECT * FROM `users` WHERE Id = $id";
+        $user = db_fetch_row($sql);
+        $data =  array(
+            'user' => $user,
+        );
+    }
+    load_view('admin/EditUser', '_layoutAdmin', $data);
+}
+function UpdateUser(){
+    if (isset($_POST['update'])) {
+        $id = isset($_POST['id']) ? $_POST['id'] : 0;
+        $fullname = isset($_POST['FullName']) ? $_POST['FullName'] : null;
+        $phone_num = isset($_POST['PhoneNumber']) ? $_POST['PhoneNumber'] : null;
+        $email = isset($_POST['Email']) ? $_POST['Email'] : null;
+        $username = isset($_POST['Username']) ? $_POST['Username'] : null;
+        $password =  isset($_POST['Password']) ? $_POST['Password'] : null;
+
+        if ($fullname == null || $phone_num == null || $username == null) {
+            echo "Lỗi: Điền đầy đủ thông tin.";
+            return; 
+        }
+
+        if ($password != "") {
+            $password = md5($password);
+        }
+
+        $data = array(
+            'FullName' => $fullname,
+            'PhoneNumber' => $phone_num,
+            'Email' => $email,
+            'Username' => $username,
+            'Password' => $password,
+        );
+
+        $where = "`Id` = $id";
+        db_update("users", $data, $where);
+        
+        header("Location: ?controller=admin&action=ListUser");
+        exit;
+    }
 }
 
 //service
