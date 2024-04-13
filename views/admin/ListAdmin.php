@@ -11,8 +11,8 @@
                     <input type="text" class="input-text form-control w-75" name="Password">
                 </div>
                 <div class="form-group d-flex">
-                    <label for="" class="form_ext" name="Active">Trạng thái</label>
-                    <input type="checkbox">
+                    <label for="" class="form_ext">Trạng thái</label>
+                    <input type="checkbox" name="Active">
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-success">Thêm mới</button>
@@ -36,18 +36,18 @@
                 <tbody>
                     <div>
                         <?php
-                            $stt = 1;
-                            foreach ($admin as $value) {
+                        $stt = 1;
+                        foreach ($admin as $value) {
                         ?>
-                        <tr>
-                            <th scope="row"><?= $stt ?></th>
-                            <td><?= $value['Username'] ?></td>
-                            <td><?= $active_status = ($value['Active'] == 1) ? "Hoạt động" : "Khóa";
- ?></td>
-                        </tr>
+                            <tr>
+                                <th scope="row"><?= $stt ?></th>
+                                <td><?= $value['Username'] ?></td>
+                                <td><?= $active_status = ($value['Active'] == 1) ? "Hoạt động" : "Khóa";
+                                    ?></td>
+                            </tr>
                         <?php
-                                $stt++;
-                            }
+                            $stt++;
+                        }
                         ?>
                     </div>
                 </tbody>

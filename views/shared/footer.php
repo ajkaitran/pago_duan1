@@ -100,17 +100,7 @@
             </div>
         </div>
     </div>
-    <!-- <div class="end__footer">
-        <p class="nav-link m-0" href="#">Thiết kế website bởi VICO Group</p>
-        <img src="./public/images/logo_VICO group.webp" alt="">
-    </div> -->
     <div class="floating__box">
-        <div class="box"><a asp-action="Index" asp-controller="Member" asp-fragment="member-tabs-3"><i class="fa-regular fa-heart"></i></a></div>
-        <div class="box box__badges">
-            <a asp-action="Index" asp-controller="ShoppingCart"><i class="fa-solid fa-bag-shopping"></i></a>
-            <span class="badges__icons">0</span>
-        </div>
-        <div class="box"><a asp-action="Collation" asp-controller="Home"><i class="fa-solid fa-code-compare fa-rotate-90"></i></a></div>
         <div class="box"><a href="#"><i class="fa-solid fa-angles-up"></i></a></div>
     </div>
 </footer>

@@ -4,11 +4,13 @@
                 <div class="px-4 py-5">
                     <h3 class="text-uppercase">Đơn hàng số #<?= isset($order['order_id']) ? $order['order_id'] : null ?></h3>
                     <p><b>Ngày mua: </b><?= isset($order['created_at']) ? $order['created_at'] : null ?></p>
+                    <p><b>Trạng thái đơn hàng:</b> <?= $status[$order['status']] ?></p>
+                    <p><b>Phương thức thanh toán:</b> <?= $payments[$order['payment']] ?></p>
 
                     <?php foreach ($order_items as $item) : ?>
                         <div class="mb-3">
                             <div class="media">
-                                <img src="./public/uploads/AnhSanPham/<?= isset($item['Image']) ? $item['Image'] : null ?>" class="mr-3" alt="" style="width: 100px;">
+                                <img src="./public/uploads/AnhSanPham/<?= isset($item['Image']) ? $item['Image'] : null ?>" class="mr-3 border" alt="" style="width: 100px;">
                                 <div class="media-body">
                                     <h5 class="mt-0"><?= isset($item['Name']) ? $item['Name'] : null ?></h5>
                                     <p><?= isset($item['quantity']) ? $item['quantity'] : 0 ?> x <?= number_format(isset($item['price']) ? $item['price'] : 0) ?> VNĐ</p>

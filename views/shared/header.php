@@ -54,15 +54,15 @@
                                     </a>
                                 </li>
                                 <li class="badges">
-                                    <a asp-action="Index" asp-controller="ShoppingCart">
+                                    <a href="?controller=shoppingcart&action=index">
                                         <i class="fa-regular fa-bag-shopping fs-3"></i>
                                         <span>Giỏ hàng</span>
-                                        <span class="badges__icons">0</span>
+                                        <!-- <span class="badges__icons">0</span> -->
                                     </a>
-                                    <div class="badges__drop">
+                                    <!-- <div class="badges__drop">
                                         <div class="drop_detail">
                                             <div class="drop__top">
-                                                <!-- @if (Model.CartItems.Any())
+                                                @if (Model.CartItems.Any())
                                                 {
                                                 @foreach (var item in Model.CartItems)
                                                 {
@@ -84,7 +84,7 @@
                                                 else
                                                 {
                                                 <span>Không có thông tin cho loại dữ liệu này</span>
-                                                } -->
+                                                }
                                                 <span>Không có thông tin cho loại dữ liệu này</span>
                                             </div>
                                             <div class="drop__bot">
@@ -99,7 +99,7 @@
                                                     href="?controller=shoppingcart&action=checkout">THANH
                                                     TOÁN</a></button>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </li>
                                 <li>
                                     <a href="#">
@@ -151,9 +151,8 @@
                             <a class="nav-link" href="?controller=Home&action=introduce">GIỚI THIỆU</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="?controller=Home&action=product">SẢN PHẨM <i
-                                    class="fa-solid fa-angle-down"></i></a>
-                            <div class="nav__drop">
+                            <a class="nav-link" href="?controller=Home&action=product">SẢN PHẨM</a>
+                            <!-- <div class="nav__drop">
                                 <ul class="nav">
                                     <li class="nav-item">
                                         <a class="nav-link" href="#">Ấn phẩm bao bì <i
@@ -190,7 +189,7 @@
                                         </div>
                                     </li>
                                 </ul>
-                            </div>
+                            </div> -->
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="?controller=Home&action=service">DỊCH VỤ <i

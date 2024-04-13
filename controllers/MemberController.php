@@ -101,7 +101,7 @@ function index()
         WHERE orders.user_id = $user_id
     ");
 
-    // echoArray($orders);
+    // echoArray($_SESSION);
 
     $data = array(
         'orders' => $orders,

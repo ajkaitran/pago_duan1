@@ -34,7 +34,7 @@
                 <div class="col-lg-12">
                     <div class="title__pink">
                         <img src="./public/images/get-image-v3 (3).png" alt="">
-                        <h3>BẠN CẦN IN SẢN PHẨM GÌ?</h3>
+                        <h3>BẠN CẦN SẢN PHẨM GÌ?</h3>
                     </div>
                 </div>
                 <div class="col-lg-12">

@@ -19,7 +19,7 @@
                     <input name="action" value="ListProduct" type="hidden">
                     <input type="text" name="keyword" class="form-control bg-light border-0 small"
                         placeholder="Tìm kiếm" aria-label="Search" aria-describedby="basic-addon2">
-                    <select name="CatId">
+                    <select class="bg-light border-1 small" name="CatId">
                         <option value="">Danh mục sản phẩm</option>
                         <?php
                         foreach($listCat as $item){
@@ -69,9 +69,9 @@
                             </td>
                             <td>
                                 <a href="?controller=Admin&action=UpdateProduct&id=<?= $value['Id'] ?>"
-                                    class="btn btn-primary">Sua</a>
-                                <a href="?controller=Admin&action=DeleteProduct&id=<?= $value['Id'] ?>"
-                                    class="btn btn-danger">Xoa</a>
+                                    class="btn btn-primary">Sửa</a>
+                                <!-- <a href="?controller=Admin&action=DeleteProduct&id=<?= $value['Id'] ?>"
+                                    class="btn btn-danger">Xoa</a> -->
                             </td>
                         </tr>
                         <?php

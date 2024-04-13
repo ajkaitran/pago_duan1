@@ -19,7 +19,7 @@
                     <th scope="row"><?= $i++ ?></th>
                     <td>
                         <ul>
-                            <li><b>Mã đơn hàng: </b><?= isset($value['id']) ? $value['id'] : null ?></li>
+                            <li><b>Mã đơn hàng: </b><?= isset($value['order_id']) ? $value['order_id'] : null ?></li>
                             <li><b>Họ tên: </b><?= isset($value['fullname']) ? $value['fullname'] : null ?></li>
                             <li><b>Hình thức thanh toán: </b><?= $payments[$value['payment']] ?></li>
                         </ul>
@@ -41,7 +41,7 @@
                             <button name="update_order" type="submit" class="btn btn-success">Cập nhật</button>
                         </form>
                         <a href="?controller=Admin&action=order_details&id=<?= isset($value['order_id']) ? $value['order_id'] : null ?>" class="btn btn-primary mr-1">Xem chi tiết</a>
-                        <a href="?controller=Admin&action=remove_order&order_id=<?= isset($value['order_id']) ? $value['order_id'] : null ?>" class="btn btn-danger">Xóa</a>
+                        <!-- <a href="?controller=Admin&action=remove_order&order_id=<?= isset($value['order_id']) ? $value['order_id'] : null ?>" class="btn btn-danger">Xóa</a> -->
                     </td>
                 </tr>
             <?php

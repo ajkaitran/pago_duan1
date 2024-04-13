@@ -7,6 +7,7 @@ function register_admin()
 {
     $username = isset($_POST['Username']) ? $_POST['Username'] : null;
     $password = isset($_POST['Password']) ? $_POST['Password'] : null;
+    $active = isset($_POST['Active']) && $_POST['Active'] == 'on' ? true : false;
 
     if ($username == null || $password == null) {
         echo "Lỗi: Điền đầy đủ thông tin.";
@@ -15,6 +16,7 @@ function register_admin()
     $arr = array(
         'Username' => $username,
         'Password' => md5($password),
+        'Active' => $active,
     );
 
     db_insert('Admins', $arr);
@@ -60,7 +62,7 @@ function logout()
 function Index()
 {
     authorize("admin");
-    
+
     $admin = db_num_rows("SELECT * FROM `admins`");
     $user = db_num_rows("SELECT * FROM `users`");
     $product = db_num_rows("SELECT * FROM `product`");
@@ -193,7 +195,7 @@ function DeleteCategoryProduct()
 function ListProduct()
 {
     authorize("admin");
-    
+
     $CatId = isset($_GET['CatId']) ? $_GET['CatId'] : '';
     $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : '';
 
@@ -211,7 +213,7 @@ function ListProduct()
             FROM `product` sp 
             JOIN `productcategory` dm ON sp.ProductCategoryId = dm.Id
             $condition
-            ORDER BY sp.CreatedAt DESC";    
+            ORDER BY sp.CreatedAt DESC";
     $listSp = db_query($sql);
 
     $cat = "SELECT * FROM `productcategory` WHERE ParentCategoryId IS NOT NULL";
@@ -592,7 +594,8 @@ function ListUser()
     load_view('/Admin/ListUser', '_layoutAdmin', $model);
 }
 
-function AddUser(){
+function AddUser()
+{
     load_view('admin/AddUser', '_layoutAdmin');
 }
 function AddUser_Form()
@@ -603,19 +606,19 @@ function AddUser_Form()
         $email = isset($_POST['Email']) ? $_POST['Email'] : null;
         $username = isset($_POST['Username']) ? $_POST['Username'] : null;
         $password =  isset($_POST['Password']) ? $_POST['Password'] : null;
-    
+
         if ($fullname == null || $phone_num == null || $username == null || $password == null) {
             echo "Lỗi: Điền đầy đủ thông tin.";
             load_view('admin/AddUser', '_layoutAdmin');
         }
-    
+
         $exist_username = db_fetch_row("SELECT * FROM `Users` WHERE `Username` = '$username'");
-    
+
         if ($exist_username) {
             echo "Lỗi: Tên người dùng đã tồn tại.";
             load_view('admin/AddUser', '_layoutAdmin');
         }
-    
+
         $arr = array(
             'FullName' => $fullname,
             'PhoneNumber' => $phone_num,
@@ -623,7 +626,7 @@ function AddUser_Form()
             'Username' => $username,
             'Password' => md5($password),
         );
-    
+
         db_insert('Users', $arr);
         header("Location: ?controller=admin&action=ListUser");
         exit;
@@ -643,7 +646,8 @@ function EditUser()
     }
     load_view('admin/EditUser', '_layoutAdmin', $data);
 }
-function UpdateUser(){
+function UpdateUser()
+{
     if (isset($_POST['update'])) {
         $id = isset($_POST['id']) ? $_POST['id'] : 0;
         $fullname = isset($_POST['FullName']) ? $_POST['FullName'] : null;
@@ -654,7 +658,7 @@ function UpdateUser(){
 
         if ($fullname == null || $phone_num == null || $username == null) {
             echo "Lỗi: Điền đầy đủ thông tin.";
-            return; 
+            return;
         }
 
         if ($password != "") {
@@ -671,7 +675,7 @@ function UpdateUser(){
 
         $where = "`Id` = $id";
         db_update("users", $data, $where);
-        
+
         header("Location: ?controller=admin&action=ListUser");
         exit;
     }
@@ -763,6 +767,7 @@ function list_order()
 function order_details()
 {
     authorize("admin");
+    global $status, $payments;
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
 
@@ -786,6 +791,8 @@ function order_details()
 
         $data = array(
             'order' => $order,
+            'status' => $status,
+            'payments' => $payments,
             'order_items' => $order_items,
             'ship_fee' => 30000,
             'total_quantity' => $count_items->fetch_assoc()['total_quantity'],

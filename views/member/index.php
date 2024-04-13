@@ -21,8 +21,8 @@
                             <img src="~/img/no-picture.png" />
                         </div>
                         <div class="page_member__info">
-                            <h5 class="page_member__info-name m-0">Trần Văn A</h5>
-                            <a href="#" class="page_member__info-link">Chỉnh sửa tài khoản</a>
+                            <h5 class="page_member__info-name m-0"><?= $_SESSION['auth']['member']['FullName'] ?></h5>
+                            <!-- <a href="#" class="page_member__info-link">Chỉnh sửa tài khoản</a> -->
                         </div>
                     </div>
             
@@ -54,14 +54,14 @@
                                 Thông tin tài khoản
                             </a>
                         </li>
-                        <li class="ps-3">
+                        <!-- <li class="ps-3">
                             <a href="#member-tabs-5">
                                 <div class="member-icon">
                                     <i class="fa-sharp fa-solid fa-key"></i>
                                 </div>
                                 Đổi mật khẩu
                             </a>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
             </div>
@@ -114,13 +114,12 @@
                     <h1 class="page_member__title-tab mb-4 border-bottom">
                         Thông tin tài khoản
                     </h1>
-                    <form asp-action="UpdateMemberInfo" asp-controller="Member" class="page_member__form">
+                    <form class="page_member__form">
                         <div class="row mb-3">
                             <label for="username" class="col-sm-3 col-form-label">Tên truy cập:</label>
                             <div class="col-sm-9">
                                 <div class="form-required">
-                                    <input type="text" asp-for="Member.User" class="form-control" id="username">
-                                    <span asp-validation-for="Member.User" class="text-danger"></span>
+                                    <input type="text" class="form-control" id="username" value="<?= $_SESSION['auth']['member']['Username'] ?>" disabled>
                                 </div>
                             </div>
                         </div>
@@ -128,8 +127,7 @@
                             <label for="email" class="col-sm-3 col-form-label">Email</label>
                             <div class="col-sm-9">
                                 <div class="form-required">
-                                    <input type="email" asp-for="Member.Email" class="form-control" id="email">
-                                    <span asp-validation-for="Member.Email" class="text-danger"></span>
+                                    <input type="email" class="form-control" id="email" value="<?= $_SESSION['auth']['member']['Email'] ?>" disabled>
                                 </div>
                             </div>
                         </div>
@@ -137,8 +135,7 @@
                             <label for="fullname" class="col-sm-3 col-form-label">Họ và tên:</label>
                             <div class="col-sm-9">
                                 <div class="form-required">
-                                    <input type="text" asp-for="Member.FullName" class="form-control" id="fullname">
-                                    <span asp-validation-for="Member.FullName" class="text-danger"></span>
+                                    <input type="text" class="form-control" id="fullname" value="<?= $_SESSION['auth']['member']['FullName'] ?>" disabled>
                                 </div>
                             </div>
                         </div>
@@ -146,34 +143,18 @@
                             <label for="phone" class="col-sm-3 col-form-label">Điện thoại:</label>
                             <div class="col-sm-9">
                                 <div class="form-required">
-                                    <input type="text" asp-for="Member.Phone" class="form-control" id="phone">
-                                    <span asp-validation-for="Member.Phone" class="text-danger"></span>
+                                    <input type="text" class="form-control" id="phone" value="<?= $_SESSION['auth']['member']['PhoneNumber'] ?>" disabled>
                                 </div>
                             </div>
                         </div>
-                        <div class="row mb-3">
-                            <label for="address" class="col-sm-3 col-form-label">Địa chỉ:</label>
-                            <div class="col-sm-9">
-                                <div class="form-required">
-                                    <input type="text" asp-for="Member.Address" class="form-control" id="address">
-                                    <span asp-validation-for="Member.Address" class="text-danger"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="point" class="col-sm-3 col-form-label">Điểm thưởng</label>
-                            <div class="col-sm-9">
-                                <input type="text" readonly class="form-control-plaintext" id="point" value="0">
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
+                        <!-- <div class="mb-3 row">
                             <div class="col-sm-9 offset-sm-3">
                                 <button type="submit" class="button_member form-link btn-effect-1">Lưu thông tin</button>
                             </div>
-                        </div>
+                        </div> -->
                     </form>
                 </div>
-                <div id="member-tabs-5">
+                <!-- <div id="member-tabs-5">
                     <h1 class="page_member__title-tab mb-4 border-bottom">
                         Đặt lại mật khẩu
                     </h1>
@@ -211,7 +192,7 @@
                             </div>
                         </div>
                     </form>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
